@@ -1,392 +1,130 @@
-<!DOCTYPE html>
+<!-- No DOCTYPE on purpose: the live Add Video Gallery page renders in browser "quirks mode" and its form/input heights depend on it. -->
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome To DAV Public School</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="/Assest/css/Style.css" rel="stylesheet">
-    <link href="/Assest/css/Media.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <style>
-        /* ==========================================
-   VIDEO GALLERY
-========================================== */
-
-        .video-gallery-container {
-            width: 90%;
-            margin: 30px auto;
-        }
-
-        .video-gallery-title {
-            text-align: center;
-            text-decoration: underline;
-            margin-bottom: 30px;
-            color: #75112e;
-            font-weight: 600;
-        }
-
-        /* ==========================================
-   FORM
-========================================== */
-
-        .video-gallery-form {
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #fffef0;
-            padding: 25px 30px;
-            border-radius: 6px;
-            border: 1px solid #f5f0c8;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        }
-
-        /* ==========================================
-   FIRST ROW
-========================================== */
-        .video-first-row {
-            display: grid;
-            grid-template-columns:
-                1.1fr 1.5fr 1.5fr;
-            gap: 25px;
-            align-items: start;
-        }
-
-        .video-form-group {
-            margin-bottom: 0;
-        }
-
-        .video-form-group label {
-            display: block;
-            margin-bottom: 7px;
-            font-weight: 600;
-            color: #333333;
-        }
-
-        .required {
-            color: red;
-        }
-
-        /* ==========================================
-   INPUT
-========================================== */
-        .video-form-group .form-control {
-            width: 100%;
-            height: 42px;
-            box-sizing: border-box;
-            padding: 8px 12px;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .video-form-group .form-control:focus {
-            outline: none;
-            border-color: #75112e;
-            box-shadow:
-                0 0 0 2px rgba(117, 17, 46, 0.1);
-        }
-
-        /* ==========================================
-   CHARACTER COUNT
-========================================== */
-        .video-character-count {
-            display: block;
-            margin-top: 5px;
-            color: #0d6efd;
-            font-size: 18px;
-        }
-
-        /* ==========================================
-   URL
-========================================== */
-        .video-url-input-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .video-url-input-wrapper .form-control {
-            flex: 1;
-        }
-
-        /* ==========================================
-   HELP BUTTON
-========================================== */
-        .video-help-button {
-            width: 30px;
-            height: 30px;
-            padding: 0;
-            border: none;
-            border-radius: 50%;
-            background-color: #0d6efd;
-            color: #ffffff;
-            font-size: 17px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .video-help-button:hover {
-            background-color: #0b5ed7;
-        }
-
-        /* ==========================================
-   SAVE - NEXT ROW
-========================================== */
-
-        .video-save-container {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            margin-top: 25px;
-        }
-
-        .video-save-btn {
-            min-width: 110px;
-            padding: 9px 20px;
-        }
-
-        .video-save-btn i {
-            margin-right: 6px;
-        }
-
-        /* ==========================================
-   RESPONSIVE
-========================================== */
-
-        @media (max-width: 1000px) {
-            .video-first-row {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .video-gallery-container {
-                width: 95%;
-            }
-
-            .video-gallery-form {
-                padding: 20px;
-            }
-
-            .video-first-row {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <title>DashboardControl</title>
 </head>
 
 <body>
     <div id="header"></div>
-    <main>
-        <div class="video-gallery-container">
-            <div class="video-gallery-form">
 
-                <!-- First Row -->
-                <div class="video-first-row">
-
-                    <!-- Title -->
-                    <div class="video-form-group">
-                        <label for="videoTitle">
-                            Title
-                            <span class="required">*</span>:
-                        </label>
-
-                        <input type="text" id="videoTitle" class="form-control" maxlength="100"
-                            placeholder="Enter title" required>
-                        <span class="video-character-count" id="videoTitleCharacterCount">
-                            Character: 100
-                        </span>
-                    </div>
-
-                    <!-- Description -->
-                    <div class="video-form-group">
-                        <label for="videoDescription">
-                            Description
-                            <span class="required">*</span>:
-                        </label>
-                        <input type="text" id="videoDescription" class="form-control" maxlength="150"
-                            placeholder="Enter description" required>
-                        <span class="video-character-count" id="videoDescriptionCharacterCount">
-                            Character: 200
-                        </span>
-
-                    </div>
-
-                    <!-- URL -->
-                    <div class="video-form-group video-url-group">
-                        <label for="videoUrl">
-                            Url
-                            <span class="required">*</span>:
-                        </label>
-
-                        <div class="video-url-input-wrapper">
-                            <input type="url" id="videoUrl" class="form-control" placeholder="Enter video url" required>
-                            <button type="button" class="video-help-button" id="videoHelpButton" title="Help"
-                                aria-label="Help">
-                                ?
+    <div class="container-fluid">
+        <ul class="nav navbar-nav breadcrumb_ul">
+            <li>
+                <a href=""><i class="fa fa-home home_icon" aria-hidden="true"></i>&nbsp;<span>/</span></a>
+                <a href="">Dashboard&nbsp;<span>/</span></a>
+                <a href="" style="font-weight:bold">Add Video Gallery</a>
+            </li>
+        </ul>
+    </div>
+    <!-- form start -->
+    <div class="container-fluid" style="padding-bottom: 80px;">
+        <div id="div_videogallery_details" class="row addTransfarForm">
+            <div class="matrix_tableView">
+                <div class="modal-body">
+                    <form action="/" enctype="multipart/form-data" id="add_video_gallery_form" method="post" onsubmit="return false;">
+                        <div class="form-row">
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label>Title<span style="color:red">*</span>:</label>
+                                <input class="form-control text-box single-line" id="txt_title" maxlength="100" name="TITLE" placeholder="Enter  Title" type="text" value="">
+                                <label style="color:blue">Character:</label><label style="color:blue" id="title_txt_count">100</label>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label>Description<span style="color:red">*</span>:</label>
+                                <textarea id="txt_description" class="form-control" name="nb_description" maxlength="200" placeholder="Enter Description"></textarea>
+                                <label style="color:blue">Character:</label><label style="color:blue" id="description_txt_count">200</label>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label>Url<span style="color:red">*</span>:</label>
+                                <input class="form-control text-box single-line" id="txt_video_url" name="URLLINK" placeholder="Enter Video Url" type="text" value="">
+                            </div>
+                            <div class="col-md-3">
+                                <div class="info-btn-conatiner">
+                                    <a href="/Assest/help_pdf/Process of uploading video files from Google Drive.pdf" download="Process of uploading video files from Google Drive"><span><i class="fa fa-question-circle" aria-hidden="true"></i></span><span class="hover-help">Help</span></a>
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" id="btn_save_video_gallery">
+                                <i class="fa fa-save"></i> Save
                             </button>
                         </div>
-                    </div>
-
-                </div>
-                <!-- Second Row -->
-                <div class="video-save-container">
-                    <button type="button" class="btn btn-primary video-save-btn" id="saveVideoGalleryBtn">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
-                        Save
-                    </button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-    </main>
     <div id="footer"></div>
-    <script src="../Layout/Layout-Admin.js"></script>
-    <script src="../Layout/Layout-Api.js"></script>
+
+    <script src="/Layout/Layout-Admin.js"></script>
+    <script src="/Layout/Layout-Api.js"></script>
     <script>
-        fetch("../Layout/Layout-Admin-Header.html")
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById("header").innerHTML = html;
-                if (typeof initAdminLayoutNav === "function") {
-                    initAdminLayoutNav();
-                }
-            })
-            .catch(error => {
-                console.error("Admin header loading error:", error);
-            });
+        // only for logged-in users
+        if (!localStorage.getItem("authToken")) {
+            window.location.href = "/Dav-Login.html";
+        }
+
+        fetch("/Layout/Layout-Admin-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Admin header loading error:", error); });
+
+        fetch("/Layout/Layout-Admin-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Footer loading error:", error); });
     </script>
     <script>
-        fetch("../Layout/Layout-Admin-Footer.html")
-            .then(r => r.text())
-            .then(html => document.getElementById("footer").innerHTML = html);
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            initializeCharacterCounters();
-            initializeSaveButton();
-            initializeHelpButton();
+        // "Character:" counters (count down from the field's maximum length)
+        $("#txt_title").on("input keyup paste", function () {
+            $("#title_txt_count").text(100 - $(this).val().length);
+        });
+        $("#txt_description").on("input keyup paste", function () {
+            $("#description_txt_count").text(200 - $(this).val().length);
         });
 
-        /* ==========================================        
-           CHARACTER COUNTERS
-        ========================================== */
-        function initializeCharacterCounters() {
-            const title = document.getElementById("videoTitle");
-            const description = document.getElementById("videoDescription");
-            const titleCount = document.getElementById("videoTitleCharacterCount");
-            const descriptionCount = document.getElementById("videoDescriptionCharacterCount");
+        $("#btn_save_video_gallery").on("click", async function () {
+            var button = this;
+            var title = $("#txt_title").val().trim();
+            var description = $("#txt_description").val().trim();
+            var url = $("#txt_video_url").val().trim();
 
-            /* Title */
+            if (!title) { alert("Please enter title."); $("#txt_title").focus(); return; }
+            if (!description) { alert("Please enter description."); $("#txt_description").focus(); return; }
+            if (!url) { alert("Please enter video URL."); $("#txt_video_url").focus(); return; }
+            try { new URL(url); } catch (e) { alert("Please enter a valid video URL."); $("#txt_video_url").focus(); return; }
 
-            title.addEventListener("input", function () {
-                const remaining = 100 - this.value.length;
-                titleCount.textContent =`Character: ${remaining}`;
-            });
+            if (!DavApi.requireLogin()) return;
 
-            /* Description */
-            description.addEventListener("input", function () {
-                const remaining = 200 - this.value.length;
-                descriptionCount.textContent = `Character: ${remaining}`;
-            });
-        }
+            try {
+                await DavApi.busy(button, async function () {
+                    await DavApi.post("api-post-add-update-video-gallery", {
+                        ITEM: "ADD",
+                        RECORD_SYS_ID: 0,
+                        TITLE: title,
+                        DESCRIPTION: description,
+                        URL: url,
+                        STATUS: "ACTIVE"
+                    });
+                });
 
-        /* ==========================================        
-           SAVE BUTTON
-        ========================================== */
-
-        function initializeSaveButton() {
-            const saveButton = document.getElementById("saveVideoGalleryBtn");
-
-            saveButton.addEventListener("click", async function () {
-                    const title = document.getElementById("videoTitle").value.trim();
-                    const description = document.getElementById("videoDescription").value.trim();
-                    const url = document.getElementById("videoUrl").value.trim();
-
-                    /* Title validation */
-                    if (!title) {
-                        alert("Please enter title.");
-                        document.getElementById("videoTitle").focus();
-                        return;
-                    }
-
-                    /* Description validation */
-                    if (!description) {
-                        alert("Please enter description.");
-                        document.getElementById("videoDescription").focus();
-                        return;
-                    }
-
-                    /* URL validation */
-
-                    if (!url) {
-                        alert("Please enter video URL.");
-                        document.getElementById("videoUrl").focus();
-                        return;
-                    }
-
-                    /* URL format validation */
-                    try {
-                        new URL(url);
-                    } catch (error) {
-                        alert("Please enter a valid video URL.");
-                        document.getElementById("videoUrl").focus();
-                        return;
-                    }
-
-                    if (!DavApi.requireLogin()) return;
-
-                    try {
-                        await DavApi.busy(saveButton, async () => {
-                            await DavApi.post("api-post-add-update-video-gallery", {
-                                ITEM: "ADD",
-                                RECORD_SYS_ID: 0,
-                                TITLE: title,
-                                DESCRIPTION: description,
-                                URL: url,
-                                STATUS: "ACTIVE"
-                            });
-                        });
-
-                        alert("Video saved successfully.");
-                        window.location.reload();
-                    } catch (error) {
-                        console.error("Save video error:", error);
-                        alert(error.message || "Unable to save video.");
-                    }
-                }
-            );
-        }
-
-        /* ==========================================        
-           HELP BUTTON
-        ========================================== */
-        function initializeHelpButton() {
-            const helpButton = document.getElementById("videoHelpButton");
-            helpButton.addEventListener("click",function () {
-
-                    /*
-        
-                     * PDF DOWNLOAD WILL BE CONNECTED
-        
-                     * AFTER THE PDF IS PROVIDED.
-        
-                     */
-
-                    console.log("Video URL Help clicked.");
-                }
-            );
-        }
-
+                alert("Video saved successfully.");
+                window.location.reload();
+            } catch (error) {
+                console.error("Save video error:", error);
+                alert(error.message || "Unable to save video.");
+            }
+        });
     </script>
 </body>
 

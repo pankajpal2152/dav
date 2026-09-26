@@ -130,14 +130,14 @@ const DavApi = {
 
     /* Disable a button while an async action runs */
     async busy(button, work) {
-        const label = button.textContent;
+        const label = button.innerHTML;
         button.disabled = true;
         button.textContent = "Saving...";
         try {
             return await work();
         } finally {
             button.disabled = false;
-            button.textContent = label;
+            button.innerHTML = label;
         }
     }
 };
