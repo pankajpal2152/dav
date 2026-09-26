@@ -1,782 +1,172 @@
-<!DOCTYPE html>
+<!-- No DOCTYPE on purpose: the live TC archived-details page renders in browser "quirks mode" and its table/form heights depend on it. -->
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome To DAV Public School</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="/Assest/css/Style.css" rel="stylesheet">
-    <link href="/Assest/css/Media.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <title>DashboardControl</title>
     <style>
-        /* ==========================================
-   ARCHIVED TRANSFER CERTIFICATE
-========================================== */
-
-        .archived-tc-container {
-            width: 90%;
-            margin: 30px auto;
-        }
-
-        .archived-tc-form {
-            width: 90%;
-            margin: 0 auto;
-            display: flex;
-            align-items: flex-end;
-            gap: 25px;
-        }
-
-        .archived-tc-field {
-            width: 350px;
-        }
-
-        .archived-tc-field label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333333;
-        }
-
-        .required {
-            color: red;
-        }
-
-        /* ==========================================
-   CUSTOM DROPDOWN
-========================================== */
-
-        .tc-custom-select {
-            position: relative;
-            width: 100%;
-        }
-
-        .tc-custom-select-button {
-            width: 100%;
-            height: 42px;
-            padding: 8px 12px;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            font-size: 14px;
-            color: #333333;
-        }
-
-        .tc-custom-select-button i {
-            font-size: 12px;
-            color: #555555;
-        }
-
-        .tc-custom-select-button:focus {
-            outline: none;
-            border-color: #0d6efd;
-        }
-
-        /* ==========================================
-   DROPDOWN MENU
-========================================== */
-
-        .tc-custom-select-menu {
-            display: none;
-            position: absolute;
-            top: 46px;
-            left: 0;
-            width: 100%;
-            background-color: #ffffff;
-            border: 1px solid #dddddd;
-            border-radius: 4px;
-            box-shadow:
-                0 4px 10px rgba(0, 0, 0, 0.15);
-            z-index: 2000;
-            overflow: hidden;
-        }
-
-        .tc-custom-select.open .tc-custom-select-menu {
-            display: block;
-        }
-
-        /* ==========================================
-   DROPDOWN OPTIONS
-========================================== */
-
-        .tc-custom-select-option {
-            padding: 10px 12px;
-            font-size: 14px;
-            cursor: pointer;
-            color: #333333;
-            background-color: #ffffff;
-        }
-
-        .tc-custom-select-option:hover {
-            background-color: #0d6efd;
-            color: #ffffff;
-        }
-
-        /* ==========================================
-   SEARCH BUTTON
-========================================== */
-
-        .archived-tc-search {
-            display: flex;
-            align-items: center;
-        }
-
-        .archived-tc-search .btn {
-            height: 42px;
-            padding: 8px 18px;
-        }
-
-        /* ==========================================
-   RESPONSIVE
-========================================== */
-
-        @media (max-width: 767px) {
-            .archived-tc-container {
-                width: 95%;
-            }
-
-            .archived-tc-form {
-                width: 100%;
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .archived-tc-field {
-                width: 100%;
-            }
-
-            .archived-tc-search {
-                width: 100%;
-            }
-        }
-
-        /* ==========================================
-   ARCHIVED TC TABLE
-========================================== */
-
-        .archived-tc-table-wrapper {
-            width: 90%;
-            margin: 30px auto 0;
-            display: none;
-            overflow-x: auto;
-        }
-
-        .archived-tc-table {
-            width: 100%;
-            border: 2px solid #75112e !important;
-            border-collapse: collapse !important;
-        }
-
-        .archived-tc-table th {
-            background-color: #75112e !important;
-            color: #ffffff;
-            text-align: center;
-            vertical-align: middle;
-            padding: 12px 10px;
-            border: 2px solid #75112e !important;
-        }
-
-        .archived-tc-table td {
-            text-align: center;
-            vertical-align: middle;
-            padding: 10px;
-            border: 2px solid #75112e !important;
-        }
-
-        .archived-tc-table tbody tr:hover {
-            background-color: #f5e9ed;
-        }
-
-        .unarchive-tc-btn {
-            background-color: #505050 !important;
-            color: #ffffff;
-            border: none;
-            padding: 6px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .unarchive-tc-btn:hover {
-            background-color: #505050 !important;
-            color: #ffffff;
-        }
-
-        /* ==========================================
-   UNARCHIVE CONFIRM MODAL
-========================================== */
-
-        .unarchive-confirm-yes {
-            background-color: #198754;
-            color: #ffffff;
-            border: none;
-            padding: 6px 24px;
-            border-radius: 5px;
-        }
-
-        .unarchive-confirm-yes:hover {
-            background-color: #157347;
-            color: #ffffff;
-        }
-
-        .unarchive-confirm-no {
-            background-color: #dc3545;
-            color: #ffffff;
-            border: none;
-            padding: 6px 24px;
-            border-radius: 5px;
-        }
-
-        .unarchive-confirm-no:hover {
-            background-color: #bb2d3b;
-            color: #ffffff;
-        }
-        .modal-title{
-            color: rgb(21, 134, 132);
-            font-weight: bold;
-        }
+        /* messages such as "No Data Found" are centered in their row */
+        #view_Table1 tbody td[colspan] { text-align: center; }
     </style>
 </head>
 
 <body>
     <div id="header"></div>
-    <main>
-        <div class="archived-tc-container">
 
-            <div class="archived-tc-form">
-
-                <!-- Session Year -->
-                <div class="archived-tc-field">
-
-                    <label>
-
-                        Select Session Year
-                        <span class="required">*</span>
-                    </label>
-
-
-                    <div class="tc-custom-select" id="tcSessionYearDropdown">
-
-                        <button type="button" class="tc-custom-select-button" id="tcSessionYearButton">
-
-                            <span id="tcSessionYearText">
-
-                                Select Session Year
-                            </span>
-
-                            <i class="fa fa-chevron-down"></i>
-
-                        </button>
-
-
-                        <div class="tc-custom-select-menu">
-
-                            <div class="tc-custom-select-option" data-value="2020-2021">
-
-                                2020-2021
-                            </div>
-
-                            <div class="tc-custom-select-option" data-value="2021-2022">
-
-                                2021-2022
-                            </div>
-
-                            <div class="tc-custom-select-option" data-value="2022-2023">
-
-                                2022-2023
-                            </div>
-
-                            <div class="tc-custom-select-option" data-value="2023-2024">
-
-                                2023-2024
-                            </div>
-
-                            <div class="tc-custom-select-option" data-value="2024-2025">
-
-                                2024-2025
-                            </div>
-
-                            <div class="tc-custom-select-option" data-value="2025-2026">
-
-                                2025-2026
-                            </div>
-
-                            <div class="tc-custom-select-option" data-value="2026-2027">
-
-                                2026-2027
-                            </div>
-
-                            <div class="tc-custom-select-option" data-value="2027-2028">
-
-                                2027-2028
-                            </div>
-
-                            <div class="tc-custom-select-option" data-value="2028-2029">
-
-                                2028-2029
-                            </div>
-
-                            <div class="tc-custom-select-option" data-value="2029-2030">
-
-                                2029-2030
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <input type="hidden" id="tcSessionYear" value="">
-
+    <div class="container-fluid">
+        <ul class="nav navbar-nav breadcrumb_ul res_breadcrum">
+            <li>
+                <a href=""><i class="fa fa-home home_icon" aria-hidden="true"></i>&nbsp;<span>/</span></a>
+                <a href="">Dashboard&nbsp;<span>/</span></a>
+                <a href="" style="font-weight:bold">View Archived Details</a>
+            </li>
+        </ul>
+    </div><br>
+    <div class="container-fluid padding-11">
+        <input type="hidden" id="registration_no_hidden">
+        <div class="container-fluid">
+            <label class="ml-3">Select Session Year:</label><span style="color:red">*</span>
+            <div class="form-row">
+                <div class="col-md-3">
+                    <select class="form-control ml-3" id="ddl_archive_finyear">
+                        <option value="0">-Select-</option>
+                        <option value="2020-2021">2020-2021</option>
+                        <option value="2021-2022">2021-2022</option>
+                        <option value="2022-2023">2022-2023</option>
+                        <option value="2023-2024">2023-2024</option>
+                        <option value="2024-2025">2024-2025</option>
+                        <option value="2025-2026">2025-2026</option>
+                        <option value="2026-2027">2026-2027</option>
+                        <option value="2027-2028">2027-2028</option>
+                        <option value="2028-2029">2028-2029</option>
+                        <option value="2029-2030">2029-2030</option>
+                    </select>
                 </div>
-
-
-                <!-- Search -->
-                <div class="archived-tc-search">
-
-                    <button type="button" class="btn btn-primary" id="searchArchivedTc">
-
-                        <i class="fa fa-search"></i>
-
-                        Search
-
-                    </button>
-
+                <button type="button" class="btn btn-primary ml-4 btn_1" id="btn_search_archive">Search</button>
+            </div><br>
+            <div class="row">
+                <div id="archive_view" class="table-responsive table-hover NoticeBoard-Table ">
                 </div>
-
             </div>
-
-            <!-- Archived TC Table -->
-            <div class="archived-tc-table-wrapper" id="archivedTcTableWrapper">
-
-                <table class="table archived-tc-table">
-                    <thead>
-                        <tr>
-                            <th>Sl. No.</th>
-                            <th>Student Name</th>
-                            <th>Registration No.</th>
-                            <th>Class</th>
-                            <th>Date of Issue</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="archivedTcTableBody">
-                    </tbody>
-                </table>
-
-            </div>
-
         </div>
-
-
-    </main>
-    <div id="footer"></div>
-
-    <!-- Unarchive Confirmation Modal -->
-    <div class="modal fade" id="unarchiveConfirmModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    </div>
+    <div class="modal fade" id="record_unarchive_popup" style="position: absolute; z-index: 1111111111111111111111;">
+        <div class="modal-dialog">
             <div class="modal-content">
-
                 <!-- Modal Header -->
-                <div class="modal-header">
-                    <h5 class="modal-title">Unarchive Record</h5>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="modal-header" style="padding: 4px 10px;font-weight: bold;color: #158684;">
+                    <h4 class="modal-title" style="font-size: 16px;">Unarchive Record</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
-
-                <!-- Modal Body -->
-                <div class="modal-body py-4">
-                    Are you want to unarchive this record?
-                </div>
-
-                <!-- Modal Footer -->
-                <div class="modal-footer justify-content-start border-0 pb-4 pt-0">
-                    <button type="button" class="btn unarchive-confirm-yes" id="unarchiveConfirmYes">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                        Yes
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <label>Are you sure you want to unarchive this record ?</label><br>
+                    <button id="btn_unarchive_record_yes" class="btn btn-success">
+                        <i class="fa fa-check"></i>Yes
                     </button>
-
-                    <button type="button" class="btn unarchive-confirm-no" id="unarchiveConfirmNo"
-                        data-dismiss="modal">
-                        No
-                    </button>
+                    <button class="btn btn-danger" data-dismiss="modal">No</button>
                 </div>
-
             </div>
         </div>
     </div>
 
+    <div id="footer"></div>
 
-    <script src="../Layout/Layout-Admin.js"></script>
+    <script src="/Layout/Layout-Admin.js"></script>
+    <script src="/Layout/Layout-Api.js"></script>
     <script>
-        fetch("../Layout/Layout-Admin-Header.html")
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById("header").innerHTML = html;
-                if (typeof initAdminLayoutNav === "function") {
-                    initAdminLayoutNav();
-                }
+        // only for logged-in users
+        if (!localStorage.getItem("authToken")) {
+            window.location.href = "/Dav-Login.html";
+        }
+
+        fetch("/Layout/Layout-Admin-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Admin header loading error:", error); });
+
+        fetch("/Layout/Layout-Admin-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Footer loading error:", error); });
+    </script>
+    <script>
+        function esc(value) {
+            return String(value == null ? "" : value)
+                .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        // dates are shown like the live site: 16 Mar 26
+        function showDate(value) {
+            var text = String(value == null ? "" : value).trim();
+            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            var m, y, mo, d;
+            if ((m = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) { y = +m[1]; mo = +m[2]; d = +m[3]; }
+            else if ((m = text.match(/^(\d{1,2})[-\/. ](\d{1,2})[-\/. ](\d{2,4})/))) { d = +m[1]; mo = +m[2]; y = +m[3]; }
+            else if ((m = text.match(/^(\d{1,2})[-\/. ]([A-Za-z]{3,9})[-\/. ,]*(\d{2,4})/))) { d = +m[1]; mo = months.map(function (x) { return x.toLowerCase(); }).indexOf(m[2].slice(0, 3).toLowerCase()) + 1; y = +m[3]; }
+            else return text;
+            if (!mo || !d) return text;
+            return (d < 10 ? "0" : "") + d + " " + months[mo - 1] + " " + String(y).slice(-2);
+        }
+
+        var HEAD = '<table class="table tc_table" id="view_Table1"><thead><tr><th>Sl.No.</th><th>Student Name</th><th>Registration No.</th><th>Class</th><th>Date of Issue</th><th>Actions</th></tr></thead><tbody>';
+
+        function loadArchived(sessionYear) {
+            var box = $("#archive_view");
+            DavApi.get("api-get-view-archive-transfer-certificate?ITEM=VIEW_ALL&SESSION_YEAR=" + encodeURIComponent(sessionYear))
+                .then(function (data) {
+                    var rows = DavApi.rows(data.response);
+                    var html = HEAD;
+                    if (!rows.length) html += '<tr><td colspan="6">No Data Found</td></tr>';
+                    rows.forEach(function (t, i) {
+                        html += '<tr><td>' + (i + 1) + '</td><td>' + esc(t.STUDENT_NAME) + '</td><td>' + esc(t.REGISTRATION_NO) + '</td><td>' + esc(t.CLASS) + '</td><td>' + esc(showDate(t.DATE_OF_ISSUE)) + '</td><td>' +
+                            '<button type="button" data-toggle="modal" data-target="#record_unarchive_popup" id="btn_unarchive" title="UnArchive" class="btn archive"' +
+                            ' data-record_sys_id="' + esc(t.RECORD_SYS_ID) + '" data-student_name="' + esc(t.STUDENT_NAME) + '" data-registration_no="' + esc(t.REGISTRATION_NO) +
+                            '" data-class_="' + esc(t.CLASS) + '" data-filename_="' + esc(t.FILE_NAME) + '">' +
+                            '<i class="fa fa-archive" aria-hidden="true"></i>Unarchive</button></td></tr>';
+                    });
+                    box.html(html + '</tbody></table>');
+                })
+                .catch(function () {
+                    box.html(HEAD + '<tr><td colspan="6">No Data Found</td></tr></tbody></table>');
+                });
+        }
+
+        $(document).on("click", "#btn_search_archive", function () {
+            var year = $("#ddl_archive_finyear option:selected").val();
+            if (year === "0") { alert("Select Session Year Properly"); return false; }
+            loadArchived(year);
+        });
+
+        $(document).on("click", "#btn_unarchive", function () {
+            $("#registration_no_hidden").val($(this).data("registration_no"));
+        });
+
+        $(document).on("click", "#btn_unarchive_record_yes", function () {
+            var year = $("#ddl_archive_finyear option:selected").val();
+            var reg = $("#registration_no_hidden").val();
+            DavApi.post("api-post-add-update-transfer-certificate-unarchive", {
+                ITEM: "UNARCHIVE_TRANSFER_CERTIFICATE",
+                REGISTRATION_NO: reg,
+                TITLE: reg,
+                SESSION_YEAR: year
             })
-            .catch(error => {
-                console.error("Admin header loading error:", error);
-            });
-    </script>
-    <script>
-        fetch("../Layout/Layout-Admin-Footer.html")
-            .then(r => r.text())
-            .then(html => document.getElementById("footer").innerHTML = html);
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            initializeTcSessionYearDropdown();
-            initializeArchivedTcSearch();
-            initializeUnarchiveModal();
+                .then(function () {
+                    alert("Record unarchived successfully.");
+                    $("#record_unarchive_popup").modal("hide");
+                    loadArchived(year);
+                })
+                .catch(function (e) { alert(e.message || "Oops!...Something went wrong"); });
         });
-
-        /*
-        SESSION YEAR DROPDOWN
-        */
-
-        function initializeTcSessionYearDropdown() {
-
-            const dropdown = document.getElementById("tcSessionYearDropdown");
-            const button = document.getElementById("tcSessionYearButton");
-            const text = document.getElementById("tcSessionYearText");
-            const hiddenInput = document.getElementById("tcSessionYear");
-            if (
-                !dropdown ||
-                !button ||
-                !text ||
-                !hiddenInput
-            ) {
-                return;
-            }
-
-            /*        
-            Open / close dropdown
-            */
-
-            button.addEventListener("click", function (event) {
-                event.stopPropagation();
-                dropdown.classList.toggle(
-                    "open"
-                );
-            }
-            );
-            /*
-            Select session year
-            */
-
-            const options = dropdown.querySelectorAll(".tc-custom-select-option");
-
-            options.forEach(
-                function (option) {
-                    option.addEventListener("click", function () {
-                        const value = this.dataset.value;
-                        const label = this.textContent.trim();
-                        hiddenInput.value = value;
-                        text.textContent = label;
-                        dropdown.classList.remove(
-                            "open"
-                        );
-                    }
-                    );
-                }
-            );
-
-            /*        
-            Close dropdown when clicking outside
-            */
-
-            document.addEventListener("click", function () {
-                dropdown.classList.remove(
-                    "open"
-                );
-            }
-            );
-        }
-        /*
-        SEARCH    
-        */
-
-        function initializeArchivedTcSearch() {
-            const searchButton = document.getElementById("searchArchivedTc");
-            if (!searchButton) {
-                return;
-            }
-
-            searchButton.addEventListener("click",
-                function () {
-                    const sessionYear = document.getElementById("tcSessionYear").value;
-                    /*
-                    Mandatory validation
-                    */
-
-                    if (!sessionYear) {
-                        alert(
-                            "Please select session year."
-                        );
-                        return;
-                    }
-
-                    getArchivedTc(sessionYear);
-                }
-            );
-        }
-
-        /*
-        GET ARCHIVED TRANSFER CERTIFICATE DETAILS
-        */
-
-        async function getArchivedTc(sessionYear) {
-
-            try {
-                const token = localStorage.getItem("authToken");
-
-                const response = await fetch(
-                    `/api/ourSchool/api-get-view-archive-transfer-certificate?ITEM=VIEW_ALL&SESSION_YEAR=${encodeURIComponent(sessionYear)}`,
-                    {
-                        headers: {
-                            "Authorization": `Bearer ${token}`
-                        }
-                    }
-                );
-
-                const data = await response.json();
-
-                if (data.status === "true" || data.status === true) {
-                    renderArchivedTcTable(extractArchivedTcRows(data.response));
-                } else {
-                    renderArchivedTcTable([]);
-                    console.error("Archived TC fetch error:", data.message);
-                }
-            } catch (error) {
-                console.error("Archived TC fetch error:", error);
-                renderArchivedTcTable([]);
-            }
-        }
-
-        /*
-        The GET API wraps the rows like this:
-        response: [ { JSON_VALUE: { status, response: [ ...rows ] } } ]
-        This pulls the actual rows out (and also accepts a flat array of rows).
-        */
-        function extractArchivedTcRows(response) {
-            if (!Array.isArray(response)) {
-                return [];
-            }
-
-            const first = response[0];
-
-            if (first && first.JSON_VALUE !== undefined) {
-                let inner = first.JSON_VALUE;
-
-                if (typeof inner === "string") {
-                    try { inner = JSON.parse(inner); } catch (e) { return []; }
-                }
-
-                return inner && Array.isArray(inner.response) ? inner.response : [];
-            }
-
-            return response;
-        }
-
-        function escapeHtml(value) {
-            return String(value)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-
-        /*
-        RENDER ARCHIVED TRANSFER CERTIFICATE TABLE
-        */
-
-        function renderArchivedTcTable(tcList) {
-
-            const tableWrapper = document.getElementById("archivedTcTableWrapper");
-            const tableBody = document.getElementById("archivedTcTableBody");
-
-            if (!tableWrapper || !tableBody) {
-                return;
-            }
-
-            tableBody.innerHTML = "";
-
-            if (!Array.isArray(tcList) || tcList.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="6">No archived transfer certificates found</td></tr>`;
-                tableWrapper.style.display = "block";
-                return;
-            }
-
-            tcList.forEach(function (tc, index) {
-
-                const row = document.createElement("tr");
-
-                row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${escapeHtml(tc.STUDENT_NAME || "")}</td>
-                    <td>${escapeHtml(tc.REGISTRATION_NO || "")}</td>
-                    <td>${escapeHtml(tc.CLASS || "")}</td>
-                    <td>${escapeHtml(tc.DATE_OF_ISSUE || "")}</td>
-                    <td>
-                        <button type="button" class="unarchive-tc-btn" data-reg="${escapeHtml(tc.REGISTRATION_NO || "")}">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="8" width="18" height="13" rx="1"></rect>
-                                <path d="M3 8V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3"></path>
-                                <line x1="12" y1="12" x2="12" y2="18"></line>
-                                <polyline points="9 15 12 12 15 15"></polyline>
-                            </svg>
-                            Unarchive
-                        </button>
-                    </td>
-                `;
-
-                tableBody.appendChild(row);
-            });
-
-            tableWrapper.style.display = "block";
-        }
-
-        /*
-        UNARCHIVE - CONFIRM MODAL + POST API
-        */
-
-        let pendingUnarchiveRegNo = null;
-        let unarchiveModalInstance = null;
-
-        function initializeUnarchiveModal() {
-
-            const modalEl = document.getElementById("unarchiveConfirmModal");
-            const yesButton = document.getElementById("unarchiveConfirmYes");
-            const noButton = document.getElementById("unarchiveConfirmNo");
-
-            if (!modalEl || !yesButton || !noButton) {
-                return;
-            }
-
-            unarchiveModalInstance = { show: function () { $(modalEl).modal("show"); }, hide: function () { $(modalEl).modal("hide"); } };
-
-            yesButton.addEventListener("click", async function () {
-                if (!pendingUnarchiveRegNo) {
-                    return;
-                }
-
-                await unarchiveTc(pendingUnarchiveRegNo);
-                pendingUnarchiveRegNo = null;
-                unarchiveModalInstance.hide();
-            });
-
-            noButton.addEventListener("click", function () {
-                pendingUnarchiveRegNo = null;
-            });
-        }
-
-        document.addEventListener("click", function (event) {
-
-            const unarchiveBtn = event.target.closest(".unarchive-tc-btn");
-
-            if (!unarchiveBtn) {
-                return;
-            }
-
-            pendingUnarchiveRegNo = unarchiveBtn.dataset.reg;
-
-            if (unarchiveModalInstance) {
-                unarchiveModalInstance.show();
-            }
-        });
-
-        /*
-        UNARCHIVE TRANSFER CERTIFICATE - POST API
-        */
-
-        let isUnarchivingTc = false;
-
-        async function unarchiveTc(registrationNo) {
-            if (isUnarchivingTc) {
-                return;
-            }
-
-            const token = localStorage.getItem("authToken");
-
-            if (!token) {
-                alert("Session expired. Please login again.");
-                window.location.href = "/Dav-Login.html";
-                return;
-            }
-
-            const sessionYear = document.getElementById("tcSessionYear").value;
-
-            const payload = {
-                data: [
-                    {
-                        ITEM: "UNARCHIVE_TRANSFER_CERTIFICATE",
-                        TITLE: registrationNo,
-                        SESSION_YEAR: sessionYear
-                    }
-                ]
-            };
-
-            isUnarchivingTc = true;
-
-            try {
-                const response = await fetch(
-                    "/api/ourSchool/api-post-add-update-transfer-certificate-unarchive",
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Authorization": `Bearer ${token}`
-                        },
-                        body: JSON.stringify(payload)
-                    }
-                );
-
-                const result = await response.json();
-                console.log("Unarchive TC POST Response:", result);
-
-                if (!response.ok || (result.status !== "true" && result.status !== true)) {
-                    throw new Error(result.message || "Failed to unarchive transfer certificate.");
-                }
-
-                // Stored procedure result: response[0][0].JSON_VALUE
-                let spResult = result.response?.[0]?.[0]?.JSON_VALUE;
-
-                if (typeof spResult === "string") {
-                    try { spResult = JSON.parse(spResult); } catch (e) { /* keep as string */ }
-                }
-
-                if (spResult && spResult.status !== "true" && spResult.status !== true) {
-                    throw new Error(spResult.response || "Failed to unarchive transfer certificate.");
-                }
-
-                alert((spResult && spResult.response) || "Certificate Unarchive Successful");
-
-                // Refresh the archived list for the selected session year
-                if (sessionYear) {
-                    getArchivedTc(sessionYear);
-                }
-
-            } catch (error) {
-                console.error("Unarchive TC error:", error);
-                alert(error.message || "Something went wrong while unarchiving the record.");
-            } finally {
-                isUnarchivingTc = false;
-            }
-        }
-
     </script>
 </body>
 
