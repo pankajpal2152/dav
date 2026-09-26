@@ -1,768 +1,211 @@
-<!DOCTYPE html>
+<!-- No DOCTYPE on purpose: the live Add Gallery page renders in browser "quirks mode" and its table/input heights depend on it. -->
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome To DAV Public School</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="/Assest/css/Style.css" rel="stylesheet">
-    <link href="/Assest/css/Media.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <style>
-        .gallery-control-container {
-            width: 95%;
-            margin: 30px auto;
-        }
-
-        .gallery-control-title {
-            text-align: center;
-            text-decoration: underline;
-            margin-bottom: 30px;
-            color: #75112e;
-            font-weight: 600;
-        }
-
-        .gallery-form-row {
-            display: flex;
-            gap: 25px;
-            align-items: flex-end;
-        }
-
-        .gallery-form-group {
-            flex: 1;
-        }
-
-        .gallery-form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .gallery-form-group .form-control {
-            width: 100%;
-            height: 42px;
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        .gallery-form-group .form-control:focus {
-            outline: none;
-            border-color: #75112e;
-            box-shadow: 0 0 0 2px rgba(117, 17, 46, 0.1);
-        }
-
-        .required {
-            color: red !important;
-        }
-
-        /* =========================
-   CUSTOM NUMBER DROPDOWN
-   ========================= */
-
-        .gallery-custom-select {
-            position: relative;
-            width: 100%;
-        }
-
-        .gallery-custom-select-button {
-            width: 100%;
-            height: 42px;
-            padding: 8px 12px;
-            background: #ffffff;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            font-size: 14px;
-            color: #333;
-            text-align: left;
-        }
-
-        .gallery-custom-select-button:hover {
-            border-color: #999;
-        }
-
-        .gallery-custom-select-button i {
-            font-size: 12px;
-            color: #555;
-        }
-
-        .gallery-custom-select-menu {
-            display: none;
-            position: absolute;
-            top: 46px;
-            left: 0;
-            width: 100%;
-            background: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            z-index: 2000;
-            max-height: 250px;
-            overflow-y: auto;
-        }
-
-        .gallery-custom-select.open .gallery-custom-select-menu {
-            display: block;
-        }
-
-        .gallery-custom-select-option {
-            padding: 10px 12px;
-            font-size: 14px;
-            cursor: pointer;
-            color: #333;
-            background: #ffffff;
-        }
-
-        .gallery-custom-select-option:hover {
-            background-color: #0d6efd;
-            color: #ffffff;
-        }
-
-        /* =========================
-   IMAGE TABLE
-   ========================= */
-
-        .gallery-image-table-wrapper {
-            width: 100%;
-            margin-top: 30px;
-            display: none;
-            overflow-x: auto;
-        }
-
-        .gallery-image-table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-        }
-
-        .gallery-image-table th {
-            background-color: rgb(245, 116, 70);
-            color: #ffffff;
-            padding: 12px 10px;
-            border: 1px solid #ffffff;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .gallery-image-table td {
-            padding: 12px 10px;
-            border: 1px solid #cccccc;
-            vertical-align: middle;
-            font-size: 14px;
-        }
-
-        /* Grey and white combination.
-   First row starts with grey. */
-
-        .gallery-image-table tbody tr:nth-child(odd) {
-            background-color: #eeeeee;
-        }
-
-        .gallery-image-table tbody tr:nth-child(even) {
-            background-color: #ffffff;
-        }
-
-        /* Column widths */
-        .gallery-image-table th:nth-child(1),
-        .gallery-image-table td:nth-child(1) {
-            width: 8%;
-            text-align: center;
-        }
-
-        .gallery-image-table th:nth-child(2),
-        .gallery-image-table td:nth-child(2) {
-            width: 32%;
-        }
-
-        .gallery-image-table th:nth-child(3),
-        .gallery-image-table td:nth-child(3) {
-            width: 42%;
-        }
-
-        .gallery-image-table th:nth-child(4),
-        .gallery-image-table td:nth-child(4) {
-            width: 18%;
-            text-align: center;
-        }
-
-        /* Image file input */
-
-        .gallery-image-file {
-            width: 100%;
-            box-sizing: border-box;
-            font-size: 17px;
-        }
-
-        .gallery-image-file-info {
-            display: block;
-            margin-top: 5px;
-            color: red;
-            font-size: 14px;
-        }
-
-        /* Choose Image error - shown above the "Max image size 2 mb" info text */
-
-        .gallery-image-choose-error {
-            display: none;
-            align-items: center;
-            gap: 5px;
-            margin-top: 5px;
-            color: red;
-            font-size: 14px;
-        }
-
-        .gallery-image-choose-error.show {
-            display: flex;
-        }
-
-        .gallery-image-choose-error i {
-            color: red;
-        }
-
-
-        /* Description */
-
-        .gallery-image-description {
-            width: 100%;
-            height: 42px;
-            box-sizing: border-box;
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .gallery-image-description:focus {
-            outline: none;
-            border-color: #75112e;
-            box-shadow: 0 0 0 2px rgba(117, 17, 46, 0.1);
-        }
-
-        /* Row holding the "Please fill out this field" error and the Character left counter side by side */
-
-        .gallery-description-meta-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            margin-top: 5px;
-        }
-
-        .gallery-description-error {
-            display: none;
-            align-items: center;
-            gap: 5px;
-            color: red;
-            font-size: 14px;
-        }
-
-        .gallery-description-error.show {
-            display: flex;
-        }
-
-        .gallery-description-error i {
-            color: red;
-        }
-
-        .gallery-description-count {
-            display: block;
-            /* color: #0d6efd; */
-            font-size: 18px;
-            white-space: nowrap;
-        }
-
-
-        /* Thumbnail radio */
-
-        .gallery-thumbnail-radio {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
-        /* Responsive */
-
-        @media (max-width: 767px) {
-            .gallery-form-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .gallery-image-table {
-                min-width: 800px;
-            }
-        }
-
-        .gallery-save-container {
-
-            width: 100%;
-
-            display: none;
-
-            justify-content: flex-end;
-
-            margin-top: 20px;
-
-        }
-
-        .gallery-save-btn {
-
-            min-width: 110px;
-
-            padding: 9px 20px;
-
-        }
-
-        .gallery-save-btn i {
-
-            margin-right: 6px;
-
-        }
-    </style>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <title>DashboardControl</title>
 </head>
 
 <body>
     <div id="header"></div>
-    <main>
-        <div class="gallery-control-container">
 
-            <h3 class="gallery-control-title">Gallery Control</h3>
-
-            <!-- Gallery Basic Information -->
-            <div class="gallery-form-row">
-
-                <div class="gallery-form-group">
-                    <label for="galleryTitle">
-
-                        Gallery Title <span class="required">*</span>
-                    </label>
-                    <input type="text" id="galleryTitle" class="form-control" placeholder="Enter Title" required>
-                </div>
-
-                <div class="gallery-form-group">
-                    <label for="galleryDescription">
-
-                        Gallery Description <span class="required">*</span>
-                    </label>
-                    <input type="text" id="galleryDescription" class="form-control" placeholder="Enter Description"
-                        required>
-                </div>
-
-                <div class="gallery-form-group">
-
-                    <label>
-
-                        Select Number of Images <span class="required">*</span>
-                    </label>
-
-                    <div class="gallery-custom-select" id="numberOfImagesDropdown">
-
-                        <button type="button" class="gallery-custom-select-button" id="numberOfImagesButton">
-
-                            <span id="numberOfImagesText">
-
-                                Select Number of Images
-                            </span>
-
-                            <i class="fa fa-chevron-down"></i>
-
-                        </button>
-
-                        <div class="gallery-custom-select-menu">
-
-                            <div class="gallery-custom-select-option" data-value="1">1</div>
-
-                            <div class="gallery-custom-select-option" data-value="2">2</div>
-
-                            <div class="gallery-custom-select-option" data-value="3">3</div>
-
-                            <div class="gallery-custom-select-option" data-value="4">4</div>
-
-                            <div class="gallery-custom-select-option" data-value="5">5</div>
-
-                            <div class="gallery-custom-select-option" data-value="6">6</div>
-
-                            <div class="gallery-custom-select-option" data-value="7">7</div>
-
-                            <div class="gallery-custom-select-option" data-value="8">8</div>
-
-                            <div class="gallery-custom-select-option" data-value="9">9</div>
-
-                            <div class="gallery-custom-select-option" data-value="10">10</div>
-
-                            <div class="gallery-custom-select-option" data-value="11">11</div>
-
-                            <div class="gallery-custom-select-option" data-value="12">12</div>
-
-                            <div class="gallery-custom-select-option" data-value="13">13</div>
-
-                            <div class="gallery-custom-select-option" data-value="14">14</div>
-
-                            <div class="gallery-custom-select-option" data-value="15">15</div>
-
-                            <div class="gallery-custom-select-option" data-value="16">16</div>
-
-                            <div class="gallery-custom-select-option" data-value="17">17</div>
-
-                            <div class="gallery-custom-select-option" data-value="18">18</div>
-
-                            <div class="gallery-custom-select-option" data-value="19">19</div>
-
-                            <div class="gallery-custom-select-option" data-value="20">20</div>
-
+    <div class="container-fluid addGallery-mobiledisplay">
+        <h4 class="mt-2" style="text-decoration:underline; text-align: center; font-weight: bold; color: #751120; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Gallery Control</h4>
+        <br>
+        <div class="container-fluid">
+            <form action="/" enctype="multipart/form-data" id="transform_certificate_gallery_form" method="post" onsubmit="return false;">
+                <div class="col-sm-12 margin-0">
+                    <div class="row margin-row-0 title-row" style="border-width:5px; border-color:black">
+                        <div class="col-sm-4 margin-0">
+                            <label>Gallery Title:</label><span style="color:red;">*</span>
+                            <div class="form-group">
+                                <input autocomplete="off" class="form-control text-box single-line" id="txt_title" name="TITLE" placeholder="Enter Title" type="text" value="">
+                            </div>
                         </div>
-
-                        <input type="hidden" id="numberOfImages">
-
+                        <div class="col-sm-4 margin-0">
+                            <label>Gallery Description:</label><span style="color:red;">*</span>
+                            <div class="form-group">
+                                <input autocomplete="off" class="form-control text-box single-line" id="txt_description" name="DESCRIPTION" placeholder="Enter Description" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 margin-0">
+                            <label>Select Number of Images:</label><span style="color:red;">*</span>
+                            <select name="" id="ddl_numbers" class="form-control">
+                                <option selected="selected" value="0">Select Number of Images</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
                     </div>
-
+                    <table class="table add-header-photo-table" id="tbl_main_contents_header"></table>
+                    <table class="table add-photo-table" id="tbl_main_contents_view"></table>
+                    <div id="div_save_image" class="pb-5">
+                        <button type="button" class="btn btn-primary pull-right" title="Save" id="btn_gallery_save">
+                            Save
+                        </button>
+                    </div>
+                    <div id="div_inputareas" class="mt-3 matrix_tableView table table-responsive">
+                    </div>
                 </div>
-
-            </div>
-
-
-            <!-- Dynamic Image Table -->
-            <div class="gallery-image-table-wrapper" id="galleryImageTableWrapper">
-
-                <table class="gallery-image-table">
-
-                    <thead>
-                        <tr>
-                            <th>SL.No</th>
-                            <th>Choose Image</th>
-                            <th>Image Description</th>
-                            <th>Choose Thumbnail</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="galleryImageTableBody">
-                    </tbody>
-
-                </table>
-
-            </div>
-
-            <div class="gallery-save-container">
-                <button type="button" class="btn btn-primary gallery-save-btn" id="saveGalleryBtn">
-                    Save
-                </button>
-            </div>
+            </form>
         </div>
-    </main>
-
-
+    </div>
 
     <div id="footer"></div>
-    <script src="../Layout/Layout-Admin.js"></script>
-    <script src="../Layout/Layout-Api.js"></script>
 
-
+    <script src="/Layout/Layout-Admin.js"></script>
+    <script src="/Layout/Layout-Api.js"></script>
     <script>
-        fetch("../Layout/Layout-Admin-Header.html")
-            .then(response => response.text())
-            .then(html => {
+        // only for logged-in users
+        if (!localStorage.getItem("authToken")) {
+            window.location.href = "/Dav-Login.html";
+        }
+
+        fetch("/Layout/Layout-Admin-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) {
                 document.getElementById("header").innerHTML = html;
-                if (typeof initAdminLayoutNav === "function") {
-                    initAdminLayoutNav();
-                }
+                // this page on the live site has a larger Home icon
+                var home = $(".navbar-dav > ul > li:first-child a")[0];
+                home.style.paddingTop = "16px";
+                home.style.paddingBottom = "17px";
+                home.querySelector("i").style.setProperty("font-size", "18px", "important");
             })
-            .catch(error => {
-                console.error("Admin header loading error:", error);
-            });
-    </script>
+            .catch(function (error) { console.error("Admin header loading error:", error); });
 
-
-    <script>
-        fetch("../Layout/Layout-Admin-Footer.html")
-            .then(r => r.text())
-            .then(html => document.getElementById("footer").innerHTML = html);
+        fetch("/Layout/Layout-Admin-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Footer loading error:", error); });
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            initializeNumberOfImagesDropdown();
-            // initializeGalleryDescriptionCounters();
+        var MAX_IMAGE_SIZE = 2 * 1024 * 1024; // "Max. image Size 2 MB."
+
+        $("#div_save_image").hide();
+
+        // build the image rows (same table layout as the live site)
+        $("#ddl_numbers").change(function () {
+            var count = parseInt($("#ddl_numbers option:selected").val(), 10) || 0;
+            var head = $("#tbl_main_contents_header");
+            var body = $("#tbl_main_contents_view");
+
+            head.html("");
+            body.html("");
+
+            if (count < 1) {
+                $("#div_save_image").hide();
+                return;
+            }
+
+            $("#div_save_image").show();
+            $("#div_inputareas").show();
+            head.append('<tr><th>Sl.No.</th><th>Choose Image </th><th> Image Description</th><th> Choose Thumbnail </th></tr>');
+
+            for (var nr = 1; nr <= count; nr++) {
+                body.append('<tr><td>' + nr + '</td><td><div class=""><input type="file" accept=".jpg,.png" name="galery_file" id="galery_file' + nr + '"><div><span style="color:Red;font-size:12px;">Max. image Size 2 MB.</span> </div></div></td><td><input name="captionname" type="text" maxlength="100" class="form-control text_box txt_caption" autocomplete="off" /><label class="left-character">Character left:<span class="number_value">100</span></label> </td><td> <div class=""> <span class="select_table_Box" style="display:inline-block;border-style:None;"><input class="checkbox_thumbnail" type="radio" name="thumbnail_name" checked /></span> </div></td></tr>');
+            }
         });
-        /* ==========================================
-           NUMBER OF IMAGES DROPDOWN    
-           ========================================== */
 
-        function initializeNumberOfImagesDropdown() {
-            const dropdown = document.getElementById("numberOfImagesDropdown");
-            const button = document.getElementById("numberOfImagesButton");
-            const text = document.getElementById("numberOfImagesText");
-            const hiddenInput = document.getElementById("numberOfImages");
+        // "Character left" counter
+        $(document).on("keyup input paste", ".txt_caption", function () {
+            $(this).siblings(".left-character").find(".number_value").text(100 - $(this).val().length);
+        });
 
-            if (!dropdown || !button || !text || !hiddenInput) {
-                return;
+        // save
+        $("#btn_gallery_save").on("click", async function () {
+            var button = this;
+            var title = $("#txt_title").val().trim();
+            var description = $("#txt_description").val().trim();
+            var rows = $("#tbl_main_contents_view tr");
+
+            if (!title) { alert("Please enter gallery title."); $("#txt_title").focus(); return; }
+            if (!description) { alert("Please enter gallery description."); $("#txt_description").focus(); return; }
+            if (rows.length === 0) { alert("Please select number of images."); $("#ddl_numbers").focus(); return; }
+
+            var images = [];
+            for (var i = 0; i < rows.length; i++) {
+                var row = $(rows[i]);
+                var file = row.find("input[type=file]")[0].files[0];
+                var caption = row.find(".txt_caption").val().trim();
+                var n = i + 1;
+
+                if (!file) { alert("Please choose image for Sl.No. " + n + "."); return; }
+                if (!/\.(jpe?g|png)$/i.test(file.name)) { alert("Sl.No. " + n + ": only .jpg or .png images are allowed."); return; }
+                if (file.size > MAX_IMAGE_SIZE) { alert("Sl.No. " + n + ": image size must be 2 MB or less."); return; }
+                if (!caption) { alert("Please enter image description for Sl.No. " + n + "."); row.find(".txt_caption").focus(); return; }
+
+                images.push({ file: file, caption: caption, thumbnail: row.find(".checkbox_thumbnail").is(":checked") });
             }
 
-            /* Open / close dropdown */
+            if (!DavApi.requireLogin()) return;
 
-            button.addEventListener("click", function (event) {
-                event.stopPropagation();
-                dropdown.classList.toggle("open");
-            });
+            // make sure exactly one image is the thumbnail
+            if (!images.some(function (x) { return x.thumbnail; })) images[0].thumbnail = true;
+            var thumbnailIndex = images.map(function (x) { return x.thumbnail; }).lastIndexOf(true);
 
-            /* Select number */
-
-            const options = dropdown.querySelectorAll(
-                ".gallery-custom-select-option"
-            );
-
-            options.forEach(function (option) {
-                option.addEventListener("click", function () {
-                    const selectedValue = this.dataset.value;
-                    hiddenInput.value = selectedValue;
-                    text.textContent = selectedValue;
-                    dropdown.classList.remove("open");
-                    generateImageRows(parseInt(selectedValue));
-                });
-            });
-
-            /* Close when clicking outside */
-
-            document.addEventListener("click", function () {
-                dropdown.classList.remove("open");
-            });
-        }
-
-        /* ==========================================        
-           GENERATE IMAGE TABLE ROWS
-           ========================================== */
-        function generateImageRows(numberOfImages) {
-
-            const tableWrapper = document.getElementById("galleryImageTableWrapper");
-            const tableBody = document.getElementById("galleryImageTableBody");
-            const saveContainer = document.querySelector(".gallery-save-container");
-
-            if (!tableWrapper || !tableBody) {
-                return;
-            }
-
-            tableBody.innerHTML = "";
-            for (let i = 1; i <= numberOfImages; i++) {
-                const row = document.createElement("tr");
-
-                row.innerHTML = `
-                                    <td>${i}</td>
- 
-                                    <td>
-                                        <input type="file" class="gallery-image-file" accept="image/*" data-row="${i}">
-                                        <span class="gallery-image-choose-error" id="chooseImageError${i}"><i class="fa fa-info-circle"></i>Please Choose Image</span>
-                                        <span class="gallery-image-file-info">Max image size 2 mb</span>
-                                    </td>
- 
-                                    <td>
-                                        <input type="text" class="gallery-image-description" maxlength="100" placeholder="Enter image description" data-row="${i}">
-                                        <div class="gallery-description-meta-row">
-                                            <span class="gallery-description-error" id="descriptionError${i}"><i class="fa fa-info-circle"></i>Please fill out this field</span>
-                                            <span class="gallery-description-count" id="descriptionCount${i}">
-                                            Character: 100
-                                            </span>
-                                        </div>
-                                    </td>
- 
-                                    <td>
-                                        <input type="radio" name="galleryThumbnail" class="gallery-thumbnail-radio" value="${i}" ${i === 1 ? "checked" : ""}>
-                                    </td>
-
-                                    `;
-
-                tableBody.appendChild(row);
-
-                const fileInput = row.querySelector(
-                    ".gallery-image-file"
-                );
-
-                const chooseImageError = row.querySelector(
-                    ".gallery-image-choose-error"
-                );
-
-                fileInput.addEventListener("change", function () {
-                    validateGalleryImage(this);
-                    if (this.files && this.files.length > 0) {
-                        chooseImageError.classList.remove("show");
-                    }
-                });
-
-                const descriptionInput = row.querySelector(
-                    ".gallery-image-description"
-                );
-
-                const descriptionError = row.querySelector(
-                    ".gallery-description-error"
-                );
-
-                const counter = row.querySelector(
-                    ".gallery-description-count"
-                );
-
-                descriptionInput.addEventListener("input", function () {
-
-                    const remaining = 100 - this.value.length;
-                    counter.textContent = `Character: ${remaining}`;
-
-                    if (this.value.trim() !== "") {
-                        descriptionError.classList.remove("show");
-                    }
-                });
-            }
-
-            tableWrapper.style.display = "block";
-
-            if (saveContainer) {
-                saveContainer.style.display = "flex";
-            }
-        }
-
-        /* ==========================================        
-           IMAGE VALIDATION
-           ========================================== */
-
-        function validateGalleryImage(input) {
-            const file = input.files[0];
-            if (!file) {
-                return;
-            }
-            /* Image only */
-
-            if (!file.type.startsWith("image/")) {
-                alert("Please select an image file only.");
-                input.value = "";
-                return;
-            }
-
-            /* Maximum 2 MB */
-
-            const maxSize = 2 * 1024 * 1024;
-            if (file.size > maxSize) {
-                alert("Image size must not exceed 2 MB.");
-                input.value = "";
-                return;
-            }
-        }
-
-        /* ==========================================
-           SAVE BUTTON VALIDATION
-           ========================================== */
-
-        const saveGalleryBtn = document.getElementById("saveGalleryBtn");
-
-        if (saveGalleryBtn) {
-            saveGalleryBtn.addEventListener("click", async function () {
-
-                const galleryTitle = document.getElementById("galleryTitle");
-                const galleryDescription = document.getElementById("galleryDescription");
-
-                let isValid = true;
-
-                /* Gallery Title & Gallery Description required */
-
-                if (!galleryTitle.value.trim() || !galleryDescription.value.trim()) {
-                    isValid = false;
-                }
-
-                /* Validate every image row: Choose Image & Image Description */
-
-                const rows = document.querySelectorAll("#galleryImageTableBody tr");
-
-                rows.forEach(function (row) {
-
-                    const fileInput = row.querySelector(".gallery-image-file");
-                    const chooseImageError = row.querySelector(".gallery-image-choose-error");
-
-                    if (!fileInput.files || fileInput.files.length === 0) {
-                        chooseImageError.classList.add("show");
-                        isValid = false;
-                    } else {
-                        chooseImageError.classList.remove("show");
-                    }
-
-                    const descriptionInput = row.querySelector(".gallery-image-description");
-                    const descriptionError = row.querySelector(".gallery-description-error");
-
-                    if (!descriptionInput.value.trim()) {
-                        descriptionError.classList.add("show");
-                        isValid = false;
-                    } else {
-                        descriptionError.classList.remove("show");
-                    }
-                });
-
-                /* Show the Title/Description alert alongside the row-level errors above */
-
-                if (!galleryTitle.value.trim() || !galleryDescription.value.trim()) {
-                    alert("Gallery Title and Gallery Description Needed");
-                }
-
-                if (!isValid) {
-                    return;
-                }
-
-                if (!DavApi.requireLogin()) return;
-
-                try {
-                    await DavApi.busy(saveGalleryBtn, async () => {
-                        const title = galleryTitle.value.trim();
-
-                        // 1. create the gallery
-                        await DavApi.post("api-post-add-update-image-gallery", {
-                            ITEM: "ADD",
-                            RECORD_SYS_ID: 0,
-                            TITLE: title,
-                            DESCRIPTION: galleryDescription.value.trim(),
-                            STATUS: "ACTIVE"
-                        });
-
-                        // 2. find its id
-                        const list = await DavApi.get("api-get-view-gallery-image?ITEM=VIEW_ALL&GALLERY_SYS_ID=0");
-                        const gallery = DavApi.rows(list.response).find(row => row.TITLE === title);
-                        const gallerySysId = gallery && (gallery.RECORD_SYS_ID || gallery.GALLERY_SYS_ID);
-                        if (!gallerySysId) {
-                            throw new Error("Gallery created, but its id could not be found.");
-                        }
-
-                        // 3. upload each image to S3 and link it to the gallery (first image = thumbnail)
-                        const imageRows = Array.from(document.querySelectorAll("#galleryImageTableBody tr"));
-                        for (let i = 0; i < imageRows.length; i++) {
-                            const file = imageRows[i].querySelector(".gallery-image-file").files[0];
-                            const caption = imageRows[i].querySelector(".gallery-image-description").value.trim();
-                            const [uploaded] = await DavApi.upload("gallery-image", [file]);
-
-                            await DavApi.post("api-post-add-update-image-gallery", {
-                                ITEM: "ADD_GALLERY_PHOTO",
-                                GALLERY_SYS_ID: gallerySysId,
-                                IMAGE_NAME: uploaded.fileName,
-                                CAPTION: caption,
-                                THUMBNAIL: i === 0 ? "Y" : "N"
-                            });
-                        }
+            try {
+                await DavApi.busy(button, async function () {
+                    // 1. create the gallery
+                    await DavApi.post("api-post-add-update-image-gallery", {
+                        ITEM: "ADD",
+                        RECORD_SYS_ID: 0,
+                        TITLE: title,
+                        DESCRIPTION: description,
+                        STATUS: "ACTIVE"
                     });
 
-                    alert("Gallery saved successfully.");
-                    window.location.reload();
-                } catch (error) {
-                    console.error("Save gallery error:", error);
-                    alert(error.message || "Unable to save gallery.");
-                }
+                    // 2. find its id
+                    var list = await DavApi.get("api-get-view-gallery-image?ITEM=VIEW_ALL&GALLERY_SYS_ID=0");
+                    var gallery = DavApi.rows(list.response).filter(function (g) { return g.TITLE === title; })[0];
+                    var gallerySysId = gallery && (gallery.GALLERY_SYS_ID || gallery.RECORD_SYS_ID);
+                    if (!gallerySysId) throw new Error("Gallery created, but its id could not be found.");
 
-            });
-        }
+                    // 3. upload each image to S3 and link it to the gallery
+                    for (var j = 0; j < images.length; j++) {
+                        var uploaded = await DavApi.upload("gallery-image", [images[j].file]);
+                        await DavApi.post("api-post-add-update-image-gallery", {
+                            ITEM: "ADD_GALLERY_PHOTO",
+                            GALLERY_SYS_ID: gallerySysId,
+                            IMAGE_NAME: uploaded[0].fileName,
+                            CAPTION: images[j].caption,
+                            THUMBNAIL: j === thumbnailIndex ? "Y" : "N"
+                        });
+                    }
+                });
 
+                alert("Gallery saved successfully.");
+                window.location.reload();
+            } catch (error) {
+                console.error("Save gallery error:", error);
+                alert(error.message || "Unable to save gallery.");
+            }
+        });
     </script>
 </body>
 
