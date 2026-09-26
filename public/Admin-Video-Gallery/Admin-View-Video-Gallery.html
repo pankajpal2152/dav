@@ -12,6 +12,20 @@
     <link href="/Assest/css/Style.css" rel="stylesheet">
     <link href="/Assest/css/Media.css" rel="stylesheet">
     <title>DashboardControl</title>
+    <style>
+        /* Column widths of the live Video Gallery table (Sl.No. / Title / Description / Url / Actions) */
+        #view_Table { table-layout: fixed; }
+        #view_Table th:nth-child(1) { width: 6.13%; }
+        #view_Table th:nth-child(2) { width: 39.39%; }
+        #view_Table th:nth-child(3) { width: 8.74%; }
+        #view_Table th:nth-child(4) { width: 33.6%; }
+        #view_Table th:nth-child(5) { width: 12.14% !important; }
+        /* Sl.No. numbers sit at the left of their column on the live page */
+        #view_Table tbody td:first-child:not([colspan]) { text-align: left; padding-left: 20px; }
+        #view_Table tbody td[colspan] { text-align: center; }
+        /* long urls / titles must wrap inside their fixed column */
+        #view_Table td { word-wrap: break-word; overflow-wrap: anywhere; }
+    </style>
 </head>
 
 <body>
