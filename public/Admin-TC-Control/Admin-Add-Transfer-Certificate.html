@@ -1,609 +1,145 @@
-<!DOCTYPE html>
+<!-- No DOCTYPE on purpose: the live Add Transfer Certificate page renders in browser "quirks mode" and its form/input heights depend on it. -->
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome To DAV Public School</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="/Assest/css/Style.css" rel="stylesheet">
-    <link href="/Assest/css/Media.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <style>
-        /* ==========================================
-   TRANSFER CERTIFICATE CONTROL
-========================================== */
-        .tc-control-container {
-            width: 90%;
-            margin: 30px auto;
-        }
-
-        .tc-control-title {
-            text-align: center;
-            text-decoration: underline;
-            margin-bottom: 25px;
-            color: #75112e;
-            font-weight: 600;
-        }
-        /* ==========================================
-   FORM
-========================================== */
-
-        .tc-form {
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #fffef0;
-            padding: 25px 30px;
-            border-radius: 6px;
-            border: 1px solid #f5f0c8;
-            box-shadow:
-                0 2px 8px rgba(0, 0, 0, 0.06);
-        }
-        /* ==========================================
-   ROW 1
-========================================== */
-
-        .tc-first-row {
-            display: grid;
-            grid-template-columns:
-                1fr 1.2fr 1.5fr 1fr;
-            gap: 20px;
-            align-items: start;
-        }
-
-        /* ==========================================
-   FORM GROUP
-========================================== */
-
-        .tc-form-group {
-            margin-bottom: 20px;
-        }
-
-        .tc-form-group label {
-            display: block;
-            margin-bottom: 7px;
-            font-weight: 600;
-            color: #333333;
-        }
-
-        .required {
-            color: red;
-        }
-        /* ==========================================
-   INPUT
-========================================== */
-
-        .tc-form-group .form-control {
-            width: 100%;
-            height: 42px;
-            box-sizing: border-box;
-            padding: 8px 12px;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .tc-form-group .form-control:focus {
-            outline: none;
-            border-color: #75112e;
-            box-shadow:
-                0 0 0 2px rgba(117, 17, 46, 0.1);
-        }
-        /* ==========================================
-   CLASS CUSTOM DROPDOWN
-========================================== */
-        .tc-custom-select {
-            position: relative;
-            width: 100%;
-        }
-
-        .tc-custom-select-button {
-            width: 100%;
-            height: 42px;
-            padding: 8px 12px;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            font-size: 14px;
-            color: #333333;
-        }
-
-        .tc-custom-select-button i {
-            font-size: 12px;
-            color: #555555;
-        }
-
-        .tc-custom-select-button:focus {
-            outline: none;
-            border-color: #0d6efd;
-        }
-        /* ==========================================
-   CLASS DROPDOWN MENU
-========================================== */
-
-        .tc-custom-select-menu {
-            display: none;
-            position: absolute;
-            top: 46px;
-            left: 0;
-            width: 100%;
-            background-color: #ffffff;
-            border: 1px solid #dddddd;
-            border-radius: 4px;
-            box-shadow:
-                0 4px 10px rgba(0, 0, 0, 0.15);
-            z-index: 2000;
-            overflow: hidden;
-        }
-
-        .tc-custom-select.open .tc-custom-select-menu {
-            display: block;
-        }
-        /* ==========================================
-   CLASS OPTIONS
-========================================== */
-
-        .tc-custom-select-option {
-            padding: 10px 12px;
-            font-size: 14px;
-            cursor: pointer;
-            color: #333333;
-            background-color: #ffffff;
-        }
-
-        .tc-custom-select-option:hover {
-            background-color: #0d6efd;
-            color: #ffffff;
-        }
-        /* ==========================================
-   ROW 2 - FILE
-========================================== */
-
-        .tc-second-row {
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .tc-file-group {
-            width: 50%;
-        }
-
-        /* ==========================================
-   ROW 3 - SAVE
-========================================== */
-
-        .tc-save-container {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            margin-top: 5px;
-        }
-
-        .tc-save-btn {
-            min-width: 110px;
-            padding: 9px 20px;
-        }
-
-        .tc-save-btn i {
-            margin-right: 6px;
-        }
-        /* ==========================================
-   RESPONSIVE
-========================================== */
-
-        @media (max-width: 1000px) {
-            .tc-first-row {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .tc-file-group {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .tc-control-container {
-                width: 95%;
-            }
-
-            .tc-form {
-                padding: 20px;
-            }
-
-            .tc-first-row {
-                grid-template-columns: 1fr;
-            }
-
-            .tc-file-group {
-                width: 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <title>DashboardControl</title>
 </head>
 
 <body>
     <div id="header"></div>
-    <main>
 
-        <div class="tc-control-container">
-
-            <div class="tc-form">
-                <!-- ==================================
-                 ROW 1
-            =================================== -->
-                <div class="tc-first-row">
-                    <!-- Date of Issue -->
-                    <div class="tc-form-group">
-
-                        <label for="tcDateOfIssue">
-
-                            Date of Issue
-                            <span class="required">*</span>:
-                        </label>
-
-                        <input type="date" id="tcDateOfIssue" class="form-control" required>
-
-                    </div>
-
-
-                    <!-- Registration No -->
-                    <div class="tc-form-group">
-
-                        <label for="tcRegistrationNo">
-
-                            Registration No
-                            <span class="required">*</span>:
-                        </label>
-
-                        <input type="text" id="tcRegistrationNo" class="form-control"
-                            placeholder="Enter registration no" required>
-
-                    </div>
-
-
-                    <!-- Student Name -->
-                    <div class="tc-form-group">
-
-                        <label for="tcStudentName">
-
-                            Student Name
-                            <span class="required">*</span>:
-                        </label>
-
-                        <input type="text" id="tcStudentName" class="form-control" placeholder="Enter student name"
-                            required>
-
-                    </div>
-
-                    <!-- Class -->
-                    <div class="tc-form-group">
-
-                        <label>
-
-                            Class
-                            <span class="required">*</span>:
-                        </label>
-
-
-                        <div class="tc-custom-select" id="classDropdown">
-
-                            <button type="button" class="tc-custom-select-button" id="classDropdownButton">
-
-                                <span id="classDropdownText">
-
-                                    Select Class
-                                </span>
-
-                                <i class="fa fa-chevron-down"></i>
-
-                            </button>
-
-
-                            <div class="tc-custom-select-menu">
-
-                                <div class="tc-custom-select-option" data-value="Class I">
-
-                                    Class I
-                                </div>
-
-                                <div class="tc-custom-select-option" data-value="Class II">
-
-                                    Class II
-                                </div>
-
-                                <div class="tc-custom-select-option" data-value="Class III">
-
-                                    Class III
-                                </div>
-
-                                <div class="tc-custom-select-option" data-value="Class IV">
-
-                                    Class IV
-                                </div>
-
-                                <div class="tc-custom-select-option" data-value="Class V">
-
-                                    Class V
-                                </div>
-
-                                <div class="tc-custom-select-option" data-value="Class VI">
-
-                                    Class VI
-                                </div>
-
-                                <div class="tc-custom-select-option" data-value="Class VII">
-
-                                    Class VII
-                                </div>
-
-                                <div class="tc-custom-select-option" data-value="Class VIII">
-
-                                    Class VIII
-                                </div>
-
-                                <div class="tc-custom-select-option" data-value="Class IX">
-
-                                    Class IX
-                                </div>
-
-                                <div class="tc-custom-select-option" data-value="Class X">
-
-                                    Class X
-                                </div>
-
+<div class="container-fluid">
+        <ul class="nav navbar-nav breadcrumb_ul">
+            <li>
+                <a href=""><i class="fa fa-home home_icon" aria-hidden="true"></i>&nbsp;<span>/</span></a>
+                <a href="">Dashboard&nbsp;<span>/</span></a>
+                <a href="" style="font-weight:bold">Add Transfer Certificate</a>
+            </li>
+        </ul>
+    </div>
+<!-- form start -->
+    <div class="container-fluid" style="padding-bottom: 80px;">
+        <div id="div_tc_details" class="row addTransfarForm">
+            <div class="matrix_tableView">
+                <div class="modal-body">
+                    <form action="/" enctype="multipart/form-data" id="transform_certificate_form" method="post" onsubmit="return false;">
+                        <div class="form-row">
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label>Date of Issue<span style="color:red">*</span>:</label>
+                                <input type="date" name="date" class="form-control" id="txt_issue_date">
                             </div>
-
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label>Registration No.<span style="color:red">*</span>:</label>
+                                <input class="form-control text-box single-line" id="txt_registration_no" name="REGISTRATION_NO" placeholder="Enter Registration No" type="text" value="">
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label>Student Name<span style="color:red">*</span>:</label>
+                                <input class="form-control text-box single-line" id="txt_student_name" name="STUDENT_NAME" placeholder="Enter Student Name" type="text" value="">
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label>Class<span style="color:red">*</span>:</label>
+                                <select id="ddl_select_class" class="form-control">
+                                    <option value="0">Select Class</option>
+                                    <option value="I">Class I</option>
+                                    <option value="II">Class II</option>
+                                    <option value="III">Class III</option>
+                                    <option value="IV">Class IV</option>
+                                    <option value="V">Class V</option>
+                                    <option value="VI">Class VI</option>
+                                    <option value="VII">Class VII</option>
+                                    <option value="VIII">Class VIII</option>
+                                    <option value="IX">Class IX</option>
+                                    <option value="X">Class X</option>
+                                </select>
+                            </div>
                         </div>
-
-
-                        <input type="hidden" id="tcClass" value="">
-
-                    </div>
-
+                        <div class="form-group">
+                            <div class="col-md-4 p-0 mt-3">
+                                <label>Upload Transfer Certificate (.PDF and less than 5MB)<span style="color:red">*</span>:</label>
+                                <input type="file" name="transfercertificate_file" accept=".pdf" class="form-control" id="transfercertificate_file_name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" id="btn_save_transfer_certificate">
+                                <i class="fa fa-save"></i> Save
+                            </button>
+                        </div>
+                    </form>
                 </div>
-
-                <!-- ==================================
-                 ROW 2
-            =================================== -->
-
-                <div class="tc-second-row">
-
-                    <div class="tc-form-group tc-file-group">
-
-                        <label for="tcFile">
-
-                            Upload File
-                            <span class="required">*</span>
-                        </label>
-
-                        <input type="file" id="tcFile" class="form-control" required>
-
-                    </div>
-
-                </div>
-
-                <!-- ==================================
-                 ROW 3
-            =================================== -->
-
-                <div class="tc-save-container">
-
-                    <button type="button" class="btn btn-primary tc-save-btn" id="saveTcBtn">
-
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
-
-                        Save
-
-                    </button>
-
-                </div>
-
             </div>
-
         </div>
+    </div>
 
-    </main>
     <div id="footer"></div>
-    <script src="../Layout/Layout-Admin.js"></script>
-    <script src="../Layout/Layout-Api.js"></script>
+
+    <script src="/Layout/Layout-Admin.js"></script>
+    <script src="/Layout/Layout-Api.js"></script>
     <script>
-        fetch("../Layout/Layout-Admin-Header.html")
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById("header").innerHTML = html;
-                if (typeof initAdminLayoutNav === "function") {
-                    initAdminLayoutNav();
-                }
-            })
-            .catch(error => {
-                console.error("Admin header loading error:", error);
-            });
+        // only for logged-in users
+        if (!localStorage.getItem("authToken")) {
+            window.location.href = "/Dav-Login.html";
+        }
+
+        fetch("/Layout/Layout-Admin-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Admin header loading error:", error); });
+
+        fetch("/Layout/Layout-Admin-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Footer loading error:", error); });
     </script>
     <script>
-        fetch("../Layout/Layout-Admin-Footer.html")
-            .then(r => r.text())
-            .then(html => document.getElementById("footer").innerHTML = html);
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            initializeClassDropdown();
-            initializeSaveButton();
+        $("#btn_save_transfer_certificate").on("click", async function () {
+            var button = this;
+            var issue = $("#txt_issue_date").val();
+            var registrationNo = $("#txt_registration_no").val().trim();
+            var studentName = $("#txt_student_name").val().trim();
+            var selectedClass = $("#ddl_select_class").val();
+            var file = $("#transfercertificate_file_name")[0].files[0];
+
+            if (!issue) { alert("Please select date of issue."); $("#txt_issue_date").focus(); return; }
+            if (!registrationNo) { alert("Please enter registration no."); $("#txt_registration_no").focus(); return; }
+            if (!studentName) { alert("Please enter student name."); $("#txt_student_name").focus(); return; }
+            if (selectedClass === "0") { alert("Please select class."); $("#ddl_select_class").focus(); return; }
+            if (!file) { alert("Please upload transfer certificate."); return; }
+            if (file.type !== "application/pdf" && !/\.pdf$/i.test(file.name)) { alert("Please upload a PDF file only."); return; }
+            if (file.size >= 5 * 1024 * 1024) { alert("PDF file size must be less than 5 MB."); return; }
+            if (!DavApi.requireLogin()) return;
+
+            try {
+                await DavApi.busy(button, async function () {
+                    var uploaded = await DavApi.upload("transfer-certificate", [file]);
+
+                    await DavApi.post("api-post-add-update-transfer-certificate", {
+                        ITEM: "ADD_UPDATE",
+                        RECORD_SYS_ID: 0,
+                        REGISTRATION_NO: registrationNo,
+                        TITLE: registrationNo,
+                        STUDENT_NAME: studentName,
+                        CLASS: selectedClass,
+                        FILE_NAME: uploaded[0].fileName,
+                        DATE_OF_ISSUE: issue
+                    });
+                });
+
+                alert("Transfer certificate saved successfully.");
+                window.location.reload();
+            } catch (error) {
+                console.error("Save transfer certificate error:", error);
+                alert(error.message || "Unable to save transfer certificate.");
+            }
         });
-
-        /*
-        
-        CLASS DROPDOWN
-                
-        */
-
-        function initializeClassDropdown() {
-            const dropdown = document.getElementById("classDropdown");
-            const button = document.getElementById("classDropdownButton");
-            const text = document.getElementById("classDropdownText");
-            const hiddenInput = document.getElementById("tcClass");
-
-            if (
-                !dropdown ||
-                !button ||
-                !text ||
-                !hiddenInput
-            ) {
-                return;
-            }
-
-            /*
-    
-            Open / Close dropdown
-        
-            */
-
-            button.addEventListener("click",function (event) {
-                    event.stopPropagation();
-                    dropdown.classList.toggle(
-                        "open"
-                    );
-                }
-            );
-            /*
-        
-            Select class
-        
-            */
-
-            const options = dropdown.querySelectorAll(".tc-custom-select-option");
-            options.forEach(
-                function (option) {
-                    option.addEventListener("click",function () {
-                            const value = this.dataset.value;
-                            const label = this.textContent.trim();
-                            hiddenInput.value = value;
-                            text.textContent = label;
-                            dropdown.classList.remove(
-                                "open"
-                            );
-                        }
-                    );
-                }
-            );
-
-            /*
-    
-            Close dropdown when clicking outside
-        
-            */
-
-            document.addEventListener("click",function () {
-                    dropdown.classList.remove(
-                        "open"
-                    );
-                }
-            );
-        }
-
-        /*       
-        SAVE BUTTON
-        */
-
-        function initializeSaveButton() {
-            const saveButton = document.getElementById("saveTcBtn");
-            if (!saveButton) {
-                return;
-            }
-
-            saveButton.addEventListener("click", async function () {
-                    const dateOfIssue = document.getElementById("tcDateOfIssue").value;
-                    const registrationNo = document.getElementById("tcRegistrationNo").value.trim();
-                    const studentName = document.getElementById("tcStudentName").value.trim();
-                    const selectedClass = document.getElementById("tcClass").value;
-                    const file = document.getElementById("tcFile").files[0];
-                    /*
-                    MANDATORY VALIDATION
-                    */
-
-                    if (!dateOfIssue) {
-                        alert(
-                            "Please select date of issue."
-                        );
-
-                        document.getElementById("tcDateOfIssue").focus();
-                        return;
-                    }
-
-
-                    if (!registrationNo) {
-                        alert(
-                            "Please enter registration no."
-                        );
-
-                        document.getElementById("tcRegistrationNo").focus();
-                        return;
-                    }
-
-
-                    if (!studentName) {
-                        alert(
-                            "Please enter student name."
-                        );
-                        document.getElementById("tcStudentName").focus();
-                        return;
-                    }
-
-                    if (!selectedClass) {
-                        alert(
-                            "Please select class."
-                        );
-                        return;
-                    }
-
-
-                    if (!file) {
-                        alert(
-                            "Please upload file."
-                        );
-                        document.getElementById("tcFile").focus();
-                        return;
-                    }
-
-                    /*        
-                    FORM DATA
-                    */
-
-                    if (!DavApi.requireLogin()) return;
-
-                    try {
-                        await DavApi.busy(saveButton, async () => {
-                            const [uploaded] = await DavApi.upload("transfer-certificate", [file]);
-
-                            await DavApi.post("api-post-add-update-transfer-certificate", {
-                                ITEM: "ADD_UPDATE",
-                                RECORD_SYS_ID: 0,
-                                REGISTRATION_NO: registrationNo,
-                                TITLE: registrationNo,
-                                STUDENT_NAME: studentName,
-                                CLASS: selectedClass,
-                                FILE_NAME: uploaded.fileName,
-                                DATE_OF_ISSUE: dateOfIssue
-                            });
-                        });
-
-                        alert("Transfer certificate saved successfully.");
-                        window.location.reload();
-                    } catch (error) {
-                        console.error("Save transfer certificate error:", error);
-                        alert(error.message || "Unable to save transfer certificate.");
-                    }
-                }
-            );
-        }
-
     </script>
 </body>
 
