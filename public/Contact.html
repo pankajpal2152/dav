@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To DAV Public School</title>
+    <!-- Css link start -->
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <!-- Css link end -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="">
+    <div class="container" style="padding-bottom: 80px;">
+        <div class="row pt-3">
+            <div class="col-12 col-sm-12 col-md-8">
+                <article class="notice-board-txt">
+                    <span style="color: #34a105; font-weight: bold; font-size: 16px;">For any queries, you may visit the School campus during Office Hours.</span>
+                    <ul class="contact-list">
+                        <li><span style="color: #75112e; font-weight: bold;">Office Hours </span>: Monday to Friday from 2.30 pm to 3.30 pm</li>
+                        <li><span style="color: #75112e; font-weight: bold;">Postal address </span>: D.A.V. Public School, 61, Diamond Harbour Road, Taratala, Kolkata-700038.</li>
+                        <li><span style="color: #75112e; font-weight: bold;">Landmark </span>: Near Taratala Flyover [on the Behala side]</li>
+                        <li><span style="color: #75112e; font-weight: bold;">Telephone </span>: 033-2396-1320 from 8.00 am to 3.30 pm</li>
+                        <li><span style="color: #75112e; font-weight: bold;">E-mail </span>: davcal61@yahoo.co.in</li>
+                    </ul>
+                </article>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4">
+                <div class="contact-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.839594866268!2d88.32014181495846!3d22.51020068521495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027a00b57bd6af%3A0xfecae43b9e146cf0!2sD.%20A.%20V.%20Public%20School!5e0!3m2!1sen!2sin!4v1592570304235!5m2!1sen!2sin" width="100%" height="257px" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/Layout/Layout-Js.js"></script>
+    <script>
+        // shared header / footer
+        fetch("/Layout/Layout-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading header:", error); });
+
+        fetch("/Layout/Layout-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading footer:", error); });
+    </script>
+</body>
+
+</html>

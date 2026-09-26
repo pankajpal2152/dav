@@ -1,0 +1,523 @@
+/* Copied from the live site (Assest/css/Media.css) */
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a { text-decoration: none; }
+
+/**************** Media Quary *********************/
+
+@media screen and (max-width: 1200px) {
+    html, body {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        z-index: -1111111111;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .padding-11 {
+        padding-bottom: 20vh;
+    }
+    .btn_1 {
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+    .res_breadcrum {
+        margin-top: 8px;
+    }
+    .head-col {
+        height: 120px;
+    }
+
+    .dav-logo {
+        margin-top: -5vh !important;
+    }
+
+    .login--page {
+        padding-bottom: 30vh;
+    }
+
+    .contact--map {
+        padding-bottom: 8vh;
+    }
+}
+
+/*** header ****/
+
+@media screen and (max-width: 1280px) {
+    ul.txt-davLogo {
+        margin-top: -2vh !important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    ul.txt-davLogo {
+        margin-top: 0px !important;
+    }
+
+    .dav-logo img {
+        margin-top: 0vh;
+        padding-bottom: 4px;
+    }
+
+    .dav-logo {
+        height: auto;
+    }
+}
+@media screen and (max-width:950px) {
+    .nav-bg-dav {
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+        position: absolute;
+        height: 50px;
+        margin: 0;
+        top: 8px;
+        left: 0px;
+        background: #75112e;
+        padding: 12px 0 0 10px;
+        z-index: 1;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+    }
+}
+@media screen and (max-width: 812px){
+    p.address{
+        margin-top: 8vh !important;
+    }
+
+    .txt-davLogo {
+        position: relative !important;
+        top: 13px !important;
+    }
+}
+
+@media screen and (max-width: 786px) {
+    .dav-logo {
+        position: relative;
+        top: -2vh;
+    }
+    .dav-logo img  {
+        position: relative;
+        top: -1vh;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .dav-logo img {
+        position: relative;
+        top: 1rem;
+    }
+}
+
+@media screen and (max-width: 786px){
+    .dav-logo img  {
+        width: auto;
+        height: 98px;
+        margin-top: 5.20vh;
+        padding-bottom: 0px;
+        margin-left: 5vw;
+    }
+    ul.txt-davLogo {
+        margin-top: 25px !important;
+    }
+
+    ul.txt-davLogo li p {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+    }
+
+    ul.txt-davLogo {
+        margin-left: 0.80rem !important;
+    }
+}
+
+@media (max-width: 778px) {
+    .school-info-list li span:nth-child(2) {
+        display: none;
+    }
+
+    .school-info-list li span:nth-child(3) {
+        padding-left: 0;
+    }
+    .school-info-list li {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .Student-Strength-table {
+        width: 100%;
+    }
+
+    .school-info-list li span:nth-child(1) {
+        position: relative;
+        width: 203px;
+    }
+
+    .school-info-list li span:nth-child(1)::before {
+        position: absolute;
+        content: ":";
+        right: 0;
+        top:0;
+        bottom:  0;
+    }
+
+    .school-info-list li span:nth-child(2) {
+        padding-left: 10px;
+    }
+
+    .school-info-list li span:nth-child(3) {
+        display: block;
+        padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .dav-logo img  {
+        position: relative;
+        top: 0vh;
+    }
+
+    .dav-logo {
+        position: relative;
+        top: 0vh;
+    }
+
+    .dav-logo {
+        margin-top: -4vh !important;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .dav-logo img  {
+        position: relative;
+        top: 0vh;
+    }
+
+    .dav-logo {
+        position: relative;
+        top: 0vh;
+    }
+
+    ul.txt-davLogo li span {
+        display: inline-block;
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .dav-logo img  {
+        position: relative;
+        top: 0vh;
+    }
+
+    .dav-logo {
+        position: relative;
+        top: 0vh;
+    }
+}
+
+@media screen and (max-width: 384px) {
+    .dav-logo img  {
+        position: relative;
+        top: 0vh;
+    }
+
+    .dav-logo {
+        position: relative;
+        top: 0vh;
+    }
+
+    ul.txt-davLogo {
+        margin-top:  37px !important;
+        margin-left: 0.80rem !important;
+    }
+    ul.txt-davLogo li h4 {
+        font-size: 14px;
+    }
+
+    ul.txt-davLogo li span{
+        font-size: 0.50em;
+    }
+
+    ul.txt-davLogo li p {
+        position: relative;
+        top: 0px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .dav-logo img  {
+        position: relative;
+        top: 0vh;
+    }
+
+    .dav-logo {
+        position: relative;
+        top: 0vh;
+    }
+
+    ul.txt-davLogo {
+        margin-top:  30px !important;
+        margin-left: 0.80rem !important;
+    }
+
+    ul.txt-davLogo li p {
+        position: relative;
+    }
+
+    .dav-logo {
+        margin-top: -3vh !important;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .dav-logo img  {
+        position: relative;
+        top: 0vh;
+    }
+
+    .dav-logo {
+        position: relative;
+        top: 0vh;
+    }
+
+    ul.txt-davLogo {
+        margin-left: 14px !important;
+        margin-top:  24px !important;
+    }
+}
+
+/*************** content Body ****************/
+
+@media screen and (max-width:870px) {
+    .dav-img-content img {
+        height: auto;
+    }
+}
+
+/************* Notice Board ***********/
+
+@media screen and (max-width: 1035px) {
+    .notice_bord_background {
+        height: 200px;
+    }
+
+    .notice_bord_background marquee {
+        height: 140px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .notice_bord_background {
+        max-height: 200px;
+    }
+}
+
+@media screen and (max-width: 786px) {
+    .notice_bord_background {
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .bg-notice-board {
+        padding: 3vh 0;
+    }
+    .notice_bord_background {
+        width: 95%;
+    }
+    .slider_container {
+        margin-top: 10vh;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .slider_container {
+        margin-top: 0.20rem;
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .curousel-notice {
+        margin-top: 3vh;
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .content-body-bg {
+        height: auto;
+        padding-bottom: 5.10rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .content-body-bg {
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .txt-davLogo li span{
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 0.30rem;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .txt-davLogo li span {
+        font-size: 10px;
+    }
+    .topleft_logo p {
+        margin-top: 8px;
+        text-align: center;
+    }
+}
+
+/****** navbar ******/
+
+@media screen and (max-width: 1200px) {
+    nav {
+        margin-top: 4vh;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    nav {
+        position: relative;
+        top: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        position: relative;
+        top: 33px;
+    }
+}
+
+@media screen and (max-width: 786px) {
+    nav {
+        position: relative;
+        top: 33px;
+    }
+}
+
+/****** SchoolInfo ******/
+@media screen and (max-width: 767px){
+    .schoolInfo-add-txt-2 {
+        padding-left: 17vw;
+        padding-top: 4px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .infrastructure_imgBox {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .principal-img {
+        text-align: center;
+    }
+    .principal-img img {
+        width: 60%;
+        max-width: 95%;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .curousel-notice {
+        margin-top: 8px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .slider_container {
+        padding-right: 0 !important;
+        margin-top: 2px;
+    }
+}
+
+/* footer start */
+
+@media screen and (max-width: 601px) {
+    .foo-txt p {
+        font-size: 0.60rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .foo-txt p {
+        font-size: 0.50rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header-box-p p {
+        color: #faad3b !important;
+    }
+}
+
+@media screen and (max-width: 1127px) {
+    .navbar-dav li a {
+        font-size: 13px;
+    }
+}
+@media screen and (max-width: 1032px) {
+    .navbar-dav li a {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .navbar-dav {
+        z-index:2;
+        height: 40px;
+    }
+}
+@media screen and (max-width: 920px) {
+    .navbar-dav li a {
+        padding: 15px 7px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .navbar-dav {
+        height: 100% !important;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .map_content {
+        margin-left: 61px;
+    }
+    .main-line::before {
+        position: absolute;
+        content: "";
+        height: 1px;
+        width: 751px;
+        top: 45px;
+        left: -305px;
+        margin: 0 auto;
+        right: 0;
+        background-color: #000;
+        bottom: 0;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .map_content {
+        display: none;
+    }
+    .concept-map {
+        display: block;
+    }
+}

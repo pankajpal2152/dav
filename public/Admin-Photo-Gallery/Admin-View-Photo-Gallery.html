@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To DAV Public School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        .gallery-table-wrapper {
+            width: 90%;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        .gallery-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+        }
+
+        .gallery-table th {
+            background-color: #75112e;
+            color: #ffffff;
+            padding: 12px 15px;
+            text-align: center;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .gallery-table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .gallery-table tbody tr:hover {
+            background-color: #f8f8f8;
+        }
+
+        .gallery-action-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .gallery-action-btn {
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .view-btn {
+            background-color: #0dcaf0;
+            color: #000000;
+        }
+
+        .edit-btn {
+            background-color: #0d6efd;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .archive-btn {
+            background-color: #ffffff;
+            color: #212529;
+            border: 1px solid #212529;
+        }
+
+        .gallery-action-btn:hover {
+            opacity: 0.85;
+        }
+
+        /* Image Gallery Modal */
+
+        .gallery-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery-modal-overlay.show {
+            display: flex;
+        }
+
+        .gallery-modal {
+            width: 80%;
+            max-width: 900px;
+            max-height: 85vh;
+            background: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-modal-header {
+            background-color: #75112e;
+            color: #ffffff;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .gallery-modal-header h5 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .gallery-modal-close {
+            border: none;
+            background: transparent;
+            color: #ffffff;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .gallery-modal-body {
+            padding: 20px;
+            max-height: calc(85vh - 60px);
+            overflow-y: auto;
+        }
+
+        .gallery-modal-body h6 {
+            color: #75112e;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .image-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .image-gallery-grid img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        @media (max-width: 767px) {
+            .gallery-modal {
+                width: 95%;
+            }
+
+            .image-gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .admin-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-modal-overlay.show {
+            display: flex;
+        }
+
+        .admin-modal {
+            width: 500px;
+            max-width: 90%;
+            background: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .admin-modal-small {
+            width: 420px;
+        }
+
+        .admin-modal-header {
+            background-color: #75112e;
+            color: #ffffff;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-modal-header h5 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .admin-modal-close {
+            border: none;
+            background: transparent;
+            color: #ffffff;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .admin-modal-body {
+            padding: 20px;
+        }
+
+        .admin-modal-field {
+            margin-bottom: 18px;
+        }
+
+        .admin-modal-field:last-child {
+            margin-bottom: 0;
+        }
+
+        .admin-modal-field label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        .admin-modal-field .form-control {
+            width: 100%;
+            box-sizing: border-box;
+            height: 42px;
+        }
+
+        .admin-modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .delete-confirmation {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .delete-confirmation p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .gallery-preview-image {
+            display: block;
+            max-width: 100%;
+            max-height: 65vh;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+    <main>
+        <div class="gallery-control-container">
+            <div class="gallery-table-wrapper">
+                <table class="gallery-table">
+                    <thead>
+                        <tr>
+                            <th>Sl.No</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="galleryTableBody">
+
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Edit Popup -->
+
+        <div class="admin-modal-overlay" id="updateGalleryModal">
+            <div class="admin-modal">
+                <div class="admin-modal-header">
+                    <h5>Update Gallery Image Record</h5>
+                    <button type="button" class="admin-modal-close" onclick="closeAdminModal('updateGalleryModal')">
+                        &times;
+                    </button>
+                </div>
+                <div class="admin-modal-body">
+                    <div class="admin-modal-field">
+                        <label for="editGalleryTitle">
+                            Gallery Title <span class="required">*</span>
+                        </label>
+                        <input type="text" id="editGalleryTitle" class="form-control" required>
+                    </div>
+                    <div class="admin-modal-field">
+                        <label for="editGalleryDescription">
+                            Gallery Description <span class="required">*</span>
+                        </label>
+                        <input type="text" id="editGalleryDescription" class="form-control" required>
+                    </div>
+                </div>
+                <div class="admin-modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="saveGalleryUpdate()">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closeAdminModal('updateGalleryModal')">
+                        No
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Popup -->
+
+        <div class="admin-modal-overlay" id="deleteGalleryModal">
+            <div class="admin-modal admin-modal-small">
+                <div class="admin-modal-header">
+                    <h5>Gallery Record Delete</h5>
+                    <button type="button" class="admin-modal-close" onclick="closeAdminModal('deleteGalleryModal')">
+                        &times;
+                    </button>
+                </div>
+                <div class="admin-modal-body delete-confirmation">
+                    <p>
+                        Are you sure you want to delete this record ?
+                    </p>
+                </div>
+                <div class="admin-modal-footer">
+                    <button type="button" class="btn btn-danger" onclick="confirmGalleryDelete()">
+                        Yes
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closeAdminModal('deleteGalleryModal')">
+                        No
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Archive Popup -->
+
+        <div class="admin-modal-overlay" id="archiveGalleryModal">
+            <div class="admin-modal admin-modal-small">
+                <div class="admin-modal-header">
+                    <h5>Archive Record</h5>
+                    <button type="button" class="admin-modal-close" onclick="closeAdminModal('archiveGalleryModal')">
+                        &times;
+                    </button>
+                </div>
+                <div class="admin-modal-body">
+                    <div class="admin-modal-field">
+                        <label for="archiveSessionYear">
+                            Select Session Year <span class="required">*</span>
+                        </label>
+                        <select id="archiveSessionYear" class="form-control">
+                            <option value="">
+                                Select Session Year
+                            </option>
+                            <option value="2020-2021">2020-2021</option>
+                            <option value="2021-2022">2021-2022</option>
+                            <option value="2022-2023">2022-2023</option>
+                            <option value="2023-2024">2023-2024</option>
+                            <option value="2024-2025">2024-2025</option>
+                            <option value="2025-2026">2025-2026</option>
+                            <option value="2026-2027">2026-2027</option>
+                            <option value="2027-2028">2027-2028</option>
+                            <option value="2028-2029">2028-2029</option>
+                            <option value="2029-2030">2029-2030</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="admin-modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="saveGalleryArchive()">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closeAdminModal('archiveGalleryModal')">
+                        No
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Image Popup -->
+
+        <div class="gallery-modal-overlay" id="imageGalleryModal">
+            <div class="gallery-modal">
+                <div class="gallery-modal-header">
+                    <h5>Image Gallery</h5>
+                    <button type="button" class="gallery-modal-close" onclick="closeAdminModal('imageGalleryModal')">
+                        &times;
+                    </button>
+                </div>
+                <div class="gallery-modal-body">
+                    <div class="image-gallery-grid" id="galleryImagesGrid">
+                        <!-- GALLERY IMAGES WILL BE LOADED HERE -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+    <div id="footer"></div>
+    <script src="../Layout/Layout-Admin.js"></script>
+    <script>
+        fetch("../Layout/Layout-Admin-Header.html")
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("header").innerHTML = html;
+                if (typeof initAdminLayoutNav === "function") {
+                    initAdminLayoutNav();
+                }
+            })
+            .catch(error => {
+                console.error("Admin header loading error:", error);
+            });
+    </script>
+    <script>
+        fetch("../Layout/Layout-Admin-Footer.html")
+            .then(r => r.text())
+            .then(html => document.getElementById("footer").innerHTML = html);
+    </script>
+    <script>
+        let galleryData = [];
+        let selectedGallery = null;
+
+        /* PAGE LOAD */
+
+        document.addEventListener("DOMContentLoaded", function () {
+            loadGalleryList();
+        });
+
+        /* ==========================================
+           GET GALLERY LIST
+           (Stub — wire up once the list GET API is available)
+        ========================================== */
+
+        /* ==========================================
+
+   GET GALLERY LIST
+
+========================================== */
+
+        async function loadGalleryList() {
+            const tableBody = document.getElementById("galleryTableBody");
+
+            try {
+                if (tableBody) {
+
+                    tableBody.innerHTML = `
+                                                <tr>
+                                                <td colspan="4" class="text-center text-muted py-4">
+                                                                        Loading...
+                                                </td>
+                                                </tr>
+                                            `;
+
+                }
+
+                const token = localStorage.getItem("authToken");
+
+                if (!token) {
+                    alert("Session expired. Please login again.");
+                    window.location.href = "/Dav-Login.html";
+                    return;
+                }
+
+                const response = await fetch("/api/ourSchool/api-get-view-gallery-image?ITEM=VIEW_ALL&GALLERY_SYS_ID=0",
+                    {
+                        method: "GET",
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    }
+                );
+
+                const result = await response.json();
+
+                console.log("Gallery List GET Response:", result);
+
+                if (!response.ok) {
+                    throw new Error(
+                        result.message || "Failed to load gallery records"
+                    );
+                }
+
+                if (result.status !== "true" && result.status !== true) {
+                    galleryData = [];
+                    renderGalleryTable();
+                    return;
+                }
+
+                galleryData = rowsOf(result.response);
+
+                renderGalleryTable();
+
+            } catch (error) {
+                console.error("Gallery List GET Error:", error);
+                galleryData = [];
+
+                if (tableBody) {
+                    tableBody.innerHTML = `
+                                            <tr>
+                                            <td colspan="4" class="text-center text-danger py-4">
+                                                                    Unable to load gallery records.
+                                            </td>
+                                            </tr>
+                                            `;
+
+                }
+
+            }
+
+        }
+
+        /* ==========================================
+           RENDER GALLERY TABLE
+        ========================================== */
+        function renderGalleryTable() {
+            const tableBody = document.getElementById("galleryTableBody");
+            if (!tableBody) return;
+
+            tableBody.innerHTML = "";
+
+            if (!galleryData || galleryData.length === 0) {
+                tableBody.innerHTML = `
+                                        <tr>
+                                        <td colspan="4" class="text-center text-muted py-4">
+                                                            No Data Found
+                                        </td>
+                                        </tr>
+                                        `;
+                return;
+            }
+
+            galleryData.forEach(function (gallery, index) {
+                const gallerySysId = gallery.GALLERY_SYS_ID;
+                const row = document.createElement("tr");
+                row.innerHTML = `
+            <td>
+                ${gallery.SL_NO || index + 1}
+            </td>
+ 
+            <td>
+                ${escapeHtml(gallery.TITLE || "-")}
+            </td>
+ 
+            <td>
+                ${escapeHtml(gallery.DESCRIPTION || "-")}
+            </td>
+ 
+            <td>
+                <div class="gallery-action-buttons">
+                    <button type="button" class="gallery-action-btn view-btn" onclick="viewGallery(${index})">
+                        View
+                    </button>
+ 
+                    <button type="button" class="gallery-action-btn edit-btn" onclick="editGallery(${index})">
+                        Edit
+                    </button>
+ 
+                    <button type="button" class="gallery-action-btn delete-btn" onclick="deleteGallery(${index})">
+                        Delete
+                    </button>
+ 
+                    <button type="button" class="gallery-action-btn archive-btn" onclick="archiveGallery(${index})">
+                        Archive
+                    </button>
+ 
+                </div>
+        </td>
+        `;
+                tableBody.appendChild(row);
+            });
+
+        }
+
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Open Edit popup
+
+        function editGallery(index) {
+            const gallery = galleryData[index];
+            if (!gallery) return;
+            selectedGallery = gallery;
+            document.getElementById("editGalleryTitle").value = gallery.TITLE || "";
+            document.getElementById("editGalleryDescription").value = gallery.DESCRIPTION || "";
+            document.getElementById("updateGalleryModal").classList.add("show");
+        }
+
+        // Open Delete popup
+
+        function deleteGallery(index) {
+            const gallery = galleryData[index];
+            if (!gallery) return;
+            selectedGallery = gallery;
+            document.getElementById("deleteGalleryModal").classList.add("show");
+        }
+
+        // Open Archive popup
+
+        function archiveGallery(index) {
+            const gallery = galleryData[index];
+            if (!gallery) return;
+            selectedGallery = gallery;
+            document.getElementById("archiveSessionYear").value = "";
+            document.getElementById("archiveGalleryModal").classList.add("show");
+        }
+
+        // View all images in a gallery
+        
+        function viewGallery(index) {
+            const gallery = galleryData[index];
+            if (!gallery) return;
+            selectedGallery = gallery;
+
+            const gallerySysId =
+                gallery.GALLERY_SYS_ID ||
+                gallery.SYS_ID ||
+                gallery.ID;
+
+            document.getElementById("imageGalleryModal").classList.add("show");
+
+            if (!gallerySysId) {
+                document.getElementById("galleryImagesGrid").innerHTML =
+                    `<p class="text-center text-muted">Gallery ID not found.</p>`;
+                return;
+            }
+
+            loadGalleryImages(gallerySysId);
+        }
+
+        // GET gallery images
+
+        async function loadGalleryImages(gallerySysId) {
+            const grid = document.getElementById("galleryImagesGrid");
+            grid.innerHTML = `
+                                <p class="text-center text-muted">
+                                            Image API is not available yet.
+                                </p>
+                                    `;
+
+            console.log("Gallery SYS_ID selected for image view:",gallerySysId);
+
+            /*
+        
+                Later:
+         
+                GET image API using:
+         
+                GALLERY_SYS_ID = gallerySysId
+         
+                Example:
+         
+                await fetch(
+        
+                    `/api/ourSchool/IMAGE_API
+        
+                     ?GALLERY_SYS_ID=${gallerySysId}`,
+        
+                    ...
+        
+                );
+        
+            */
+        }
+
+
+        // Close any popup
+        function closeAdminModal(modalId) {
+            document.getElementById(modalId).classList.remove("show");
+        }
+
+        function saveGalleryUpdate() {
+            console.log("Update gallery:", selectedGallery);
+            // API will be added later
+            closeAdminModal("updateGalleryModal");
+        }
+
+        function confirmGalleryDelete() {
+            console.log("Delete gallery:", selectedGallery);
+            // API will be added later
+            closeAdminModal("deleteGalleryModal");
+        }
+
+        // POST archive gallery
+
+        let isArchiving = false;
+
+        async function saveGalleryArchive() {
+            if (isArchiving) return;
+
+            const sessionYear = document.getElementById("archiveSessionYear").value;
+            if (!sessionYear) {
+                alert("Please select session year.");
+                return;
+            }
+
+            if (!selectedGallery) {
+                alert("No gallery selected.");
+                return;
+            }
+
+            const token = localStorage.getItem("authToken");
+            if (!token) {
+                alert("Session expired. Please login again.");
+                window.location.href = "/Dav-Login.html";
+                return;
+            }
+
+            // NOTE: adjust these keys to match what USP_POST_IMAGE_GALLERY_ACTIVITY expects
+            const payload = [
+                {
+                    RECORD_SYS_ID: selectedGallery.RECORD_SYS_ID,
+                    TITLE: selectedGallery.TITLE || "",
+                    DESCRIPTION: selectedGallery.DESCRIPTION || "",
+                    SESSION_YEAR: sessionYear
+                }
+            ];
+
+            isArchiving = true;
+
+            try {
+                const response = await fetch(
+                    "/api/ourSchool/api-post-add-update-image-gallery-archive",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ data: payload })
+                    }
+                );
+
+                const result = await response.json();
+                console.log("Archive Gallery POST Response:", result);
+
+                if (!response.ok || (result.status !== "true" && result.status !== true)) {
+                    throw new Error(result.message || "Failed to archive gallery");
+                }
+
+                // Stored procedure result: response[0][0].JSON_VALUE
+                let spResult = result.response?.[0]?.[0]?.JSON_VALUE;
+                if (typeof spResult === "string") {
+                    try { spResult = JSON.parse(spResult); } catch (e) { /* keep as string */ }
+                }
+
+                if (spResult && spResult.status !== "true" && spResult.status !== true) {
+                    throw new Error(spResult.response || "Failed to archive gallery");
+                }
+
+                alert((spResult && spResult.response) || "Image Archive Successful");
+                closeAdminModal("archiveGalleryModal");
+                selectedGallery = null;
+                loadGalleryList();   // refresh table
+
+            } catch (error) {
+                console.error("Archive Gallery POST Error:", error);
+                alert(error.message || "Unable to archive gallery.");
+            } finally {
+                isArchiving = false;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

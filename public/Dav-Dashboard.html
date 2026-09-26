@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <title>DashboardControl</title>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <!-------------- Content start ---------------->
+    <div id="MasterBody_Welcome" class="col-xs-5 col-xs-offset-4" style="background-color: white; height: 200px; border: 2px solid #e8e8e8; margin-top: 100px;">
+        <div style="margin: 80px 0 0 30px;">
+            <span id="MasterBody_Label25" class="welcome" style="color:#A23520; font-family:verdana;font-size:13px;font-weight:bold;">Welcome To D.A.V. Public School Website Control Panel..</span>
+        </div>
+    </div>
+    <!---------- Content end ------------------->
+
+    <div id="footer"></div>
+
+    <script src="/Layout/Layout-Admin.js"></script>
+    <script>
+        // only for logged-in users
+        if (!localStorage.getItem("authToken")) {
+            window.location.href = "/Dav-Login.html";
+        }
+
+        fetch("/Layout/Layout-Admin-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Admin header loading error:", error); });
+
+        fetch("/Layout/Layout-Admin-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Footer loading error:", error); });
+    </script>
+</body>
+
+</html>

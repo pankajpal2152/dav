@@ -1,0 +1,12 @@
+/* Spacing helpers used by the login page (subset of the live site's util.css) */
+.p-l-55 { padding-left: 55px; }
+.p-r-55 { padding-right: 55px; }
+.p-t-65 { padding-top: 65px; }
+.p-b-48 { padding-bottom: 48px; }
+.p-b-33 { padding-bottom: 33px; }
+.m-t-20 { margin-top: 20px; }
+
+@media (max-width: 576px) {
+  .p-l-55 { padding-left: 15px; }
+  .p-r-55 { padding-right: 15px; }
+}

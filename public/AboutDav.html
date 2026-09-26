@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To DAV Public School</title>
+    <!-- Css link start -->
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <!-- Css link end -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="">
+    <div class="container">
+      <!-- Page Content here -->
+       <div class="row">
+        <div class="col-md-12">
+            <article class="artical-dav">
+                <p class="mt-3">
+                   <b><span class="dav-span">The DAV (Dayanand Anglo Vedic)</span></b> Movement commemorates and perpetuates the philosophy and work of one of the greatest social and religious reformers - who appear but rarely on the stage of the world - Maharshi Dayanand Saraswati. Born in the 19th century, at a time when the Hindu society had become completely oblivious of its ancient spiritual and cultural heritage and caught up inextricably in the meshes of superstition born of intellectual poverty and false beliefs, meaningless rituals and such pernicious practices as untouchability, child marriage and inhuman treatment of women.<br /><br />
+
+                    Maharshi Dayanand raised his irrepressible voice against all these vices and shook the society to its very foundation by espousing fearlessly and relentlessly the cause of the emancipation of women, the abolition of casteism, pursuit of Swaraj and the popularisation of Hindi. Gurudev Rabindranath Tagore considered him to be the “great path maker of modern India”. He drew his inspiration and strength from the vedas which he exhorted his fellow countrymen to study and regard as with their most precious treasure.<br /><br />
+
+                    Maharshi Dayanand, with his uncanny power of observation and deduction, knew that the evils rampant in the Hindu Society could be wiped out only by the all sweeping tide of intellectual enlightenment. That is why, among the ten principles of Arya Samaj laid down by him, the most important place is held by eradication of ignorance and illiteracy through spread of. To translate this cherished dream of the great mentor into reality, the D.A.V. College Trust and Management Society, registered in 1885, laid the foundation of the first D.A.V. School at Lahore in 1886 with Mahatma Hansraj - the very soul of humility and self-abnegation as its Headmaster.<br /><br />
+
+                    “From a tiny acorn the mighty oak tree grows - this humble beginning made more than a hundred years ago has now flowered into a vigorous movement taking in its embrace some 600 educational institutions, spread all over the country, comprising colleges offering Arts, Science, Commerce, Education, Law, Ayurvedic medicine, Technical and Vocational Institutions and Public Schools. Under the guidance of the DAV College Managing Committee the number of Public Schools have shown a phenomenal growth in the last decade
+                </p>
+            </article>
+
+        </div>
+    </div>
+    <div class="row mt-3" style="padding-bottom: 18px;">
+        <div class="col-md-7 mt-5">
+            <article class="artical-dav" style="margin-top: -40px;">
+                <p>
+                    1. The first efficient cause of all true knowledge and all that is known through knowledge is Parmeshvara.<br /><br />
+                    2. Ishvara is existent, intelligent and blissful, lie is formless, omnipotent, just, merciful, unborn, endless, unchangeable, beginning-less, unequalled, the support of all, the master of all, omnipresent, imminent, unageing, immortal, fearless, eternal, holy and the maker of all. Me, alone is worthy of being worshipped.<br /><br />
+                    3. Vedas are the scriptures of true knowledge. It is the first duty of the Aryas to read them, teach them, and hear them being read.<br /><br />
+                    4. One should always be ready to accept truth and give up untruth.<br /><br />
+                    5. One should do everything according to the dictates of dharma, i.e. to promote its physical, spiritual and social welfare.<br /><br />
+                    6. Doing good to the whole world is the primary objective of this society i.e. to promote its physical, spiritual and social welfare.<br /><br />
+                    7. Let thy dealing with all be regulated by love and justice, in accordance with the dictates of dharma.<br /><br />
+                    8. One should promote Vidya (realisation of subject and object) and dispel Avidya (illusion).<br /><br />
+                    9. One should not be content with one's welfare alone, but should look for one's welfare in the welfare of all.<br /><br />
+                    10. One should regard one's self under restriction to follow altruistic rulings of society, while in following rules of individual welfar.<br /><br />
+                </p>
+            </article>
+        </div>
+        <div class="col-md-5 mt-3" style="padding: 0 0 8vh 0;">
+            <div class="about_img_box text-center">
+                <img src="/assets/images/investiture-photo21.jpg" alt="sadgb" />
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/Layout/Layout-Js.js"></script>
+    <script>
+        // shared header / footer
+        fetch("/Layout/Layout-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading header:", error); });
+
+        fetch("/Layout/Layout-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading footer:", error); });
+    </script>
+</body>
+
+</html>

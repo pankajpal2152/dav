@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To DAV Public School</title>
+    <!-- Css link start -->
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <!-- Css link end -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="">
+  <div class="container-fluid d-flex justify-content-center align-items-center" style="height:80vh;">
+<div class="text-center">
+<img src="/assets/images/under-construction.png" alt="Under Construction" style="max-width:250px;" class="mb-4">
+<h3 class="fw-bold text-secondary">This page is under construction</h3>
+<p class="text-muted">We’re working hard to bring this page to life. Please check back soon!</p>
+</div>
+</div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/Layout/Layout-Js.js"></script>
+    <script>
+        // shared header / footer
+        fetch("/Layout/Layout-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading header:", error); });
+
+        fetch("/Layout/Layout-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading footer:", error); });
+    </script>
+</body>
+
+</html>

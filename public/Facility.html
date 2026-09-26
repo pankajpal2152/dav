@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilities Welcome To DAV Public School</title>
+    <!-- Css link start -->
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <!-- Css link end -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="">
+    <div class="container-fluid" style="padding-bottom: 64px;">
+        <div class="row pt-3 pb">
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="galleryFacility">
+                    <a target="_blank" href="/assets/images/fac1.JPG">
+                        <img src="/assets/images/fac1.JPG" alt="Physics Lab" width="600" height="400">
+                    </a>
+                    <div class="desc-1">
+                        <span style="color: #75112e; font-weight: bold; font-size: 20px;">Physics Lab</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="galleryFacility">
+                    <a target="_blank" href="/assets/images/fac2.JPG">
+                        <img src="/assets/images/fac2.JPG" alt="Chemistry Lab" width="600" height="400">
+                    </a>
+                    <div class="desc-1">
+                        <span style="color: #75112e; font-weight: bold; font-size: 20px;">Chemistry Lab</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="galleryFacility">
+                    <a target="_blank" href="/assets/images/fac3.JPG">
+                        <img src="/assets/images/fac3.JPG" alt="Biology Lab" width="600" height="400">
+                    </a>
+                    <div class="desc-1">
+                        <span style="color: #75112e; font-weight: bold; font-size: 20px;">Biology Lab</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="galleryFacility">
+                    <a target="_blank" href="/assets/images/fac4.JPG">
+                        <img src="/assets/images/fac4.JPG" alt="Junior Computer Lab" width="600" height="400">
+                    </a>
+                    <div class="desc-1">
+                        <span style="color: #75112e; font-weight: bold; font-size: 20px;">Junior Computer Lab</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pb-4">
+            <div class="col-sm-6 col-md-3">
+                <div class="galleryFacility">
+                    <a target="_blank" href="/assets/images/fac5.JPG">
+                        <img src="/assets/images/fac5.JPG" alt="Senior Computer Lab" width="600" height="400">
+                    </a>
+                    <div class="desc-1">
+                        <span style="color: #75112e; font-weight: bold; font-size: 20px;">Senior Computer Lab</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="galleryFacility">
+                    <a target="_blank" href="/assets/images/fac6.JPG">
+                        <img src="/assets/images/fac6.JPG" alt="Library" width="600" height="400">
+                    </a>
+                    <div class="desc-1">
+                        <span style="color: #75112e; font-weight: bold; font-size: 20px;">Library</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="galleryFacility">
+                    <a target="_blank" href="/assets/images/fac7.JPG">
+                        <img src="/assets/images/fac7.JPG" alt="Art and Craft Lab" width="600" height="400">
+                    </a>
+                    <div class="desc-1">
+                        <span style="color: #75112e; font-weight: bold; font-size: 20px;">Art and Craft Lab</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="galleryFacility">
+                    <a target="_blank" href="/assets/images/fac8.JPG">
+                        <img src="/assets/images/fac8.JPG" alt="Sports Room" width="600" height="400">
+                    </a>
+                    <div class="desc-1">
+                        <span style="color: #75112e; font-weight: bold; font-size: 20px;">Sports Room</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/Layout/Layout-Js.js"></script>
+    <script>
+        // shared header / footer
+        fetch("/Layout/Layout-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading header:", error); });
+
+        fetch("/Layout/Layout-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading footer:", error); });
+    </script>
+</body>
+
+</html>

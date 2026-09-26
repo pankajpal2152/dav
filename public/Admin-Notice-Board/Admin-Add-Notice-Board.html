@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To DAV Public School</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+  -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        .notice-control-container {
+            width: 90%;
+            margin: 30px auto;
+        }
+
+        .notice-control-title {
+            text-align: center;
+            text-decoration: underline;
+            margin-bottom: 25px;
+            color: #75112e;
+            font-weight: 600;
+        }
+
+        .notice-form {
+            background-color: #fffef0;
+            padding: 25px 30px;
+            border-radius: 6px;
+            border: 1px solid #f5f0c8;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ROW 1 */
+
+        .notice-first-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1.5fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* ROW 2 */
+
+        .notice-second-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            margin-top: 5px;
+        }
+
+        .notice-file-group {
+            width: 50%;
+        }
+
+        /* Common field */
+
+        .notice-form-group {
+            margin-bottom: 20px;
+        }
+
+        .notice-form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .notice-form-group .form-control {
+            width: 100%;
+            box-sizing: border-box;
+            height: 42px;
+        }
+
+        .character-count {
+            display: block;
+            margin-top: 5px;
+            color: blue;
+            font-size: 18px;
+        }
+
+        .notice-file-info {
+            display: block;
+            margin-top: 5px;
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* Checkbox */
+
+        .notice-checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 38px;
+        }
+
+        .notice-checkbox-group input {
+            width: 17px;
+            height: 17px;
+            cursor: pointer;
+        }
+
+        .notice-checkbox-group label {
+            margin: 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* ROW 3 */
+
+        .notice-save-container {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .notice-save-btn {
+            min-width: 70px;
+            padding: 9px 20px;
+        }
+
+        .notice-save-btn i {
+            margin-right: 6px;
+        }
+
+        .required {
+            color: red;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 1000px) {
+            .notice-first-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .notice-second-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .notice-file-group {
+                width: 100%;
+            }
+
+            .notice-checkbox-group {
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .notice-control-container {
+                width: 95%;
+            }
+
+            .notice-form {
+                padding: 20px;
+            }
+
+            .notice-first-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+    <main>
+        <div class="notice-control-container">
+            <div class="notice-form">
+
+                <!-- ROW 1 -->
+                <div class="notice-first-row">
+
+                    <!-- Title -->
+                    <div class="notice-form-group">
+                        <label for="noticeTitle">
+
+                            Title <span class="required">*</span>
+                        </label>
+
+                        <input type="text" id="noticeTitle" class="form-control" maxlength="200"
+                            placeholder="Enter notice title" required>
+
+                        <span class="character-count" id="titleCharacterCount">
+
+                            Character: 200
+                        </span>
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="notice-form-group">
+                        <label for="noticeDescription">
+
+                            Description <span class="required">*</span>
+                        </label>
+
+                        <input type="text" id="noticeDescription" class="form-control" maxlength="500"
+                            placeholder="Enter notice description" required>
+
+                        <span class="character-count" id="descriptionCharacterCount">
+
+                            Character: 500
+                        </span>
+                    </div>
+
+
+                    <!-- Date of Issue -->
+                    <div class="notice-form-group">
+                        <label for="dateOfIssue">
+
+                            Date of Issue <span class="required">*</span>
+                        </label>
+
+                        <input type="date" id="dateOfIssue" class="form-control" required>
+                    </div>
+
+
+                    <!-- Date of Expiry -->
+                    <div class="notice-form-group">
+                        <label for="dateOfExpiry">
+
+                            Date of Expiry <span class="required">*</span>
+                        </label>
+
+                        <input type="date" id="dateOfExpiry" class="form-control" required>
+                    </div>
+
+                </div>
+
+
+                <!-- ROW 2 -->
+                <div class="notice-second-row">
+
+                    <!-- Upload Notice -->
+                    <div class="notice-form-group notice-file-group">
+
+                        <label for="noticeFile">
+
+                            Upload Notice File
+                            <span class="required">*</span>
+                        </label>
+
+                        <input type="file" id="noticeFile" class="form-control" accept=".pdf,application/pdf" required>
+
+                        <small class="notice-file-info">
+
+                            PDF only, maximum file size 5 MB
+                        </small>
+
+                    </div>
+
+
+                    <!-- Show in Home Page -->
+                    <div class="notice-checkbox-group">
+
+                        <input type="checkbox" id="showInHomePage">
+
+                        <label for="showInHomePage">
+
+                            Show in Home Page
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ROW 3 -->
+                <div class="notice-save-container">
+
+                    <button type="button" class="btn btn-primary notice-save-btn" id="saveNoticeBtn">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+
+                        Save
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </main>
+    <div id="footer"></div>
+    <script src="../Layout/Layout-Admin.js"></script>
+    <script src="../Layout/Layout-Api.js"></script>
+    <script>
+        fetch("../Layout/Layout-Admin-Header.html")
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("header").innerHTML = html;
+                if (typeof initAdminLayoutNav === "function") {
+                    initAdminLayoutNav();
+                }
+            })
+            .catch(error => {
+                console.error("Admin header loading error:", error);
+            });
+    </script>
+    <script>
+        fetch("../Layout/Layout-Admin-Footer.html")
+            .then(r => r.text())
+            .then(html => document.getElementById("footer").innerHTML = html);
+    </script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const saveButton = document.getElementById("saveNoticeBtn");
+
+            saveButton.addEventListener("click", async function () {
+                const title = document.getElementById("noticeTitle").value.trim();
+                const description = document.getElementById("noticeDescription").value.trim();
+                const dateOfIssue = document.getElementById("dateOfIssue").value;
+                const dateOfExpiry = document.getElementById("dateOfExpiry").value;
+                const file = document.getElementById("noticeFile").files[0];
+                const showInHome = document.getElementById("showInHomePage").checked;
+
+                if (!title) { alert("Please enter title."); return; }
+                if (!description) { alert("Please enter description."); return; }
+                if (!dateOfIssue) { alert("Please select date of issue."); return; }
+                if (!dateOfExpiry) { alert("Please select date of expiry."); return; }
+                if (dateOfExpiry < dateOfIssue) { alert("Date of expiry cannot be before date of issue."); return; }
+                if (!file) { alert("Please upload notice file."); return; }
+                if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) {
+                    alert("Please upload a PDF file only.");
+                    return;
+                }
+                if (file.size > 5 * 1024 * 1024) { alert("PDF file size must be 5 MB or less."); return; }
+                if (!DavApi.requireLogin()) return;
+
+                try {
+                    await DavApi.busy(saveButton, async () => {
+                        const [uploaded] = await DavApi.upload("notice-board", [file]);
+
+                        await DavApi.post("api-post-add-update-notice-board", {
+                            ITEM: "ADD",
+                            RECORD_SYS_ID: 0,
+                            TITLE: title,
+                            DESCRIPTION: description,
+                            FILE_NAME: uploaded.fileName,
+                            DATE_OF_ISSUE: dateOfIssue,
+                            DATE_OF_EXPIRY: dateOfExpiry,
+                            STATUS: "ACTIVE",
+                            HIGHLIGHT_HOMEPAGE: showInHome ? "Y" : "N",
+                            SESSION_YEAR: DavApi.sessionYear()
+                        });
+                    });
+
+                    alert("Notice saved successfully.");
+                    window.location.reload();
+                } catch (error) {
+                    console.error("Save notice error:", error);
+                    alert(error.message || "Unable to save notice.");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

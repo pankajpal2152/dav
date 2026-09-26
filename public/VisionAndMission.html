@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OurGoal Welcome To DAV Public School</title>
+    <!-- Css link start -->
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <!-- Css link end -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="">
+    <div class="container-fluid" style="padding-bottom: 100px;">
+        <div class="row">
+            <div class="col-md-8">
+                <article class="mt-3 artical-dav">
+                    <p><span style="font-weight:bold">VISION : </span>The D.A.V. Public School, Kolkata is the only one in Kolkata. It is a progressive co-educational centre of child-education designed to help every child in its care to attain all-round, balanced and harmonious development of his / her personality, latent talents and capacities. Falling in line with other D.A.V. Public Schools, this School aims at not merely academic excellence but also formation of character by encouraging the children to cultivate the basic values of life like truthfulness, compassion, tolerance and patriotism.</p>
+                    <p><span style="font-weight:bold">MISSION : </span>"Education is that which helps one to acquire knowledge culture righteousness, self-control and like virtues and eradicates ignorance and evil habits" D.A.V. Public School, Kolkata endeavours to help every child imbibe the basic values of life, respect ancient vedic thought and culture and to attain an all-round balanced and harmonious development of personality and latent talents.</p>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <div class="goals_image_box text-center">
+                    <img class="img-fluid mx-auto d-block" src="/assets/images/our_gosals1.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/Layout/Layout-Js.js"></script>
+    <script>
+        // shared header / footer
+        fetch("/Layout/Layout-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading header:", error); });
+
+        fetch("/Layout/Layout-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading footer:", error); });
+    </script>
+</body>
+
+</html>

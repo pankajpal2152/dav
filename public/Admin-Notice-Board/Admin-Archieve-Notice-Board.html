@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To DAV Public School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        /* ==========================================
+   ARCHIVED NOTICE PAGE
+========================================== */
+
+        .archived-notice-container {
+            width: 90%;
+            margin: 30px auto;
+        }
+
+        .notice-control-title {
+            text-align: center;
+            text-decoration: underline;
+            margin-bottom: 30px;
+            color: #75112e;
+            font-weight: 600;
+        }
+
+        /* ==========================================
+   FORM
+========================================== */
+
+        .archived-notice-form {
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            gap: 25px;
+        }
+
+        .archived-notice-field {
+            width: 350px;
+        }
+
+        .archived-notice-field label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333333;
+        }
+
+        .required {
+            color: red;
+        }
+
+        /* ==========================================
+   CUSTOM DROPDOWN
+========================================== */
+
+        .custom-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .custom-select-button {
+            width: 100%;
+            height: 42px;
+            padding: 8px 12px;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .custom-select-button i {
+            font-size: 12px;
+            color: #555555;
+        }
+
+        .custom-select-button:focus {
+            outline: none;
+            border-color: #0d6efd;
+        }
+
+        .custom-select-menu {
+            display: none;
+            position: absolute;
+            top: 46px;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .custom-select.open .custom-select-menu {
+            display: block;
+        }
+
+        .custom-select-option {
+            padding: 10px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #ffffff;
+            color: #333333;
+        }
+
+        .custom-select-option:hover {
+            background-color: #0d6efd;
+            color: #ffffff;
+        }
+
+        /* ==========================================
+   SEARCH BUTTON
+========================================== */
+
+        .archived-notice-search {
+            margin-bottom: 0;
+        }
+
+        .archived-notice-search .btn {
+            height: 42px;
+            padding: 8px 20px;
+        }
+
+        .archived-notice-search .fa {
+            margin-right: 6px;
+        }
+
+        /* ==========================================
+   RESPONSIVE
+========================================== */
+        @media (max-width: 767px) {
+            .archived-notice-container {
+                width: 95%;
+            }
+
+            .archived-notice-form {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+
+            .archived-notice-field {
+                width: 100%;
+            }
+
+            .archived-notice-search {
+                margin-top: 5px;
+            }
+        }
+
+        /* ==========================================
+   ARCHIVED NOTICE TABLE
+========================================== */
+
+        .archived-notice-table-wrapper {
+            width: 100%;
+            margin-top: 30px;
+            display: none;
+            overflow-x: auto;
+        }
+
+        .archived-notice-table {
+            width: 100%;
+            border: 2px solid #75112e !important;
+            border-collapse: collapse !important;
+        }
+
+        .archived-notice-table th {
+            background-color: #75112e !important;
+            color: #ffffff;
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px 10px;
+            border: 2px solid #75112e !important;
+        }
+
+        .archived-notice-table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 10px;
+            border: 2px solid #75112e !important;
+        }
+
+        .archived-notice-table tbody tr:hover {
+            background-color: #f5e9ed;
+        }
+
+        .view-notice-btn,
+        .unarchive-notice-btn {
+            background-color: #505050 !important;
+            color: #ffffff;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .view-notice-btn:hover,
+        .unarchive-notice-btn:hover {
+            background-color: #5d0d24;
+            color: #ffffff;
+        }
+
+        /* ==========================================
+   UNARCHIVE CONFIRM MODAL
+========================================== */
+
+        .unarchive-confirm-yes {
+            background-color: #198754;
+            color: #ffffff;
+            border: none;
+            padding: 6px 24px;
+            border-radius: 5px;
+        }
+
+        .unarchive-confirm-yes:hover {
+            background-color: #157347;
+            color: #ffffff;
+        }
+
+        .unarchive-confirm-no {
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            padding: 6px 24px;
+            border-radius: 5px;
+        }
+
+        .unarchive-confirm-no:hover {
+            background-color: #bb2d3b;
+            color: #ffffff;
+        }
+        .modal-title{
+            color: rgb(21, 134, 132);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+    <main>
+        <!-- ============================= -->
+        <!-- ARCHIVED NOTICE -->
+        <!-- ============================= -->
+        <div class="archived-notice-container">
+            <div class="archived-notice-form">
+                <div class="archived-notice-field">
+                    <label>
+                        Select Session Year
+                        <span class="required">*</span>
+                    </label>
+
+                    <div class="custom-select" id="sessionYearDropdown">
+                        <button type="button" class="custom-select-button" id="sessionYearButton">
+                            <span id="sessionYearText">
+                                Select Session Year
+                            </span>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+
+                        <div class="custom-select-menu">
+                            <div class="custom-select-option" data-value="2020-2021">
+                                2020-2021
+                            </div>
+                            <div class="custom-select-option" data-value="2021-2022">
+                                2021-2022
+                            </div>
+                            <div class="custom-select-option" data-value="2022-2023">
+                                2022-2023
+                            </div>
+                            <div class="custom-select-option" data-value="2023-2024">
+                                2023-2024
+                            </div>
+                            <div class="custom-select-option" data-value="2024-2025">
+                                2024-2025
+                            </div>
+                            <div class="custom-select-option" data-value="2025-2026">
+                                2025-2026
+                            </div>
+                            <div class="custom-select-option" data-value="2026-2027">
+                                2026-2027
+                            </div>
+                            <div class="custom-select-option" data-value="2027-2028">
+                                2027-2028
+                            </div>
+                            <div class="custom-select-option" data-value="2028-2029">
+                                2028-2029
+                            </div>
+                            <div class="custom-select-option" data-value="2029-2030">
+                                2029-2030
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stores selected value -->
+                    <input type="hidden" id="sessionYear" value="">
+                </div>
+
+                <div class="archived-notice-search">
+                    <button type="button" class="btn btn-primary" id="searchArchivedNotice">
+                        <i class="fa fa-search"></i>
+                        Search
+                    </button>
+                </div>
+            </div>
+
+            <!-- Archived Notice Table -->
+            <div class="archived-notice-table-wrapper" id="archivedNoticeTableWrapper">
+
+                <table class="table archived-notice-table">
+                    <thead>
+                        <tr>
+                            <th>Sl. No.</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Issue Date</th>
+                            <th>Expiry Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="archivedNoticeTableBody">
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+    </main>
+    <div id="footer"></div>
+
+    <!-- Unarchive Confirmation Modal -->
+    <div class="modal fade" id="unarchiveConfirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title">Unarchive Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    Are you want to unarchive this record?
+                </div>
+                <div class="modal-footer justify-content-center border-0 pb-4">
+                    <button type="button" class="btn unarchive-confirm-yes" id="unarchiveConfirmYes">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                        Yes</button>
+                    <button type="button" class="btn unarchive-confirm-no" id="unarchiveConfirmNo"
+                        data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../Layout/Layout-Admin.js"></script>
+    <script>
+        fetch("../Layout/Layout-Admin-Header.html")
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("header").innerHTML = html;
+                if (typeof initAdminLayoutNav === "function") {
+                    initAdminLayoutNav();
+                }
+            })
+            .catch(error => {
+                console.error("Admin header loading error:", error);
+            });
+    </script>
+    <script>
+        fetch("../Layout/Layout-Admin-Footer.html")
+            .then(r => r.text())
+            .then(html => document.getElementById("footer").innerHTML = html);
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            initializeSessionYearDropdown();
+            initializeSearch();
+            initializeUnarchiveModal();
+        });
+
+         //  SESSION YEAR DROPDOWN
+
+        function initializeSessionYearDropdown() {
+            const dropdown = document.getElementById("sessionYearDropdown");
+            const button = document.getElementById("sessionYearButton");
+            const text = document.getElementById("sessionYearText");
+            const hiddenInput = document.getElementById("sessionYear");
+
+            if (!dropdown || !button) {
+                return;
+            }
+
+            button.addEventListener("click", function (event) {
+                event.stopPropagation();
+                dropdown.classList.toggle("open");
+            });
+
+            const options = dropdown.querySelectorAll(".custom-select-option");
+
+            options.forEach(function (option) {
+                option.addEventListener("click", function () {
+                    const value = this.getAttribute("data-value");
+                    hiddenInput.value = value;
+                    text.textContent = value;
+                    dropdown.classList.remove("open");
+                });
+            });
+
+            document.addEventListener("click", function () {
+                dropdown.classList.remove("open");
+            });
+        }
+
+        /* ==========================================        
+           SEARCH
+        ========================================== */
+
+        function initializeSearch() {
+            const searchButton = document.getElementById("searchArchivedNotice");
+            searchButton.addEventListener(
+                "click",
+                function () {
+                    const sessionYear = document.getElementById("sessionYear").value;
+
+                    if (!sessionYear) {
+                        alert(
+                            "Please select session year."
+                        );
+                        return;
+                    }
+
+                    getArchivedNotice(sessionYear);
+                }
+            );
+        }
+
+        /*
+        GET ARCHIVED NOTICE BOARD DETAILS
+        */
+
+        async function getArchivedNotice(sessionYear) {
+
+            try {
+                const token = localStorage.getItem("authToken");
+
+                const response = await fetch(
+                    `/api/ourSchool/api-get-view-archive-notice-board?ITEM=VIEW_ALL&SESSION_YEAR=${encodeURIComponent(sessionYear)}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    }
+                );
+
+                const data = await response.json();
+
+                if (data.status === "true") {
+                    renderArchivedNoticeTable(rowsOf(data.response));
+                } else {
+                    renderArchivedNoticeTable([]);
+                    console.error("Archived notice fetch error:", data.message);
+                }
+            } catch (error) {
+                console.error("Archived notice fetch error:", error);
+                renderArchivedNoticeTable([]);
+            }
+        }
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        /*
+        RENDER ARCHIVED NOTICE TABLE
+        */
+
+        let archivedNoticeList = [];
+
+        function renderArchivedNoticeTable(noticeList) {
+
+            archivedNoticeList = Array.isArray(noticeList) ? noticeList : [];
+
+            const tableWrapper = document.getElementById("archivedNoticeTableWrapper");
+            const tableBody = document.getElementById("archivedNoticeTableBody");
+
+            if (!tableWrapper || !tableBody) {
+                return;
+            }
+
+            tableBody.innerHTML = "";
+
+            if (!Array.isArray(noticeList) || noticeList.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="7">No archived notices found</td></tr>`;
+                tableWrapper.style.display = "block";
+                return;
+            }
+
+            noticeList.forEach(function (notice, index) {
+
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${escapeHtml(notice.TITLE || "")}</td>
+                    <td>${escapeHtml(notice.DESCRIPTION || "")}</td>
+                    <td>${escapeHtml(notice.DATE_OF_ISSUE || "")}</td>
+                    <td>${escapeHtml(notice.DATE_OF_EXPIRY || "")}</td>
+                    <td>
+                        <button type="button" class="view-notice-btn" data-file="${escapeHtml(notice.FILE_NAME || "")}">View</button>
+                    </td>
+                    <td>
+                        <button type="button" class="unarchive-notice-btn" data-id="${escapeHtml(notice.RECORD_SYS_ID || "")}">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="8" width="18" height="13" rx="1"></rect>
+                                <path d="M3 8V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3"></path>
+                                <line x1="12" y1="12" x2="12" y2="18"></line>
+                                <polyline points="9 15 12 12 15 15"></polyline>
+                            </svg>
+                            Unarchive</button>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+
+            tableWrapper.style.display = "block";
+        }
+
+        /*
+        VIEW BUTTON - OPEN FILE IN NEW TAB
+        */
+
+        document.addEventListener("click", function (event) {
+
+            const viewBtn = event.target.closest(".view-notice-btn");
+
+            if (!viewBtn) {
+                return;
+            }
+
+            const fileName = viewBtn.dataset.file;
+
+            if (!fileName) {
+                alert("File not available.");
+                return;
+            }
+
+            window.open("/Uploadfiles/NoticeBoardFiles/" + fileName, "_blank");
+        });
+
+        /*
+        UNARCHIVE - CONFIRM MODAL + POST API
+        */
+
+        let pendingUnarchiveId = null;
+        let unarchiveModalInstance = null;
+
+        function initializeUnarchiveModal() {
+
+            const modalEl = document.getElementById("unarchiveConfirmModal");
+            const yesButton = document.getElementById("unarchiveConfirmYes");
+            const noButton = document.getElementById("unarchiveConfirmNo");
+
+            if (!modalEl || !yesButton || !noButton) {
+                return;
+            }
+
+            unarchiveModalInstance = { show: function () { $(modalEl).modal("show"); }, hide: function () { $(modalEl).modal("hide"); } };
+
+            yesButton.addEventListener("click", async function () {
+                if (!pendingUnarchiveId) {
+                    return;
+                }
+
+                await unarchiveNotice(pendingUnarchiveId);
+                pendingUnarchiveId = null;
+                unarchiveModalInstance.hide();
+            });
+
+            noButton.addEventListener("click", function () {
+                pendingUnarchiveId = null;
+            });
+        }
+
+        document.addEventListener("click", function (event) {
+
+            const unarchiveBtn = event.target.closest(".unarchive-notice-btn");
+
+            if (!unarchiveBtn) {
+                return;
+            }
+
+            pendingUnarchiveId = unarchiveBtn.dataset.id;
+
+            if (unarchiveModalInstance) {
+                unarchiveModalInstance.show();
+            }
+        });
+
+        /*
+        UNARCHIVE NOTICE - POST API
+        */
+
+        let isUnarchivingNotice = false;
+
+        async function unarchiveNotice(recordSysId) {
+            if (isUnarchivingNotice) {
+                return;
+            }
+
+            const token = localStorage.getItem("authToken");
+
+            if (!token) {
+                alert("Session expired. Please login again.");
+                window.location.href = "/Dav-Login.html";
+                return;
+            }
+
+            const sessionYear = document.getElementById("sessionYear").value;
+
+            const notice = archivedNoticeList.find(function (item) {
+                return String(item.RECORD_SYS_ID) === String(recordSysId);
+            });
+
+            const payload = {
+                data: [
+                    {
+                        ITEM: "UNARCHIVE_NOTICE_BOARD",
+                        RECORD_SYS_ID: recordSysId,
+                        TITLE: (notice && notice.TITLE) || "",
+                        SESSION_YEAR: sessionYear
+                    }
+                ]
+            };
+
+            isUnarchivingNotice = true;
+
+            try {
+                const response = await fetch(
+                    "/api/ourSchool/api-post-add-update-notice-board-unarchive",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        body: JSON.stringify(payload)
+                    }
+                );
+
+                const result = await response.json();
+                console.log("Unarchive Notice POST Response:", result);
+
+                if (!response.ok || (result.status !== "true" && result.status !== true)) {
+                    throw new Error(result.message || "Failed to unarchive notice.");
+                }
+
+                // Stored procedure result: response[0][0].JSON_VALUE
+                let spResult = result.response?.[0]?.[0]?.JSON_VALUE;
+                if (typeof spResult === "string") {
+                    try { spResult = JSON.parse(spResult); } catch (e) { /* keep as string */ }
+                }
+
+                if (spResult && spResult.status !== "true" && spResult.status !== true) {
+                    throw new Error(spResult.response || "Failed to unarchive notice.");
+                }
+
+                alert((spResult && spResult.response) || "Information Unarchived Successfully");
+
+                // Refresh the archived list for the selected session year
+                if (sessionYear) {
+                    getArchivedNotice(sessionYear);
+                }
+
+            } catch (error) {
+                console.error("Unarchive notice error:", error);
+                alert(error.message || "Something went wrong while unarchiving the record.");
+            } finally {
+                isUnarchivingNotice = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

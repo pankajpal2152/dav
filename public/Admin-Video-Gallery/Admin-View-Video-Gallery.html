@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To DAV Public School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        /* ==========================================
+
+   VIEW VIDEO GALLERY
+
+========================================== */
+
+        .video-view-container {
+
+            width: 90%;
+
+            margin: 30px auto;
+
+        }
+
+        .video-gallery-title {
+
+            text-align: center;
+
+            text-decoration: underline;
+
+            margin-bottom: 30px;
+
+            color: #75112e;
+
+            font-weight: 600;
+
+        }
+
+
+        /* ==========================================
+
+   TABLE
+
+========================================== */
+
+        .video-table-wrapper {
+
+            width: 90%;
+
+            margin: 0 auto;
+
+            overflow-x: auto;
+
+        }
+
+        .video-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            background-color: #ffffff;
+
+        }
+
+        .video-table th {
+
+            background-color: #75112e;
+
+            color: #ffffff;
+
+            padding: 12px 15px;
+
+            text-align: center;
+
+            font-weight: 600;
+
+            white-space: nowrap;
+
+        }
+
+        .video-table td {
+
+            padding: 12px 15px;
+
+            border: 1px solid #dddddd;
+
+            text-align: center;
+
+            vertical-align: middle;
+
+        }
+
+        .video-table tbody tr:hover {
+
+            background-color: #f8f8f8;
+
+        }
+
+
+        /* ==========================================
+
+   URL
+
+========================================== */
+
+        .video-url-cell {
+
+            max-width: 300px;
+
+            word-break: break-all;
+
+        }
+
+        .video-url-cell a {
+
+            color: #0d6efd;
+
+            text-decoration: none;
+
+        }
+
+        .video-url-cell a:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* ==========================================
+
+   ACTION BUTTONS
+
+========================================== */
+
+        .video-action-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 6px;
+
+            flex-wrap: wrap;
+
+        }
+
+        .video-action-btn {
+
+            border: none;
+
+            padding: 6px 12px;
+
+            border-radius: 4px;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+        }
+
+        .video-action-btn:hover {
+
+            opacity: 0.85;
+
+        }
+
+
+        /* Edit - Blue */
+
+        .video-edit-btn {
+
+            background-color: #0d6efd;
+
+            color: #ffffff;
+
+        }
+
+
+        /* Delete - Red */
+
+        .video-delete-btn {
+
+            background-color: #dc3545;
+
+            color: #ffffff;
+
+        }
+
+
+        /* Archive - White */
+
+        .video-archive-btn {
+
+            background-color: #ffffff;
+
+            color: #212529;
+
+            border: 1px solid #212529;
+
+        }
+
+
+        /* View - Cyan */
+
+        .video-view-btn {
+
+            background-color: #0dcaf0;
+
+            color: #ffffff;
+
+        }
+
+
+        /* ==========================================
+
+   COMMON MODAL
+
+========================================== */
+
+        .admin-modal-overlay {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background-color: rgba(0, 0, 0, 0.55);
+
+            z-index: 3000;
+
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+        .admin-modal-overlay.show {
+
+            display: flex;
+
+        }
+
+        .admin-modal {
+
+            width: 500px;
+
+            max-width: 90%;
+
+            background-color: #ffffff;
+
+            border-radius: 6px;
+
+            overflow: visible;
+
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+
+        }
+
+        .admin-modal-small {
+
+            width: 420px;
+
+        }
+
+        .admin-modal-header {
+
+            background-color: #75112e;
+
+            color: #ffffff;
+
+            padding: 12px 18px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+        .admin-modal-header h5 {
+
+            margin: 0;
+
+            font-size: 18px;
+
+        }
+
+        .admin-modal-close {
+
+            border: none;
+
+            background: transparent;
+
+            color: #ffffff;
+
+            font-size: 28px;
+
+            cursor: pointer;
+
+            line-height: 1;
+
+        }
+
+        .admin-modal-body {
+
+            padding: 20px;
+
+        }
+
+        .admin-modal-field {
+
+            margin-bottom: 18px;
+
+        }
+
+        .admin-modal-field:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+        .admin-modal-field label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: 600;
+
+            color: #333333;
+
+        }
+
+        .admin-modal-field .form-control {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            height: 42px;
+
+        }
+
+        .admin-modal-field .form-control:focus {
+
+            border-color: #75112e;
+
+            box-shadow: 0 0 0 2px rgba(117, 17, 46, 0.1);
+
+        }
+
+        .admin-modal-footer {
+
+            padding: 15px 20px;
+
+            border-top: 1px solid #dddddd;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+        }
+
+
+        /* ==========================================
+
+   EDIT BUTTONS
+
+========================================== */
+
+        .video-save-modal-btn {
+
+            border: none;
+
+            background-color: #198754;
+
+            color: #ffffff;
+
+            padding: 8px 18px;
+
+            border-radius: 4px;
+
+            cursor: pointer;
+
+        }
+
+        .video-save-modal-btn:hover {
+
+            background-color: #157347;
+
+        }
+
+        .video-no-modal-btn {
+
+            border: none;
+
+            background-color: #dc3545;
+
+            color: #ffffff;
+
+            padding: 8px 18px;
+
+            border-radius: 4px;
+
+            cursor: pointer;
+
+        }
+
+        .video-no-modal-btn:hover {
+
+            background-color: #bb2d3b;
+
+        }
+
+
+        /* ==========================================
+
+   DELETE
+
+========================================== */
+
+        .delete-confirmation {
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+        }
+
+        .delete-confirmation p {
+
+            margin: 0;
+
+            font-size: 16px;
+
+        }
+
+        .video-delete-yes-btn {
+
+            border: none;
+
+            background-color: #198754;
+
+            color: #ffffff;
+
+            padding: 8px 18px;
+
+            border-radius: 4px;
+
+            cursor: pointer;
+
+        }
+
+        .video-delete-yes-btn:hover {
+
+            background-color: #157347;
+
+        }
+
+
+        /* ==========================================
+
+   ARCHIVE
+
+========================================== */
+
+        .video-archive-save-btn {
+
+            border: none;
+
+            background-color: #198754;
+
+            color: #ffffff;
+
+            padding: 8px 18px;
+
+            border-radius: 4px;
+
+            cursor: pointer;
+
+        }
+
+        .video-archive-save-btn:hover {
+
+            background-color: #157347;
+
+        }
+
+
+        /* ==========================================
+
+   CUSTOM SESSION YEAR DROPDOWN
+
+========================================== */
+
+        .video-custom-select {
+
+            position: relative;
+
+            width: 100%;
+
+        }
+
+        .video-custom-select-button {
+
+            width: 100%;
+
+            height: 42px;
+
+            padding: 8px 12px;
+
+            background-color: #ffffff;
+
+            border: 1px solid #cccccc;
+
+            border-radius: 4px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            color: #333333;
+
+        }
+
+        .video-custom-select-button i {
+
+            font-size: 12px;
+
+            color: #555555;
+
+        }
+
+        .video-custom-select-button:focus {
+
+            outline: none;
+
+            border-color: #0d6efd;
+
+        }
+
+        .video-custom-select-menu {
+
+            display: none;
+
+            position: absolute;
+
+            top: 46px;
+
+            left: 0;
+
+            width: 100%;
+
+            background-color: #ffffff;
+
+            border: 1px solid #dddddd;
+
+            border-radius: 4px;
+
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+            z-index: 4000;
+
+            overflow: hidden;
+
+        }
+
+        .video-custom-select.open .video-custom-select-menu {
+
+            display: block;
+
+        }
+
+        .video-custom-select-option {
+
+            padding: 10px 12px;
+
+            font-size: 14px;
+
+            cursor: pointer;
+
+            color: #333333;
+
+            background-color: #ffffff;
+
+        }
+
+        .video-custom-select-option:hover {
+
+            background-color: #0d6efd;
+
+            color: #ffffff;
+
+        }
+
+
+        /* ==========================================
+
+   VIDEO VIEW MODAL
+
+========================================== */
+
+        .video-view-modal {
+
+            width: 800px;
+
+            max-width: 90%;
+
+        }
+
+        .video-modal-body {
+
+            padding: 20px;
+
+            background-color: #000000;
+
+        }
+
+        .video-player-frame {
+
+            display: block;
+
+            width: 100%;
+
+            height: 450px;
+
+            border: none;
+
+        }
+
+        .video-player {
+
+            display: block;
+
+            width: 100%;
+
+            max-height: 450px;
+
+            background-color: #000000;
+
+        }
+
+
+        /* ==========================================
+
+   RESPONSIVE
+
+========================================== */
+
+        @media (max-width: 767px) {
+
+            .video-view-container {
+
+                width: 95%;
+
+            }
+
+            .video-table-wrapper {
+
+                width: 100%;
+
+            }
+
+            .video-player-frame {
+
+                height: 300px;
+
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+    <main>
+        <!-- =========================
+         VIDEO GALLERY TABLE
+    ========================== -->
+        <div class="video-view-container">
+            <div class="video-table-wrapper">
+                <table class="video-table">
+                    <thead>
+                        <tr>
+                            <th>Sl No</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>URL</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="videoTableBody">
+                        <!-- GET API data will be rendered here -->
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+
+         EDIT VIDEO MODAL
+
+    ========================== -->
+
+        <div class="admin-modal-overlay" id="updateVideoModal">
+
+            <div class="admin-modal">
+
+                <div class="admin-modal-header">
+
+                    <h5>Update Video Gallery Record</h5>
+
+                    <button type="button" class="admin-modal-close" onclick="closeVideoModal('updateVideoModal')">
+                        &times;
+                    </button>
+
+                </div>
+
+                <div class="admin-modal-body">
+
+                    <!-- Title -->
+                    <div class="admin-modal-field">
+
+                        <label for="editVideoTitle">
+
+                            Title
+                        </label>
+
+                        <input type="text" id="editVideoTitle" class="form-control" readonly>
+
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="admin-modal-field">
+
+                        <label for="editVideoDescription">
+
+                            Description <span class="required">*</span>
+                        </label>
+
+                        <input type="text" id="editVideoDescription" class="form-control" maxlength="200" required>
+
+                    </div>
+
+
+                    <!-- URL -->
+                    <div class="admin-modal-field">
+
+                        <label for="editVideoUrl">
+
+                            URL <span class="required">*</span>
+                        </label>
+
+                        <input type="url" id="editVideoUrl" class="form-control" placeholder="Enter video url" required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-modal-footer">
+
+                    <button type="button" class="video-save-modal-btn" onclick="saveVideoUpdate()">
+
+                        Save
+                    </button>
+
+                    <button type="button" class="video-no-modal-btn" onclick="closeVideoModal('updateVideoModal')">
+
+                        No
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+
+         DELETE MODAL
+
+    ========================== -->
+
+        <div class="admin-modal-overlay" id="deleteVideoModal">
+
+            <div class="admin-modal admin-modal-small">
+
+                <div class="admin-modal-header">
+
+                    <h5>Video Gallery Record Delete</h5>
+
+                    <button type="button" class="admin-modal-close" onclick="closeVideoModal('deleteVideoModal')">
+                        &times;
+                    </button>
+
+                </div>
+
+
+                <div class="delete-confirmation">
+
+                    <p>
+
+                        Are you want to delete this record?
+                    </p>
+
+                </div>
+
+
+                <div class="admin-modal-footer">
+
+                    <button type="button" class="video-delete-yes-btn" onclick="confirmVideoDelete()">
+                        <i class="fa fa-check"></i>
+
+                        Yes
+                    </button>
+
+                    <button type="button" class="video-no-modal-btn" onclick="closeVideoModal('deleteVideoModal')">
+
+                        No
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+
+         ARCHIVE MODAL
+
+    ========================== -->
+
+        <div class="admin-modal-overlay" id="archiveVideoModal">
+
+            <div class="admin-modal admin-modal-small">
+
+                <div class="admin-modal-header">
+
+                    <h5>Archive Record</h5>
+
+                    <button type="button" class="admin-modal-close" onclick="closeVideoModal('archiveVideoModal')">
+                        &times;
+                    </button>
+
+                </div>
+
+
+                <div class="admin-modal-body">
+
+                    <div class="admin-modal-field">
+
+                        <label>
+
+                            Select Session Year
+                            <span class="required">*</span>
+                        </label>
+
+
+                        <div class="video-custom-select" id="archiveSessionDropdown">
+
+                            <button type="button" class="video-custom-select-button" id="archiveSessionButton">
+
+                                <span id="archiveSessionText">
+
+                                    Select Session Year
+                                </span>
+
+                                <i class="fa fa-chevron-down"></i>
+
+                            </button>
+
+
+                            <div class="video-custom-select-menu">
+
+                                <div class="video-custom-select-option" data-value="2020-2021">
+
+                                    2020-2021
+                                </div>
+
+                                <div class="video-custom-select-option" data-value="2021-2022">
+
+                                    2021-2022
+                                </div>
+
+                                <div class="video-custom-select-option" data-value="2022-2023">
+
+                                    2022-2023
+                                </div>
+
+                                <div class="video-custom-select-option" data-value="2023-2024">
+
+                                    2023-2024
+                                </div>
+
+                                <div class="video-custom-select-option" data-value="2024-2025">
+
+                                    2024-2025
+                                </div>
+
+                                <div class="video-custom-select-option" data-value="2025-2026">
+
+                                    2025-2026
+                                </div>
+
+                                <div class="video-custom-select-option" data-value="2026-2027">
+
+                                    2026-2027
+                                </div>
+
+                                <div class="video-custom-select-option" data-value="2027-2028">
+
+                                    2027-2028
+                                </div>
+
+                                <div class="video-custom-select-option" data-value="2028-2029">
+
+                                    2028-2029
+                                </div>
+
+                                <div class="video-custom-select-option" data-value="2029-2030">
+
+                                    2029-2030
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <input type="hidden" id="archiveSessionYear" value="">
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-modal-footer">
+
+                    <button type="button" class="video-archive-save-btn" onclick="saveVideoArchive()">
+
+                        Save
+                    </button>
+
+                    <button type="button" class="video-no-modal-btn" onclick="closeVideoModal('archiveVideoModal')">
+
+                        No
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+
+         VIEW VIDEO MODAL
+
+    ========================== -->
+
+        <div class="admin-modal-overlay" id="viewVideoModal">
+
+            <div class="admin-modal video-view-modal">
+
+                <div class="admin-modal-header">
+
+                    <h5>Video Gallery</h5>
+
+                    <button type="button" class="admin-modal-close" onclick="closeVideoModal('viewVideoModal')">
+                        &times;
+                    </button>
+
+                </div>
+
+
+                <div class="video-modal-body">
+
+                    <div id="videoPlayerContainer">
+
+                        <!-- Video player will be inserted here -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+    <div id="footer"></div>
+    <script src="../Layout/Layout-Admin.js"></script>
+    <script>
+        fetch("../Layout/Layout-Admin-Header.html")
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("header").innerHTML = html;
+                if (typeof initAdminLayoutNav === "function") {
+                    initAdminLayoutNav();
+                }
+            })
+            .catch(error => {
+                console.error("Admin header loading error:", error);
+            });
+    </script>
+    <script>
+        fetch("../Layout/Layout-Admin-Footer.html")
+            .then(r => r.text())
+            .then(html => document.getElementById("footer").innerHTML = html);
+    </script>
+    <script>
+        let videoGalleryData = [];
+        let selectedVideo = null;
+
+        // PAGE LOAD
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            loadVideoGallery();
+            initializeArchiveDropdown();
+        });
+        
+        // LOAD VIDEO GALLERY
+
+        async function loadVideoGallery() {
+            try {
+                const token = localStorage.getItem("authToken");
+                const response = await fetch("/api/ourSchool/api-get-view-gallery-video",
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    }
+                );
+
+                const data = await response.json();
+
+                if (data.status !== "true") {
+                    console.error(
+                        "Error loading video gallery:",
+                        data.message
+                    );
+                    videoGalleryData = [];
+                    renderVideoTable();
+                    return;
+                }
+
+                const innerData = data.response?.[0]?.JSON_VALUE;
+
+                if (
+                    innerData &&
+                    innerData.status === "true" &&
+                    Array.isArray(innerData.response)
+                ) {
+                    videoGalleryData = innerData.response;
+                } else if (Array.isArray(data.response)) {
+                    videoGalleryData = data.response;
+                } else {
+                    videoGalleryData = [];
+                }
+
+                renderVideoTable();
+
+            }
+
+            catch (error) {
+                console.error("Error loading video gallery:",error);
+                videoGalleryData = [];
+                renderVideoTable();
+            }
+        }
+        
+         // RENDER TABLE 
+
+        function renderVideoTable() {
+            const tableBody = document.getElementById("videoTableBody");
+            tableBody.innerHTML = "";
+
+            if (!videoGalleryData || videoGalleryData.length === 0) {
+
+                tableBody.innerHTML = `
+                                            <tr>
+                                            <td colspan="5" class="text-center text-muted">
+                                                                No data found
+                                            </td>
+                                            </tr>
+                                                    `;
+                return;
+            }
+
+            videoGalleryData.forEach((video, index) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+ 
+                                    <td>
+                                        ${index + 1}
+                                    </td>
+                    
+                                    <td>
+                                        ${escapeHtml(video.TITLE || "")}
+                                    </td>
+                    
+                                    <td>
+                                        ${escapeHtml(video.DESCRIPTION || "")}
+                                    </td>
+                    
+                                    <td class="video-url-cell">
+                                        <a href="${escapeAttribute(video.URL || "#")}"
+                                        target="_blank"
+                                        rel="noopener noreferrer">
+                                            ${escapeHtml(video.URL || "")}
+                                        </a>
+                                    </td>
+                    
+                                    <td>
+                                        <div class="video-action-buttons">
+                                            <button type="button" class="video-action-btn video-edit-btn" onclick="editVideo(${index})">
+                                                Edit
+                                            </button>
+                    
+                                            <button type="button" class="video-action-btn video-delete-btn" onclick="deleteVideo(${index})">
+                                                Delete
+                                            </button>
+                    
+                                            <button type="button" class="video-action-btn video-archive-btn" onclick="archiveVideo(${index})">
+                                                Archive
+                                            </button>
+                    
+                                            <button type="button" class="video-action-btn video-view-btn" onclick="viewVideo(${index})">
+                                                View
+                                            </button>
+                                        </div>
+                    
+                                    </td>
+                    
+                                `;
+
+                    tableBody.appendChild(row);
+                }
+            );
+        }
+
+       // EDIT VIDEO
+
+        function editVideo(index) {
+            selectedVideo = videoGalleryData[index];
+            if (!selectedVideo) {
+                return;
+            }
+
+            document.getElementById("editVideoTitle").value = selectedVideo.TITLE || "";
+            document.getElementById("editVideoDescription").value = selectedVideo.DESCRIPTION || "";
+            document.getElementById("editVideoUrl").value = selectedVideo.URL || "";
+            document.getElementById("updateVideoModal").classList.add("show");
+        }
+
+        // SAVE VIDEO UPDATE
+
+        function saveVideoUpdate() {
+            if (!selectedVideo) {
+                return;
+            }
+
+            const description = document.getElementById("editVideoDescription").value.trim();
+            const url = document.getElementById("editVideoUrl").value.trim();
+
+            if (!description) {
+                alert(
+                    "Please enter description."
+                );
+
+                document.getElementById("editVideoDescription").focus();
+                return;
+            }
+
+            if (!url) {
+                alert(
+                    "Please enter video URL."
+                );
+
+                document.getElementById("editVideoUrl").focus();
+                return;
+            }
+
+            try {
+                new URL(url);
+            }
+
+            catch (error) {
+                alert(
+                    "Please enter a valid video URL."
+                );
+
+                document.getElementById("editVideoUrl").focus();
+                return;
+            }
+
+            // UPDATE API WILL BE ADDED LATER
+
+            console.log("Update Video Gallery:",
+                {
+                    VIDEO_SYS_ID: selectedVideo.VIDEO_SYS_ID,
+                    TITLE: selectedVideo.TITLE,
+                    DESCRIPTION: description,
+                    URL: url
+                }
+            );
+
+            closeVideoModal(
+                "updateVideoModal"
+            );
+        }
+
+        // DELETE VIDEO
+        
+        function deleteVideo(index) {
+            selectedVideo = videoGalleryData[index];
+
+            if (!selectedVideo) {
+                return;
+            }
+
+            document.getElementById("deleteVideoModal").classList.add("show");
+        }
+
+        // CONFIRM DELETE
+        
+        function confirmVideoDelete() {
+            if (!selectedVideo) {
+                return;
+            }
+
+            /*        
+            ==========================================
+        
+            DELETE API WILL BE ADDED LATER
+        
+            ==========================================
+        
+            */
+
+
+            console.log(
+                "Delete Video Gallery:",
+                selectedVideo
+            );
+
+            closeVideoModal(
+                "deleteVideoModal"
+            );
+        }
+
+        // ARCHIVE VIDEO
+        
+        function archiveVideo(index) {
+            selectedVideo = videoGalleryData[index];
+
+            if (!selectedVideo) {
+                return;
+            }
+
+            document.getElementById("archiveSessionYear").value = "";
+            document.getElementById("archiveSessionText").textContent = "Select Session Year";
+            document.getElementById("archiveSessionDropdown").classList.remove("open");
+            document.getElementById("archiveVideoModal").classList.add("show");
+        }
+
+        // SAVE ARCHIVE
+
+        let isArchivingVideo = false;
+
+        async function saveVideoArchive() {
+            if (isArchivingVideo) {
+                return;
+            }
+
+            if (!selectedVideo) {
+                return;
+            }
+
+            const sessionYear = document.getElementById("archiveSessionYear").value;
+
+            if (!sessionYear) {
+                alert(
+                    "Please select session year."
+                );
+                return;
+            }
+
+            const token = localStorage.getItem("authToken");
+
+            if (!token) {
+                alert("Session expired. Please login again.");
+                window.location.href = "/Dav-Login.html";
+                return;
+            }
+
+            const payload = [
+                {
+                    RECORD_SYS_ID: selectedVideo.RECORD_SYS_ID,
+                    TITLE: selectedVideo.TITLE || "",
+                    DESCRIPTION: selectedVideo.DESCRIPTION || "",
+                    URL: selectedVideo.URL || "",
+                    SESSION_YEAR: sessionYear
+                }
+            ];
+
+            isArchivingVideo = true;
+
+            try {
+                const response = await fetch(
+                    "/api/ourSchool/api-post-add-update-video-gallery-archive",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        body: JSON.stringify(payload)
+                    }
+                );
+
+                const result = await response.json();
+                console.log("Archive Video Gallery POST Response:", result);
+
+                if (!response.ok || (result.status !== "true" && result.status !== true)) {
+                    throw new Error(result.message || "Failed to archive video");
+                }
+
+                // Stored procedure result: response[0].JSON_VALUE
+                let spResult = result.response?.[0]?.JSON_VALUE;
+
+                if (typeof spResult === "string") {
+                    try { spResult = JSON.parse(spResult); } catch (e) { /* keep as string */ }
+                }
+
+                if (spResult && spResult.status !== "true" && spResult.status !== true) {
+                    throw new Error(spResult.response || "Failed to archive video");
+                }
+
+                alert((spResult && spResult.response) || "Video Archive Successful");
+
+                closeVideoModal("archiveVideoModal");
+                selectedVideo = null;
+                loadVideoGallery();   // refresh table
+
+            } catch (error) {
+                console.error("Archive Video Gallery POST Error:", error);
+                alert(error.message || "Unable to archive video.");
+            } finally {
+                isArchivingVideo = false;
+            }
+        }
+
+        /* VIEW VIDEO */
+        
+        function viewVideo(index) {
+            selectedVideo = videoGalleryData[index];
+            if (!selectedVideo) {
+                return;
+            }
+
+            const videoUrl = selectedVideo.URL || "";
+            const container = document.getElementById("videoPlayerContainer");
+            container.innerHTML = "";
+
+            const embedUrl = getVideoEmbedUrl(videoUrl);
+
+            if (embedUrl) {
+                container.innerHTML = `
+
+            <iframe
+                src="${escapeAttribute(embedUrl)}"
+                class="video-player-frame"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        `;
+
+            }
+            else {
+                container.innerHTML = `
+                                        <video class="video-player" controls autoplay>
+                                            <source src="${escapeAttribute(videoUrl)}">Your browser does not support the video element.
+                                        </video>
+        `;
+            }
+
+            document.getElementById("viewVideoModal").classList.add("show");
+        }
+
+
+        /*
+        
+        CONVERT YOUTUBE / VIMEO URL TO EMBED URL
+        
+        */
+
+        function getVideoEmbedUrl(url) {
+            if (!url) {
+                return null;
+            }
+
+            try {
+                const parsedUrl = new URL(url);
+
+                if (parsedUrl.hostname.includes("youtube.com")) {
+                    const videoId = parsedUrl.searchParams.get("v");
+
+                    if (videoId) {
+                        return ("https://www.youtube.com/embed/" + videoId);
+                    }
+                }
+
+                if (parsedUrl.hostname ==="youtu.be") {
+                    const videoId = parsedUrl.pathname.substring(1);
+
+                    if (videoId) {
+                        return ("https://www.youtube.com/embed/" + videoId);
+                    }
+                }
+
+                /* VIMEO */
+
+                if (parsedUrl.hostname.includes("vimeo.com")) {
+                    const parts = parsedUrl.pathname.split("/").filter(Boolean);
+                    const videoId = parts[parts.length - 1];
+
+                    if (videoId) {
+                        return (
+                            "https://player.vimeo.com/video/"
+                            + videoId
+                        );
+                    }
+                }
+            }
+
+            catch (error) {
+                console.error(
+                    "Invalid video URL:",
+                    error
+                );
+            }
+            return null;
+        }
+
+        /* ARCHIVE CUSTOM DROPDOWN */
+
+        function initializeArchiveDropdown() {
+            const dropdown = document.getElementById("archiveSessionDropdown");
+            const button = document.getElementById("archiveSessionButton");
+            const text = document.getElementById("archiveSessionText");
+            const hiddenInput = document.getElementById("archiveSessionYear");
+
+            if ( !dropdown || !button || !text || !hiddenInput) {
+                return;
+            }
+            button.addEventListener("click",function (event) {
+                    event.stopPropagation();
+                    dropdown.classList.toggle("open");
+                }
+            );
+
+            const options = dropdown.querySelectorAll(".video-custom-select-option");
+
+            options.forEach(function (option) {
+                    option.addEventListener("click",function () {
+                            const value = this.dataset.value;
+                            const label = this.textContent.trim();
+
+                            hiddenInput.value = value;
+                            text.textContent = label;
+                            dropdown.classList.remove("open");
+                        }
+                    );
+                }
+            );
+
+            document.addEventListener("click",function () {
+                    dropdown.classList.remove("open");
+                }
+            );
+        }
+
+        /* CLOSE MODAL */
+
+        function closeVideoModal(modalId) {
+            const modal = document.getElementById(modalId);
+
+            if (modal) {
+                modal.classList.remove(
+                    "show"
+                );
+            }
+            /*
+            Stop video when View modal close
+            */
+
+            if (modalId === "viewVideoModal") {
+                document.getElementById("videoPlayerContainer").innerHTML = "";
+            }
+        }
+
+
+        /* ESCAPE HTML */
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        /* ESCAPE ATTRIBUTE */
+
+        function escapeAttribute(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+        }
+
+    </script>
+</body>
+
+</html>

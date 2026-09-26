@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To DAV Public School</title>
+    <!-- Css link start -->
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <!-- Css link end -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="">
+    <div class="container-fluid pt-3 padding-11">
+        <div class="container-fluid">
+            <label class="ml-3">Select Session Year:</label><span style="color:red">*</span>
+            <div class="form-row">
+                <div class="col-md-3 ml-3">
+                    <select class="form-control" id="ddl_archive_finyear">
+                        <option value="0">-Select-</option>
+                        <option value="2020-2021">2020-2021</option>
+                        <option value="2021-2022">2021-2022</option>
+                        <option value="2022-2023">2022-2023</option>
+                        <option value="2023-2024">2023-2024</option>
+                        <option value="2024-2025">2024-2025</option>
+                        <option value="2025-2026">2025-2026</option>
+                        <option value="2026-2027">2026-2027</option>
+                        <option value="2027-2028">2027-2028</option>
+                        <option value="2028-2029">2028-2029</option>
+                        <option value="2029-2030">2029-2030</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary btn_1 ml-4" id="btn_search_archived_video">Search</button>
+            </div><br>
+            <div id="div_archived_videos_add" class="row" style="padding-bottom: 10vh;"></div>
+        </div>
+    </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/Layout/Layout-Js.js"></script>
+    <script src="/Assest/js/site-data.js"></script>
+    <script>
+        // shared header / footer
+        fetch("/Layout/Layout-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading header:", error); });
+
+        fetch("/Layout/Layout-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading footer:", error); });
+    </script>
+    <script>
+        $("#btn_search_archived_video").on("click", function () {
+            var year = $("#ddl_archive_finyear").val();
+            var box = document.getElementById("div_archived_videos_add");
+            if (!year || year === "0") { alert("Please select session year."); return; }
+            box.innerHTML = '<div class="col-12">Loading...</div>';
+            SiteData.getRows("/api/ourSchool/api-get-view-archive-gallery-video?ITEM=VIEW_ARCHIVE_VIDEO_GALLERY&SESSION_YEAR=" + encodeURIComponent(year))
+                .then(function (rows) { SiteData.renderVideos(box, rows); })
+                .catch(function () { box.innerHTML = '<div class="col-12">No archived videos found.</div>'; });
+        });
+    </script>
+</body>
+
+</html>

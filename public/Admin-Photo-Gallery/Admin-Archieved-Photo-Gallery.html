@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To DAV Public School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        .gallery-filter-row {
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-end;
+            gap: 25px;
+        }
+
+        .gallery-filter-group {
+            width: 350px;
+        }
+
+        .gallery-filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .gallery-filter-group .form-control {
+
+            width: 100%;
+
+            height: 42px;
+
+            padding: 8px 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 4px;
+
+            font-size: 14px;
+
+            box-sizing: border-box;
+
+            background-color: #fff;
+
+            /* Keep dropdown arrow visible */
+
+            appearance: auto;
+
+            -webkit-appearance: auto;
+
+            -moz-appearance: auto;
+
+            cursor: pointer;
+
+        }
+
+        .gallery-filter-group .form-control:focus {
+
+            outline: none;
+
+            border-color: #0d6efd;
+
+            box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15);
+
+        }
+
+        /* Dropdown options */
+
+        .gallery-filter-group select option:hover {
+
+            background-color: #0d6efd;
+
+            color: #ffffff;
+
+        }
+
+
+        .gallery-filter-button {
+            padding-bottom: 0;
+        }
+
+        .gallery-filter-button .btn {
+            height: 42px;
+            padding: 8px 22px;
+        }
+
+        .required {
+            color: red;
+        }
+
+        /* ==========================================
+   ARCHIVED GALLERY TABLE
+========================================== */
+
+        .archived-gallery-table-wrapper {
+            width: 90%;
+            margin: 30px auto 0;
+            display: none;
+            overflow-x: auto;
+        }
+
+        .archived-gallery-table {
+            width: 100%;
+            border: 2px solid #75112e !important;
+            border-collapse: collapse !important;
+        }
+
+        .archived-gallery-table th {
+            background-color: #75112e !important;
+            color: #ffffff;
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px 10px;
+            border: 2px solid #75112e !important;
+        }
+
+        .archived-gallery-table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 10px;
+            border: 2px solid #75112e !important;
+        }
+
+        .archived-gallery-table tbody tr:hover {
+            background-color: #f5e9ed;
+        }
+
+        .unarchive-gallery-btn {
+            background-color: #505050 !important;
+            color: #ffffff;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .unarchive-gallery-btn:hover {
+            background-color: #505050 !important;
+            color: #ffffff;
+        }
+
+        /* ==========================================
+   UNARCHIVE CONFIRM MODAL
+========================================== */
+
+        .unarchive-confirm-yes {
+            background-color: #198754;
+            color: #ffffff;
+            border: none;
+            padding: 6px 24px;
+            border-radius: 5px;
+        }
+
+        .unarchive-confirm-yes:hover {
+            background-color: #157347;
+            color: #ffffff;
+        }
+
+        .unarchive-confirm-no {
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            padding: 6px 24px;
+            border-radius: 5px;
+        }
+
+        .unarchive-confirm-no:hover {
+            background-color: #bb2d3b;
+            color: #ffffff;
+        }
+        .modal-title{
+            color: rgb(21, 134, 132);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+    <main>
+        <div class="gallery-control-container">
+
+            <div class="gallery-filter-row">
+                <div class="gallery-filter-group">
+                    <label for="sessionYear">
+                        Select Session Year <span class="required">*</span>
+                    </label>
+                    <select id="sessionYear" class="form-control" required>
+                        <option value="">- Select -</option>
+                        <option value="2020-2021">2020-2021</option>
+                        <option value="2021-2022">2021-2022</option>
+                        <option value="2022-2023">2022-2023</option>
+                        <option value="2023-2024">2023-2024</option>
+                        <option value="2024-2025">2024-2025</option>
+                        <option value="2025-2026">2025-2026</option>
+                        <option value="2026-2027">2026-2027</option>
+                        <option value="2027-2028">2027-2028</option>
+                        <option value="2028-2029">2028-2029</option>
+                        <option value="2029-2030">2029-2030</option>
+                    </select>
+                </div>
+                <div class="gallery-filter-button">
+                    <button type="button" class="btn btn-primary" id="searchArchivedGallery">
+                        Search
+                    </button>
+                </div>
+            </div>
+
+            <!-- Archived Gallery Table -->
+            <div class="archived-gallery-table-wrapper" id="archivedGalleryTableWrapper">
+
+                <table class="table archived-gallery-table">
+                    <thead>
+                        <tr>
+                            <th>Sl. No.</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Date of Issue</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="archivedGalleryTableBody">
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+    </main>
+    <div id="footer"></div>
+
+    <!-- Unarchive Confirmation Modal -->
+    <div class="modal fade" id="unarchiveConfirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title">Unarchive Record</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body text-center py-4">
+                    Are you want to unarchive this record?
+                </div>
+                <div class="modal-footer justify-content-center border-0 pb-4">
+                    <button type="button" class="btn unarchive-confirm-yes" id="unarchiveConfirmYes">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                        Yes</button>
+                    <button type="button" class="btn unarchive-confirm-no" id="unarchiveConfirmNo"
+                        data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../Layout/Layout-Admin.js"></script>
+    <script>
+        fetch("../Layout/Layout-Admin-Header.html")
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("header").innerHTML = html;
+                if (typeof initAdminLayoutNav === "function") {
+                    initAdminLayoutNav();
+                }
+            })
+            .catch(error => {
+                console.error("Admin header loading error:", error);
+            });
+    </script>
+    <script>
+        fetch("../Layout/Layout-Admin-Footer.html")
+            .then(r => r.text())
+            .then(html => document.getElementById("footer").innerHTML = html);
+    </script>
+
+    <script>
+        const API_BASE = "/api/ourSchool";
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            initializeArchivedGallerySearch();
+            initializeUnarchiveModal();
+        });
+
+        /*
+        SEARCH
+        */
+
+        function initializeArchivedGallerySearch() {
+            const searchButton = document.getElementById("searchArchivedGallery");
+            if (!searchButton) {
+                return;
+            }
+
+            searchButton.addEventListener("click", function () {
+
+                const sessionYear = document.getElementById("sessionYear").value;
+
+                /*
+                Mandatory validation
+                */
+
+                if (!sessionYear) {
+                    alert("Please select session year.");
+                    return;
+                }
+
+                getArchivedGallery(sessionYear);
+            });
+        }
+
+        /*
+        GET ARCHIVED GALLERY DETAILS
+        */
+
+        async function getArchivedGallery(sessionYear) {
+
+            try {
+                const token = localStorage.getItem("authToken");
+
+                if (!token) {
+                    alert("Session expired. Please login again.");
+                    window.location.href = "/Dav-Login.html";
+                    return;
+                }
+
+                const response = await fetch(
+                    `/api/ourSchool/api-get-view-archive-gallery-image?ITEM=VIEW_ARCHIVE_IMAGE_GALLERY&SESSION_YEAR=${encodeURIComponent(sessionYear)}`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${token}`
+                        }
+                    }
+                );
+
+                const data = await response.json();
+
+                if (data.status === "true" || data.status === true) {
+                    renderArchivedGalleryTable(rowsOf(data.response));
+                } else {
+                    renderArchivedGalleryTable([]);
+                    console.error("Archived gallery fetch error:", data.message);
+                }
+            } catch (error) {
+                console.error("Archived gallery fetch error:", error);
+                renderArchivedGalleryTable([]);
+            }
+        }
+
+        /*
+        RENDER ARCHIVED GALLERY TABLE
+        */
+
+        function renderArchivedGalleryTable(galleryList) {
+
+            const tableWrapper = document.getElementById("archivedGalleryTableWrapper");
+            const tableBody = document.getElementById("archivedGalleryTableBody");
+
+            if (!tableWrapper || !tableBody) {
+                return;
+            }
+
+            tableBody.innerHTML = "";
+
+            if (!Array.isArray(galleryList) || galleryList.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="5">No archived gallery images found</td></tr>`;
+                tableWrapper.style.display = "block";
+                return;
+            }
+
+            galleryList.forEach(function (gallery, index) {
+
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${escapeHtml(gallery.TITLE || "")}</td>
+                    <td>${escapeHtml(gallery.DESCRIPTION || "")}</td>
+                    <td>${escapeHtml(gallery.DATE_OF_ISSUE || "")}</td>
+                    <td>
+                        <button type="button" class="unarchive-gallery-btn" data-id="${escapeHtml(gallery.GALLERY_SYS_ID || gallery.RECORD_SYS_ID || "")}">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="8" width="18" height="13" rx="1"></rect>
+                                <path d="M3 8V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3"></path>
+                                <line x1="12" y1="12" x2="12" y2="18"></line>
+                                <polyline points="9 15 12 12 15 15"></polyline>
+                            </svg>
+                            Unarchive
+                            </button>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+
+            tableWrapper.style.display = "block";
+        }
+
+        /*
+        UNARCHIVE - CONFIRM MODAL + POST API
+        */
+
+        let pendingUnarchiveId = null;
+        let unarchiveModalInstance = null;
+
+        function initializeUnarchiveModal() {
+
+            const modalEl = document.getElementById("unarchiveConfirmModal");
+            const yesButton = document.getElementById("unarchiveConfirmYes");
+            const noButton = document.getElementById("unarchiveConfirmNo");
+
+            if (!modalEl || !yesButton || !noButton) {
+                return;
+            }
+
+            unarchiveModalInstance = { show: function () { $(modalEl).modal("show"); }, hide: function () { $(modalEl).modal("hide"); } };
+
+            yesButton.addEventListener("click", async function () {
+                if (!pendingUnarchiveId) {
+                    return;
+                }
+
+                await unarchiveGalleryImage(pendingUnarchiveId);
+                pendingUnarchiveId = null;
+                unarchiveModalInstance.hide();
+            });
+
+            noButton.addEventListener("click", function () {
+                pendingUnarchiveId = null;
+            });
+        }
+
+        document.addEventListener("click", function (event) {
+            const unarchiveBtn = event.target.closest(".unarchive-gallery-btn");
+
+            if (!unarchiveBtn) {
+                return;
+            }
+
+            pendingUnarchiveId = unarchiveBtn.dataset.id;
+
+            if (unarchiveModalInstance) {
+                unarchiveModalInstance.show();
+            }
+        });
+
+        /*
+        UNARCHIVE GALLERY IMAGE - POST API
+        */
+
+        let isUnarchiving = false;
+
+        async function unarchiveGalleryImage(gallerySysId) {
+            if (isUnarchiving) return;
+
+            const token = localStorage.getItem("authToken");
+
+            if (!token) {
+                alert("Session expired. Please login again.");
+                window.location.href = "/Dav-Login.html";
+                return;
+            }
+
+            const sessionYear = document.getElementById("sessionYear").value;
+
+            // NOTE: adjust these keys to match what USP_POST_IMAGE_GALLERY_ACTIVITY expects
+            const payload = [
+                {
+                    GALLERY_SYS_ID: gallerySysId,
+                    SESSION_YEAR: sessionYear
+                }
+            ];
+
+            isUnarchiving = true;
+
+            try {
+                const response = await fetch(`/api/ourSchool/api-post-add-update-image-gallery-unarchive`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ data: payload })
+                });
+
+                const result = await response.json();
+                console.log("Unarchive Gallery POST Response:", result);
+
+                if (!response.ok || (result.status !== "true" && result.status !== true)) {
+                    throw new Error(result.message || "Failed to unarchive record.");
+                }
+
+                let spResult = result.response?.[0]?.[0]?.JSON_VALUE;
+                
+                if (typeof spResult === "string") {
+                    try { spResult = JSON.parse(spResult); } catch (e) { /* keep as string */ }
+                }
+
+                if (spResult && spResult.status !== "true" && spResult.status !== true) {
+                    throw new Error(spResult.response || "Failed to unarchive record.");
+                }
+
+                alert((spResult && spResult.response) || "Image Unarchive Successful");
+
+                // Refresh the archived list for the selected session year
+                if (sessionYear) {
+                    getArchivedGallery(sessionYear);
+                }
+
+            } catch (error) {
+                console.error("Unarchive gallery error:", error);
+                alert(error.message || "Something went wrong while unarchiving the record.");
+            } finally {
+                isUnarchiving = false;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

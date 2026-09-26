@@ -1,0 +1,680 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Round&display=swap');
+/* =========================================================
+
+   Shared site layout styles — extracted from Layout1.txt
+
+   Link this file in the <head> of every page (About, Home, Gallery, etc.)
+
+========================================================= */
+ 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+ 
+        html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+ 
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #333;
+
+            /* Page scrolls normally; the menu is sticky and the footer is fixed to the
+         bottom of the window (same as the live site). Room is left for the footer. */
+      overflow-x: hidden;
+      padding-bottom: 50px;
+    }
+
+    /* Bootstrap 4 style container width used by the live site */
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 1080px;
+      }
+    }
+
+    
+ 
+    /* Only this region scrolls */
+
+        main {
+      display: block;
+    }
+ 
+    /* =========================================================
+   HEADER
+========================================================= */
+ 
+    .main-header {
+      width: 100%;
+      background: #ffffff;
+    }
+ 
+    .header-container {
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto;
+      min-height: 137px;
+      padding: 8px 50px 8px 40px;
+      display: flex;
+      align-items: center;
+      gap: 63px;
+    }
+ 
+    /* =========================================================
+   SCHOOL SECTION
+========================================================= */
+
+    .school-section {
+      width: 31%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+ 
+    /* LOGO */
+    .school-logo {
+      flex-shrink: 0;
+    }
+
+    .school-logo a {
+      display: block;
+    }
+ 
+    .school-logo img {
+      display: block;
+      width: 135px;
+      max-width: 100%;
+      height: 110px;
+    }
+
+    .dav-color{
+      color: #e04a2d;
+      font-weight: bold;
+    }
+ 
+    /* SCHOOL INFORMATION */
+
+    .school-information {
+      padding-top: 2px;
+    }
+ 
+    .school-information h1 {
+      margin-bottom: 5px;
+      color: #e04a2d;
+      font-size: 16px;
+      font-weight: 700;
+    }
+ 
+    .school-information p {
+      margin-bottom: 2px;
+      color: #000;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+ 
+    /* SCHOOL CODES */
+ 
+    .school-codes {
+      white-space: nowrap;
+    }
+ 
+    .school-codes span {
+      color: #e83421;
+      font-weight: 700;
+    }
+ 
+    .school-codes strong {
+      color: #333;
+      font-weight: 700;
+      margin-right: 5px;
+    }
+ 
+    /* =========================================================
+   MISSION STATEMENT
+========================================================= */
+ 
+    .mission-section {
+      flex: 1;
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+ 
+    .mission-box {
+      width: 100%;
+      border: 1px solid #8d6060;
+      border-radius: 4px;
+      padding: 8px 14px;
+      background: #ffffff;
+    }
+ 
+    .mission-box p {
+      color: #4a4a4a;
+      font-size: 12px;
+      line-height: 1.9;
+      text-align: left;
+    }
+ 
+    .mission-box strong {
+      color: #e04a2d;
+      font-size: 12px;
+      font-weight: 700;
+    }
+ 
+    /* =========================================================
+   NAVBAR
+========================================================= */
+ 
+    .main-navbar {
+      width: 100%;
+            background: #7d1d2d;
+      border-top: 2px solid #ffffff;
+      border-bottom: 2px solid #ffffff;
+      min-height: 50px;
+      line-height: 1;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+ 
+    .navbar-container {
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+ 
+    /* =========================================================
+   NAV MENU
+========================================================= */
+ 
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      width: 100%;
+    }
+ 
+    .nav-item {
+      position: relative;
+    }
+ 
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      line-height: 1;
+      padding: 0 12px;
+      color: #ffffff;
+      text-decoration: none;
+      font-family: "Nova Round", "Josefin Sans", sans-serif;
+      font-size: 18.5px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      white-space: nowrap;
+      transition: background-color 0.2s ease;
+    }
+ 
+    .nav-link:hover {
+      background: #ffffff;
+      color: #8c1830;
+      text-decoration: none;
+    }
+ 
+    /* HOME */
+
+    .home-link {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+ 
+    .home-link i {
+      font-size: 17px;
+    }
+ 
+    /* CARET */
+
+    .dropdown-toggle i {
+      margin-left: 6px;
+      font-size: 13px;
+    }
+
+    /* =========================================================
+   DROPDOWN MENU
+========================================================= */
+ 
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 220px;
+      display: none;
+      list-style: none;
+      margin: 0;
+      padding: 8px 0;
+      background: #ffffff;
+      border: none;
+      border-radius: 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
+      z-index: 2000;
+    }
+ 
+    /* Dropdown item */
+ 
+    .dropdown-menu li {
+      width: 100%;
+    }
+ 
+    /* Dropdown link */
+ 
+    .dropdown-menu li a {
+      display: block;
+      width: 100%;
+      padding: 10px 18px;
+      background: #ffffff;
+      color: #8c1830;
+      text-decoration: none;
+      font-family: "Josefin Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      line-height: 1.4;
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+    }
+ 
+    /* Dropdown hover */
+ 
+    .dropdown-menu li a:hover {
+      background: #eeeeee;
+      color: #8c1830;
+      text-decoration: none;
+    }
+ 
+    /* Desktop dropdown */
+ 
+    .dropdown:hover>.dropdown-menu {
+      display: block;
+    }
+ 
+    /* =========================================================
+   PAGE CONTENT
+========================================================= */
+ 
+    .page-content {
+      width: 100%;
+      min-height: 500px;
+      background: #ffffff;
+    }
+ 
+    /* ========================================================
+   FOOTER
+========================================================= */
+ 
+    .main-footer {
+      width: 100%;
+      background: #dc3545;
+      color: #ffffff;
+    }
+ 
+    .footer-container {
+      width: 100%;
+      min-height: 55px;
+      padding: 0 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+ 
+    .footer-container p {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+ 
+    /* Footer markup using a bare <footer> + .foo-txt */
+
+        footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 1500;
+      width: 100%;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      background: #b2132f;
+      color: #ffffff;
+    }
+ 
+    footer p,
+    footer a {
+      color: #ffffff;
+    }
+ 
+    .foo-txt {
+      width: 100%;
+      min-height: 55px;
+      padding: 0 25px;
+      align-items: center;
+    }
+ 
+        .foo-txt p,
+    .foo-text p {
+      margin: 0;
+      font-size: 11px;
+    }
+
+    .foo-text {
+      width: 100%;
+      padding: 0 20px;
+      align-items: center;
+    }
+ 
+    @media (max-width: 767px) {
+      .foo-txt {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 14px 18px;
+        gap: 6px;
+      }
+    }
+ 
+    /* =========================================================
+   MOBILE BUTTON
+========================================================= */
+ 
+    .mobile-menu-button {
+      display: none;
+      width: 42px;
+      height: 38px;
+      margin-left: auto;
+      padding: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: transparent;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+ 
+    .mobile-menu-button span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      margin: 5px auto;
+      background: #ffffff;
+    }
+ 
+    /* =========================================================
+   TABLET
+========================================================= */
+ 
+    @media (max-width: 1200px) {
+      .header-container {
+        gap: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+ 
+      .school-section {
+        width: 40%;
+      }
+ 
+      .mission-section {
+        width: 60%;
+      }
+ 
+      .school-logo img {
+        width: 120px;
+      }
+ 
+      .school-information h1 {
+        font-size: 19px;
+      }
+ 
+      .school-information p {
+        font-size: 11px;
+      }
+ 
+      .mission-box p {
+        font-size: 12px;
+        line-height: 1.5;
+      }
+ 
+      .nav-link {
+        padding-left: 9px;
+        padding-right: 9px;
+        font-size: 12px;
+        letter-spacing: 0.7px;
+      }
+    }
+ 
+    /* =========================================================
+   MOBILE
+========================================================= */
+ 
+    @media (max-width: 767px) {
+
+      /* HEADER */
+
+      .header-container {
+        display: block;
+        padding: 15px;
+        min-height: auto;
+      }
+ 
+      .school-section {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 15px;
+      }
+ 
+      .school-logo img {
+        width: 100px;
+      }
+ 
+      .school-information h1 {
+        font-size: 18px;
+      }
+ 
+      .school-information p {
+        font-size: 11px;
+      }
+ 
+      .school-codes {
+        white-space: normal;
+      }
+ 
+      /* MISSION */
+
+      .mission-section {
+        width: 100%;
+      }
+ 
+      .mission-box {
+        padding: 10px;
+      }
+ 
+      .mission-box p {
+        font-size: 11px;
+        line-height: 1.5;
+      }
+ 
+      /* NAVBAR */
+
+      .main-navbar {
+        min-height: 50px;
+      }
+ 
+      .navbar-container {
+        padding: 0 10px;
+      }
+ 
+      .mobile-menu-button {
+        display: block;
+      }
+ 
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: #8c1830;
+        box-shadow:
+          0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+ 
+      .nav-menu.show {
+        display: flex;
+      }
+ 
+      .nav-item {
+        width: 100%;
+      }
+ 
+      .nav-link {
+        justify-content: flex-start;
+        width: 100%;
+        min-height: 45px;
+        padding: 0 20px;
+        border-bottom:
+          1px solid rgba(255, 255, 255, 0.15);
+        font-size: 13px;
+      }
+ 
+ 
+      /* MOBILE DROPDOWN */
+ 
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 220px;
+        display: none;
+        list-style: none;
+        margin: 0;
+        padding: 8px 0;
+        background: #ffffff;
+        border: none;
+        border-radius: 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
+        z-index: 2000;
+      }
+ 
+      .dropdown-menu li a {
+        padding: 10px 35px;
+        color: #ffffff;
+        background: #D3D3D3;
+        font-size: 12px;
+      }
+ 
+      .dropdown-menu li a:hover {
+        background: #D3D3D3;
+      }
+ 
+ 
+      /* MOBILE FOOTER */
+ 
+      .footer-container {
+        min-height: 70px;
+        padding: 10px 15px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        text-align: center;
+      }
+ 
+      .footer-container p {
+        font-size: 11px;
+      }
+    }
+ 
+
+    /* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+    @media (max-width: 480px) {
+      .school-section {
+        justify-content: flex-start;
+      }
+ 
+      .school-logo img {
+        width: 80px;
+      }
+ 
+      .school-information h1 {
+        font-size: 15px;
+      }
+ 
+      .school-information p {
+        font-size: 9px;
+      }
+ 
+      .mission-box p {
+        font-size: 10px;
+      }
+
+    }
+ 
+    .foo-txt{
+      width: 100%;
+      min-height: 55px;
+      padding: 0 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 7px !important;
+    }
+    .foo-txt p{
+      margin: 0;
+      font-size: 7px !important;
+    }
+
+    /* Admin Logout */
+    .admin-logout {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #ffffff;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      padding: 15px 20px;
+      font-family: inherit;
+    }
+    .admin-logout:hover{
+      background-color: #ffffff;
+      color: #8c1830;
+    }
+
+/* =========================================================
+   STICKY MENU SUPPORT (matches live site)
+   - the viewport (not <body>) must be the scroller, otherwise position: sticky never sticks
+   - #header must not wrap the header + menu into its own box
+========================================================= */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow: visible !important;
+}
+
+#header {
+  display: contents;
+}

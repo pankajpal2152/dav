@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrastructure Welcome To DAV Public School</title>
+    <!-- Css link start -->
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <!-- Css link end -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="">
+    <div class="container-fluid" style="padding-bottom: 80px;">
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <article class="artical-dav artical-dav--media ml-4 mt-3 text-center">
+                    <p>
+                        Construction of the new school building has been completed and is in use. The new school building is designed to incorporate all modern required for the Technology aided Teaching / Learning ambience.
+                    </p>
+                </article>
+            </div>
+            <div class="col-sm-12 col-md-5">
+                <div class="infrastructure_imgBox mt-3">
+                    <img src="/assets/images/inf.JPG" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 transfer-sec">
+            <div class="table-responsive Infrastructure-table">
+                <table class="table inf_table">
+                    <thead>
+                        <tr>
+                            <th>Ground Floor</th>
+                            <th>1st Floor</th>
+                            <th>2nd Floor</th>
+                            <th>3rd Floor</th>
+                            <th>4th Floor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Swami Shradhananda Wing</td><td>Lala Lajpat Rai Wing</td><td>Mulk Raj Malhotra Wing</td><td>Jagdish Chandra Nangia Wing</td><td>Bhaganbhari Bhatia Wing</td></tr>
+                        <tr><td>Reception</td><td>Auditorium</td><td>Damayanti Malhotra Wing</td><td>Satya Sareen Wing</td><td>Khan Chand Bhatia Wing</td></tr>
+                        <tr><td>Primary Classes</td><td>Higher Secondary Classes</td><td>Primary Classes</td><td>Middle School Classes</td><td>Secondary Classes</td></tr>
+                        <tr><td>Rector's Room</td><td>Principal's Office</td><td>Staff Room</td><td>Staff Room</td><td>Staff Room</td></tr>
+                        <tr><td>Sick Room</td><td>Conference Room</td><td>Library</td><td>Audio Visual Room</td><td>Physics Lab</td></tr>
+                        <tr><td>Sports Room</td><td>Chemistry Lab</td><td>Art &amp; Craft Lab</td><td>Mathematics Lab</td><td>Biology Lab</td></tr>
+                        <tr><td>Office</td><td>Computer Lab - Junior</td><td></td><td></td><td>Computer Lab - Senior</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="right-scroll-icon">
+                <button id="myBtn"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/Layout/Layout-Js.js"></script>
+    <script>
+        // shared header / footer
+        fetch("/Layout/Layout-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading header:", error); });
+
+        fetch("/Layout/Layout-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading footer:", error); });
+    </script>
+</body>
+
+</html>

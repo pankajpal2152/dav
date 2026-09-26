@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To DAV Public School</title>
+    <!-- Css link start -->
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <!-- Css link end -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="">
+    <div class="container-fluid" style="padding-bottom: 80px;"><br>
+        <div class="row transfer-sec">
+            <div id="main_page_notice_view" class="table-responsive viewVideo-table notice-board-table">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr><th>Sl. No.</th><th>Title</th><th>Description</th><th>Date of Issue</th><th>View File</th></tr>
+                    </thead>
+                    <tbody id="noticeBoardBody"><tr><td colspan="5">Loading...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/Layout/Layout-Js.js"></script>
+    <script src="/Assest/js/site-data.js"></script>
+    <script>
+        // shared header / footer
+        fetch("/Layout/Layout-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading header:", error); });
+
+        fetch("/Layout/Layout-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading footer:", error); });
+    </script>
+    <script>
+        $(function () {
+            var body = document.getElementById("noticeBoardBody");
+            SiteData.getRows("/api/ourSchool/api-get-view-notice-board?ITEM=VIEW_ALL")
+                .then(function (rows) {
+                    if (!rows.length) { body.innerHTML = '<tr><td colspan="5">No notices found.</td></tr>'; return; }
+                    body.innerHTML = rows.map(function (n, i) {
+                        var e = SiteData.escapeHtml;
+                        var link = SiteData.fileUrl("NoticeBoardFiles", n.FILE_NAME);
+                        return "<tr><td>" + (i + 1) + "</td><td>" + e(n.TITLE) + "</td><td>" + e(n.DESCRIPTION) + "</td><td>" +
+                            SiteData.formatDate(n.DATE_OF_ISSUE) + "</td><td>" + (link ? '<a class="btn btn-info" href="' + e(link) +
+                            '" target="_blank" rel="noopener" style="color:#fff;">View</a>' : "") + "</td></tr>";
+                    }).join("");
+                })
+                .catch(function () { body.innerHTML = '<tr><td colspan="5">Unable to load notices.</td></tr>'; });
+        });
+    </script>
+</body>
+
+</html>

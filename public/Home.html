@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To DAV Public School</title>
+    <!-- Css link start -->
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <!-- Css link end -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="">
+        <style>
+            .scroll-container {
+                height: 220px;
+                overflow: hidden;
+                position: relative;
+                background: #222;
+                padding: 10px;
+            }
+
+            .scroll-content {
+                position: absolute;
+                width: 100%;
+                animation: scrollUp 15s linear infinite;
+            }
+
+            .scroll-container:hover .scroll-content {
+                animation-play-state: paused;
+            }
+
+            @keyframes scrollUp {
+                0% {
+                    top: 100%;
+                }
+
+                100% {
+                    top: -100%;
+                }
+            }
+
+            .marquee_titlename {
+                list-style-type: disc !important;
+                padding: 0;
+                margin: 0;
+            }
+
+            .marquee_titlename li {
+                margin-bottom: 10px;
+            }
+
+            .marquee_titlename button {
+                background: transparent;
+                border: none;
+                color: #fff;
+                text-align: left;
+                width: 100%;
+                cursor: pointer;
+            }
+        </style>
+
+        <!-- carousel -->
+        <div class="wrappe-hm">
+            <div class="row clearfix curousel-notice">
+                <div class="col-12 col-sm-12 col-md-8 clearfix slider_container">
+                    <!-- Carousel -->
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active border-img">
+                                <img class="d-block w-100" src="/assets/images/Slide1.jpg" alt="First slide">
+                            </div>
+                            <div class="carousel-item border-img">
+                                <img class="d-block w-100" src="/assets/images/Slide2.jpg" alt="Second slide">
+                            </div>
+                            <div class="carousel-item border-img">
+                                <img class="d-block w-100" src="/assets/images/Slide3.JPG" alt="Third slide">
+                            </div>
+                            <div class="carousel-item border-img">
+                                <img class="d-block w-100" src="/assets/images/Slide4.jpg" alt="Fourth slide">
+                            </div>
+                        </div>
+                        <!-- left and right controler -->
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" style="background: #75112e; color: #75112e;" aria-hidden="true"></span>
+                            <span class="sr-only" style="color: #75112e;">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 bg-notice-board">
+                    <!-- Notice Board -->
+                    <div class="notice_bord_background">
+                        <h4><span>Notice Board</span></h4>
+                        <div class="scroll-container">
+                            <div class="scroll-content">
+                                <ul id="list_titlesname" class="marquee_titlename"></ul>
+                            </div>
+                        </div>
+                        <a href="https://www.iobnet.co.in/iobpay/entry.do?dirlinkcatcd=EDU&amp;dirlinkmerid=DAVKOL" target="_blank" rel="noopener noreferrer"><span id="spanPaynSection"> FEE PAYMENT</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Body -->
+        <div class="row">
+            <section class="content-body-bg">
+                <div class="col-md-12 control-left-panel">
+                    <section class="content-disc-background">
+                        <div class="row">
+                            <div class="col-md-3 mr-0 dav-img-content text-center">
+                                <img class="img-fluid" src="/assets/images/DAV-img.png" alt="">
+                            </div>
+                            <div class="col-md-9 mr-0 dav-txt-content">
+                                <p>
+                                    <b><span style="text-decoration: underline; color: #75112e;">The D.A.V. (Dayanand Anglo Vedic)</span></b> Movement commemorates and
+                                    perpetuates the philosophy and work of one of the greatest social and religious reformers -
+                                    who appear but rarely on the stage of the world - Maharshi Dayanand Saraswati. Born in the 19th century,
+                                    at a time when the Hindu society had become completely oblivious of its ancient spiritual and cultural
+                                    heritage and caught up inextricably in the meshes of superstition born of intellectual poverty and false beliefs,
+                                    meaningless rituals and such pernicious practices as untouchability, child marriage and inhuman treatment of women.
+                                </p>
+                                <p>
+                                    <b><span style="text-decoration: underline; color: #75112e;">Maharshi Dayanand</span></b> raised his irrepressible voice against all
+                                    these vices and shook the society to its very foundation by
+                                    espousing fearlessly and relentlessly the cause of the emancipation of women,
+                                    the abolition of casteism, pursuit of Swaraj and the popularisation of Hindi.
+                                    Gurudev Rabindranath Tagore considered him to be the “great path maker of modern India”.
+                                    He drew his inspiration and strength from the vedas which he exhorted
+                                    his fellow countrymen to study and regard as with their most precious treasure.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/Layout/Layout-Js.js"></script>
+    <script>
+        // shared header / footer
+        fetch("/Layout/Layout-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading header:", error); });
+
+        fetch("/Layout/Layout-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading footer:", error); });
+    </script>
+
+    <!-- Notice board (loaded from the API) -->
+    <script>
+        function renderNotices(notices) {
+            var list = document.getElementById("list_titlesname");
+            if (!list) return;
+            list.innerHTML = "";
+
+            if (Array.isArray(notices) && notices.length > 0) {
+                notices.forEach(function (notice) {
+                    var li = document.createElement("li");
+                    var button = document.createElement("button");
+                    button.type = "button";
+                    button.textContent = notice.TITLE || "Notice";
+                    button.addEventListener("click", function () {
+                        if (notice.FILE_NAME) {
+                            window.open("/Uploadfiles/NoticeBoardFiles/" + encodeURIComponent(notice.FILE_NAME), "_blank");
+                        }
+                    });
+                    li.appendChild(button);
+                    list.appendChild(li);
+                });
+            } else {
+                list.innerHTML = '<li><button type="button">No notices available.</button></li>';
+            }
+        }
+
+        function loadNoticeBoard() {
+            fetch("/api/ourSchool/api-get-view-notice-board?ITEM=VIEW_HOME_PAGE_NOTICE_BOARD")
+                .then(function (response) {
+                    if (!response.ok) throw new Error("HTTP error! status:" + response.status);
+                    return response.json();
+                })
+                .then(function (data) {
+                    var notices = [];
+                    if (data && data.status === "true" && Array.isArray(data.response) && data.response.length > 0) {
+                        var value = data.response[0] && data.response[0].JSON_VALUE;
+                        if (value && value.status === "true" && Array.isArray(value.response)) {
+                            notices = value.response;
+                        }
+                    }
+                    renderNotices(notices);
+                })
+                .catch(function (error) {
+                    console.error("Error loading notice board:", error);
+                    renderNotices([]);
+                });
+        }
+
+        document.addEventListener("DOMContentLoaded", loadNoticeBoard);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To DAV Public School</title>
+    <!-- Css link start -->
+    <link href="/Assest/css/Style.css" rel="stylesheet">
+    <link href="/Assest/css/Media.css" rel="stylesheet">
+    <!-- Css link end -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="">
+    <div class="container-fluid" style="padding-bottom: 50px;">
+        <div class="transfer-sec">
+            <h3>transfer certificate:</h3>
+            <div class="row">
+                <div class="col col-sm-12 col-md-12 col-xl-12">
+                    <div class="row">
+                        <div id="main_tc_view" class="matrix_tableView table-responsive viewVideo-table">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr><th>Sl. No.</th><th>Student Name</th><th>Registration No.</th><th>Class</th><th>Date of Issue</th><th>View File</th></tr>
+                                </thead>
+                                <tbody id="tcBody"><tr><td colspan="6">Loading...</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/Layout/Layout-Js.js"></script>
+    <script src="/Assest/js/site-data.js"></script>
+    <script>
+        // shared header / footer
+        fetch("/Layout/Layout-Header.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("header").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading header:", error); });
+
+        fetch("/Layout/Layout-Footer.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) { document.getElementById("footer").innerHTML = html; })
+            .catch(function (error) { console.error("Error loading footer:", error); });
+    </script>
+    <script>
+        $(function () {
+            var body = document.getElementById("tcBody");
+            SiteData.getRows("/api/ourSchool/api-get-view-transfer-certificate?ITEM=VIEW_ALL")
+                .then(function (rows) {
+                    if (!rows.length) { body.innerHTML = '<tr><td colspan="6">No transfer certificates found.</td></tr>'; return; }
+                    body.innerHTML = rows.map(function (t, i) {
+                        var e = SiteData.escapeHtml;
+                        var link = SiteData.fileUrl("TransferCertificateFiles", t.FILE_URL || t.FILE_NAME);
+                        return "<tr><td>" + (i + 1) + "</td><td>" + e(t.STUDENT_NAME) + "</td><td>" + e(t.REGISTRATION_NO) + "</td><td>" +
+                            e(t.CLASS) + "</td><td>" + SiteData.formatDate(t.DATE_OF_ISSUE) + "</td><td>" + (link ? '<a class="btn btn-info" href="' + e(link) +
+                            '" target="_blank" rel="noopener" style="color:#fff;">View</a>' : "") + "</td></tr>";
+                    }).join("");
+                })
+                .catch(function () { body.innerHTML = '<tr><td colspan="6">Unable to load transfer certificates.</td></tr>'; });
+        });
+    </script>
+</body>
+
+</html>
